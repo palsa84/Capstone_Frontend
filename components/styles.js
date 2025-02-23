@@ -20,38 +20,37 @@ const StatusBarHeight = StatusBar.currentHeight ? StatusBar.currentHeight : 0;  
 export const StyledContainer = styled.View`
     flex: 1;
     padding: 40px;
-    padding-top: ${StatusBarHeight + 120}px;
+    padding-top: ${StatusBarHeight + 100}px;
     background-color: ${accountBackGroundColor};
-    position: relative;
-`;
+    
 
-// 기본 컨테이너 스타일
-export const StyledContainerBasic = styled.View`
-    flex: 1;
-    padding: 40px;
-    padding-top: ${StatusBarHeight + 120}px;
-    background-color: ${backGroundColor};
-    position: relative;
 `;
 
 // 내부 컨테이너 스타일
 export const InnerContainer = styled.View`
     flex: 1;
     width: 100%;
-    align-items: center;
+    top: -20px;
+    align-items: center; 
+
+
 `;
 
-// 화면 컨테이너 스타일
+// Welcome화면 컨테이너 스타일
 export const WelcomeContainer = styled(InnerContainer)`
     padding: 25px;
-    padding-top: 10px;
     justify-content: center;
+    align-items: center;
+
+
 `;
 
 // 페이지 로고 스타일
 export const PageLogo = styled.Image`
     width: 250px;
     height: 215px;
+
+
 `;
 
 
@@ -62,10 +61,6 @@ export const PageTitle = styled.Text`
     font-weight: bold;
     color: ${logoColor};
     padding: 10px;
-
-    ${(props) => props.welcome && `
-        font:size: 35px;
-    `}
 `;
 
 
@@ -73,34 +68,33 @@ export const PageTitle = styled.Text`
 export const SubTitle = styled.Text`
     font-size: 20px;
     margin-bottom: 20px;
-    letter-spacing: 1px;
     font-weight: bold;
     color: ${textColor};
-
-    ${(props) => props.welcome && `
-        margin-bottom: 5px;
-        font-weight: normal;
-    `}
+    
 `;
 
 // 폼 영역 스타일
 export const StyledFormArea = styled.View`
     width: 90%;
+
+
 `;
 
 
 // 입력 필드 스타일
 export const StyledTextInput = styled.TextInput`
     background-color: ${blankColor};
-    padding: 10px;
+    padding: 20px;
     padding-left: 20px;
     padding-right: 40px;
     border-radius: 10px;
     font-size: 15px;
     height: 60px;
     margin-vertical: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     color: ${textColor};
+
+
 `;
 
 
@@ -109,6 +103,8 @@ export const StyledInputLabel = styled.Text`
     color: ${textColor};
     font-size: 15px;
     text-align: left;
+
+
 `;
 
 
@@ -119,10 +115,11 @@ export const StyledButton = styled.TouchableOpacity`
     background-color: ${loginButtonColor};
     justify-content: center;
     border-radius: 10px;
-    margin-vertical: 10px;
+    margin-vertical: 0px;
     height: 60px;
     align-self: center;
-    align-items: center;
+
+
 `;
 
 
@@ -131,33 +128,26 @@ export const ButtonText = styled.Text`
     color: ${textColor};
     font-size: 15px;
     text-align: center; 
-    width: 100%; 
-`;
+    width: 100%;
+    line-height: 18px;
 
-// 추가 정보 영역 스타일
-export const ExtraView = styled.View`
-    padding: 10px
-`;
 
-// 추가 텍스트 스타일
-export const ExtraText = styled.Text`
-    justify-content: center;
-    align-content: center;
-    color: ${textColor};
-    font-size: 15px;
 `;
 
 
 // 링크 스타일
 export const TextLink = styled.TouchableOpacity`
     position: absolute;
-    top: ${StatusBarHeight - 800}px;
-    right: 10px;
-    z-index: 10; 
+    right: 30px;
+    top: 40px;
+
+
 `;
 
 // 링크 텍스트 스타일
 export const TextLinkContent = styled.Text`
     color: ${textColor};
     font-size: 15px;
+
+
 `;

@@ -42,6 +42,13 @@ const Login = ({ navigation }) => {
         <KeyboardAvoidingWrapper>
             <StyledContainer>
                 <StatusBar barStyle="dark-content" />
+
+                {/*회원가입 링크*/}
+                    <TextLink onPress={() => navigation.navigate("Signup")}>
+                    <TextLinkContent>회원가입</TextLinkContent>
+                    </TextLink>
+
+                
                 <InnerContainer>
                     <PageLogo resizeMode="cover" source={require("../assets/img/logo.png")} />
                     <PageTitle>파크골프</PageTitle>
@@ -82,15 +89,8 @@ const Login = ({ navigation }) => {
                                 />
 
                                 <StyledButton onPress={handleSubmit}>
-                                    <ButtonText>Login</ButtonText>
+                                    <ButtonText>로그인</ButtonText>
                                 </StyledButton>
-
-                                {/*회원가입 링크*/}
-                                <ExtraView>
-                                    <TextLink onPress={() => navigation.navigate("Signup")}>
-                                    <TextLinkContent>회원가입</TextLinkContent>
-                                    </TextLink>
-                                </ExtraView>
                             </StyledFormArea>
                         )}
                     </Formik>

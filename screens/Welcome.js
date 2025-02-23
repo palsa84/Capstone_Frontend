@@ -22,9 +22,9 @@ const Welcome = ({navigation}) => {
             <InnerContainer>
                 <WelcomeContainer>
                     {/*로그인 성공 시*/}
-                    <PageTitle Welcome={true}>환영합니다!</PageTitle>
-                    <SubTitle Welcome={true}>홍길동 님</SubTitle>
-                    <SubTitle Welcome={true}>example@gmail.com</SubTitle>
+                    <PageTitle>환영합니다!</PageTitle>
+                    <SubTitle>홍길동 님</SubTitle>
+                    <SubTitle>example@gmail.com</SubTitle>
                     {/*로그아웃*/}
                     <StyledFormArea>
                         <StyledButton onPress={() => {navigation.navigate("Login");}}>
