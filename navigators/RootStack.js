@@ -3,8 +3,13 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import Login from './../screens/Login';  // Login.js 임포트
-import Signup from './../screens/Signup';  // Signup.js 임포트
-import Welcome from './../screens/Welcome';  // Signup.js 임포트
+import Signup from './../screens/Signup';
+import Welcome from './../screens/Welcome'; 
+import Classlist from './../screens/Classlist'; 
+import Beginner from './../screens/Beginner'; 
+import Intermediate from './../screens/Intermediate';
+import Expert from './../screens/Expert';  
+import Certification from './../screens/Certification'; 
 
 
 import {Colors} from './../components/styles'
@@ -32,10 +37,16 @@ const RootStack = () => {
                 <Stack.Screen name="Login" component={Login}/>
                 <Stack.Screen name="Signup" component={Signup}/>
                 <Stack.Screen name="Welcome" component={Welcome}/>
+                <Stack.Screen name="Classlist" component={Classlist}/>
+                <Stack.Screen name="Beginner" component={Beginner}/>
+                <Stack.Screen name="Intermediate" component={Intermediate}/>
+                <Stack.Screen name="Expert" component={Expert}/>
+                <Stack.Screen name="Certification" component={Certification}/>
 
             </Stack.Navigator>
         </NavigationContainer>
     )
 }
+
 
 export default RootStack;

@@ -17,9 +17,9 @@ import {
     StyledButton,
     ButtonText,
     Colors,
-    ExtraView,
     TextLink,
-    TextLinkContent
+    TextLinkContent,
+    LoginButton,
 } from "../components/styles";
 const { exTextColor } = Colors;
 
@@ -88,9 +88,9 @@ const Login = ({ navigation }) => {
                                     secureTextEntry={true}
                                 />
 
-                                <StyledButton onPress={handleSubmit}>
+                                <LoginButton onPress={handleSubmit}>
                                     <ButtonText>로그인</ButtonText>
-                                </StyledButton>
+                                </LoginButton>
                             </StyledFormArea>
                         )}
                     </Formik>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StatusBar } from 'react-native'; 
+import { StatusBar, View } from 'react-native'; // View 추가
 
 import {  
     StyledContainer,
@@ -10,6 +10,7 @@ import {
     StyledButton,
     ButtonText,
     WelcomeContainer,
+    LogoutButton,
 } from './../components/styles'; 
 
 
@@ -17,18 +18,25 @@ import {
 const Welcome = ({navigation}) => {
     return (
         <StyledContainer>
-            {/* 상태바 스타일 설정*/}
+            {/* 상태바 스타일 설정 */}
             <StatusBar barStyle="dark-content" />
             <InnerContainer>
                 <WelcomeContainer>
-                    {/*로그인 성공 시*/}
+                    {/* 로그인 성공 시 */}
                     <PageTitle>환영합니다!</PageTitle>
                     <SubTitle>홍길동 님</SubTitle>
                     <SubTitle>example@gmail.com</SubTitle>
-                    {/*로그아웃*/}
+                    {/* 로그아웃 */}
                     <StyledFormArea>
-                        <StyledButton onPress={() => {navigation.navigate("Login");}}>
+                        <LogoutButton onPress={() => {navigation.navigate("Login");}} style={{ marginBottom: 15 }}>
                             <ButtonText>{'로그아웃'}</ButtonText> 
+                        </LogoutButton>
+
+                        {/* 버튼 사이 간격 조정 */}
+                        {/* <View style={{ height: 5 }} /> */}
+
+                        <StyledButton onPress={() => {navigation.navigate("Classlist");}}>
+                            <ButtonText>{'클래스선택하기'}</ButtonText> 
                         </StyledButton>
                     </StyledFormArea>
                 </WelcomeContainer>
@@ -36,6 +44,5 @@ const Welcome = ({navigation}) => {
         </StyledContainer>
     );
 };
-
 
 export default Welcome;

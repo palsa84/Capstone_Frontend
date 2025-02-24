@@ -19,7 +19,7 @@ const StatusBarHeight = StatusBar.currentHeight ? StatusBar.currentHeight : 0;  
 // 전체 컨테이너 스타일
 export const StyledContainer = styled.View`
     flex: 1;
-    padding: 40px;
+    padding: 30px;
     padding-top: ${StatusBarHeight + 100}px;
     background-color: ${accountBackGroundColor};
     
@@ -32,8 +32,18 @@ export const InnerContainer = styled.View`
     width: 100%;
     top: -20px;
     align-items: center; 
+    
+    border-color: red;
+    border-width: 5px;
 
+`;
 
+// Class 컨테이너 스타일
+export const ClassContainer = styled.View`
+    width: 100%;
+    top: 140px;
+    align-items: center;
+    justify-content: center; /* 중앙 정렬 추가 */
 `;
 
 // Welcome화면 컨테이너 스타일
@@ -111,17 +121,38 @@ export const StyledInputLabel = styled.Text`
 // 버튼 스타일
 export const StyledButton = styled.TouchableOpacity`
     padding: 20px;
-    width: 40%;
+    width: 60%;
     background-color: ${loginButtonColor};
     justify-content: center;
     border-radius: 10px;
     margin-vertical: 0px;
     height: 60px;
     align-self: center;
-
-
 `;
 
+
+// 로그인 버튼 스타일
+export const LoginButton = styled.TouchableOpacity`
+    padding: 20px;
+    width: 30%;
+    background-color: ${loginButtonColor};
+    justify-content: center;
+    border-radius: 10px;
+    margin-vertical: 0px;
+    height: 60px;
+    align-self: center;
+`;
+
+// 로그아웃 버튼 스타일
+export const LogoutButton = styled.TouchableOpacity`
+    padding: 15px;
+    width: 40%; /* 크기 축소 */
+    background-color: ${loginButtonColor};
+    justify-content: center;
+    border-radius: 10px;
+    height: 50px; /* 높이 축소 */
+    align-self: center;
+`;
 
 // 버튼 텍스트 스타일
 export const ButtonText = styled.Text`
@@ -130,8 +161,21 @@ export const ButtonText = styled.Text`
     text-align: center; 
     width: 100%;
     line-height: 18px;
+`;
 
 
+
+// 클래스 버튼 스타일
+export const ClassButton = styled.TouchableOpacity`
+    padding: 40px;
+    width: 48%;
+    background-color: ${blankColor};
+    border-radius: 10px;
+    margin-vertical: 10px; /* 버튼 간격 추가 */
+    align-items: center; /* 텍스트 중앙 정렬 */
+
+    border-color: black;
+    border-width: 3px;
 `;
 
 
