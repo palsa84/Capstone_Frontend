@@ -9,7 +9,6 @@ import {
     StyledFormArea,
     StyledButton,
     ButtonText,
-    WelcomeContainer,
     LogoutButton,
 } from './../components/styles'; 
 
@@ -21,7 +20,6 @@ const Welcome = ({navigation}) => {
             {/* 상태바 스타일 설정 */}
             <StatusBar barStyle="dark-content" />
             <InnerContainer>
-                <WelcomeContainer>
                     {/* 로그인 성공 시 */}
                     <PageTitle>환영합니다!</PageTitle>
                     <SubTitle>홍길동 님</SubTitle>
@@ -35,11 +33,11 @@ const Welcome = ({navigation}) => {
                         {/* 버튼 사이 간격 조정 */}
                         {/* <View style={{ height: 5 }} /> */}
 
-                        <StyledButton onPress={() => {navigation.navigate("Classlist");}}>
-                            <ButtonText>{'클래스선택하기'}</ButtonText> 
+                        <StyledButton onPress={() => navigation.navigate("TabNavigator")}>
+                            <ButtonText>{'클래스 선택하기'}</ButtonText> 
                         </StyledButton>
+
                     </StyledFormArea>
-                </WelcomeContainer>
             </InnerContainer>
         </StyledContainer>
     );

@@ -1,11 +1,13 @@
 import React from 'react';
-import { StatusBar, FlatList, View } from 'react-native';
+import { StatusBar, FlatList } from 'react-native';
 import {  
     StyledContainer,
     StyledFormArea,
     ClassButton,
     ClassContainer,
-    ButtonText,
+    ClassButtonText,
+    GridWrapper,
+    ClassScreenContainer
 } from './../components/styles'; 
 
 const classData = [
@@ -17,26 +19,24 @@ const classData = [
 
 const Classlist = ({ navigation }) => {
     return (
-        <StyledContainer>
-            <StatusBar barStyle="dark-content" /> 
+        <ClassScreenContainer>
+            <StatusBar barStyle="dark-content" />
             <ClassContainer>
                 <StyledFormArea>
-                <FlatList
-                data={classData}
-                renderItem={({ item }) => (
-                    <ClassButton onPress={() => navigation.navigate(item.screen)}>
-                        <ButtonText style={{ fontSize: 17, fontWeight: 'bold' }}>
-                            {item.title}
-                        </ButtonText>
-                    </ClassButton>
-                )}
-                actor={item => item.id}
-                numColumns={2} // 2x2 그리드 설정
-                columnWrapperStyle={{ justifyContent: 'space-between' }}
-            />
+                    <FlatList
+                        data={classData}
+                        renderItem={({ item }) => (
+                            <ClassButton onPress={() => navigation.navigate(item.screen)}>
+                                <ClassButtonText>{item.title}</ClassButtonText>
+                            </ClassButton>
+                        )}
+                        keyExtractor={item => item.id}
+                        numColumns={2}
+                        columnWrapperStyle={GridWrapper} 
+                    />
                 </StyledFormArea>
             </ClassContainer>
-        </StyledContainer>
+        </ClassScreenContainer>
     );
 };
 

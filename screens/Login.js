@@ -23,7 +23,6 @@ import {
 } from "../components/styles";
 const { exTextColor } = Colors;
 
-
 const Login = ({ navigation }) => {
     const [result, setResult] = useState(""); //로그인 결과 상태 처리
 
