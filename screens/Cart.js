@@ -1,23 +1,13 @@
 import React from 'react';
-import { StatusBar } from 'react-native'; 
+import { Text } from 'react-native';
+import { LessonDetailContainer } from './../components/styles';
 
-import {  
-    StyledContainer,
-    InnerContainer,
-    SubTitle,
-} from './../components/styles'; 
-
-
-const Cart = ({navigation}) => {
+const Cart = () => {
     return (
-        <StyledContainer>
-        <StatusBar barStyle="dark-content" /> 
-        <InnerContainer>
-            <SubTitle>장바구니 화면</SubTitle>
-        </InnerContainer>
-    </StyledContainer>
+        <LessonDetailContainer>
+                <Text>장바구니</Text>
+        </LessonDetailContainer>
     );
 };
-
 
 export default Cart;

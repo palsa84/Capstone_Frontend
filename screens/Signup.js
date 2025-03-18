@@ -22,8 +22,6 @@ const Signup = ({navigation}) => {
             <StyledContainer>
                 <StatusBar barStyle="dark-content" /> 
                 <InnerContainer>
-                    <SubTitle>회원가입</SubTitle>
-
                     {/* 회원가입 폼 */}
                     <Formik
                         initialValues={{ userName: '', email: '', password: '', confirmPassword: '' }}

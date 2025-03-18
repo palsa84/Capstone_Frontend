@@ -1,14 +1,7 @@
-import React from 'react';
+import React, { useLayoutEffect } from 'react';
 import { StatusBar, FlatList } from 'react-native';
-import {  
-    StyledContainer,
-    StyledFormArea,
-    ClassButton,
-    ClassContainer,
-    ClassButtonText,
-    GridWrapper,
-    ClassScreenContainer
-} from './../components/styles'; 
+import { useNavigation } from '@react-navigation/native';
+import { StyledFormArea, ClassButton, ClassContainer, ClassButtonText, GridWrapper, ClassScreenContainer } from './../components/styles'; 
 
 const classData = [
     { id: '1', title: '초보자', screen: 'Beginner' },
@@ -18,6 +11,14 @@ const classData = [
 ];
 
 const Classlist = ({ navigation }) => {
+
+    // 뒤로가기 버튼 숨기기
+    useLayoutEffect(() => {
+        navigation.setOptions({
+            headerLeft: () => null, // 뒤로가기 버튼 제거
+        });
+    }, [navigation]);
+
     return (
         <ClassScreenContainer>
             <StatusBar barStyle="dark-content" />

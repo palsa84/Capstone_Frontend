@@ -1,23 +1,13 @@
 import React from 'react';
-import { StatusBar } from 'react-native'; 
+import { Text } from 'react-native';
+import { LessonDetailContainer } from './../components/styles';
 
-import {  
-    StyledContainer,
-    InnerContainer,
-    SubTitle,
-} from './../components/styles'; 
-
-
-const Favorite = ({navigation}) => {
+const Favorite = () => {
     return (
-        <StyledContainer>
-        <StatusBar barStyle="dark-content" /> 
-        <InnerContainer>
-            <SubTitle>찜 화면</SubTitle>
-        </InnerContainer>
-    </StyledContainer>
+        <LessonDetailContainer>
+                <Text>찜</Text>
+        </LessonDetailContainer>
     );
 };
-
 
 export default Favorite;

@@ -201,6 +201,7 @@ export const TextLink = styled.TouchableOpacity`
     right: 30px;
     top: 40px;
 `;
+
 // 링크 텍스트 스타일
 export const TextLinkContent = styled.Text`
     color: ${textColor};
@@ -226,4 +227,126 @@ export const HeaderText = styled.Text`
 `;
 
 
+
+// LessonDetail.js 레슨 상세 화면 컨테이너
+export const LessonDetailContainer = styled.View`
+    flex: 1;
+    background-color: white;
+    justify-content: center;
+    border-color: green;
+    border-width: 5px;
+`;
+
+// LessonDetail.js 레슨 배경 이미지 + 강사 이미지 컨테이너
+export const LessonHeaderContainer = styled.View`
+    width: 100%;
+    align-items: center;
+`;
+
+// LessonDetail.js 레슨 배경 이미지
+export const LessonBackgroundImage = styled.Image`
+    width: 100%;
+    height: 200px;
+    resize-mode: cover;
+`;
+
+// LessonDetail.js 강사 이미지
+export const LessonProfileImage = styled.Image`
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    margin-top: -50px;
+    border-color: black;
+    border-width: 2px;
+`;
+
+// LessonDetail.js 강사명 + 레슨명 + 가격 컨테이너
+export const LessonDetailInfoContainer = styled.View`
+    width: 100%;
+    align-items: center;
+    padding: 10px;
+`;
+
+// LessonDetail.js 강사명 스타일
+export const InstructorName = styled.Text`
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 10px;
+`;
+
+// LessonDetail.js 레슨명(타원형) 컨테이너 
+export const LessonNameContainer = styled.View`
+    padding: 10px 20px;
+    border-radius: 20px;
+    border-color: black;
+    border-width: 2px;
+    align-items: center;
+    justify-content: center;
+`;
+
+// LessonDetail.js  레슨명(타원형) 텍스트
+export const LessonNameText = styled.Text`
+    font-size: 18px;
+    font-weight: bold;
+    color: black;
+    text-align: center;
+`;
+
+// LessonDetail.js 가격 텍스트
+export const LessonPrice = styled.Text`
+    font-size: 25px;
+    font-weight: bold;
+    color: black;
+    align-self: flex-end;
+    margin-top: 15px;
+    margin-right: 20px;
+`;
+
+// LessonDetail.js 시간(타원형) 컨테이너
+export const LessonTimeContainer = styled.View`
+    padding: 10px 20px;
+    border-radius: 20px;
+    border-color: black;
+    border-width: 2px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+`;
+
+// LessonDetail.js 시간(타원형) 텍스트
+export const LessonTimeText = styled.Text`
+    font-size: 16px;
+    font-weight: bold;
+    color: black;
+    text-align: center;
+`;
+
+// LessonDetail.js 회색 박스 컨테이너
+export const LessonDetailsContainer = styled.View`
+    width: 90%;
+    margin-top: 20px;
+`;
+
+// LessonDetail.js 회색 박스 스타일 
+export const LessonInfoBox = styled.View`
+    background-color: #D3D3D3;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+`;
+
+// LessonDetail.js 박스 제목 스타일
+export const LessonInfoTitle = styled.Text`
+    font-size: 18px;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 5px;
+`;
+
+// LessonDetail.js 박스 내부 내용 스타일
+export const LessonInfoText = styled.Text`
+    font-size: 16px;
+    color: black;
+`;
 

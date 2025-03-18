@@ -2,12 +2,12 @@ import React from 'react';
 import { Text } from 'react-native';
 import { LessonDetailContainer } from './../components/styles';
 
-const Mypage = () => {
+const Order = () => {
     return (
         <LessonDetailContainer>
-                <Text>마이페이지</Text>
+                <Text>주문내역</Text>
         </LessonDetailContainer>
     );
 };
 
-export default Mypage;
+export default Order;

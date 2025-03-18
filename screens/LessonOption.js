@@ -1,13 +1,17 @@
 import React from 'react';
-import { Text } from 'react-native';
+import { View, Text  } from 'react-native';
 import { LessonDetailContainer } from './../components/styles';
 
-const Mypage = () => {
+const LessonOption = () => {
     return (
         <LessonDetailContainer>
-                <Text>마이페이지</Text>
+                <View><Text>레슨 옵션 페이지</Text></View>
         </LessonDetailContainer>
     );
 };
 
-export default Mypage;
+
+
+export default LessonOption;
+
+
