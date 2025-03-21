@@ -2,94 +2,64 @@ import React, { useState } from "react";
 import { Pressable, StyleSheet, Text, View, StatusBar } from "react-native";
 import { Formik } from "formik";
 import KeyboardAvoidingWrapper from "../components/KeyboardAvoidingWrapper";
-//카카오 로그인 함수
-import { login, logout, getProfile as getKakaoProfile, shippingAddresses as getKakaoShippingAddresses, unlink } from "@react-native-seoul/kakao-login";
-import axios from 'axios'; 
 
 import {  
     StyledContainer,
     InnerContainer,
     PageLogo,
     PageTitle,
-    SubTitle,
     StyledFormArea,
     StyledInputLabel,
     StyledTextInput,
-    StyledButton,
     ButtonText,
+    SubTitle,
     Colors,
-    TextLink,
-    TextLinkContent,
+    LoginButton,    
     TextLink2,
     TextLinkContent2,
-    LoginButton,
 } from "../components/styles";
 const { exTextColor } = Colors;
 
-const Login = ({ navigation }) => {
+const Logininst = ({ navigation }) => {
     const [result, setResult] = useState(""); //로그인 결과 상태 처리
     const [loginError, setLoginError] = useState(false);
-
-    //카카오 로그인 처리 함수
-    const signInWithKakao = async () => { 
-        try {
-            const token = await login();
-            setResult(JSON.stringify(token)); // 로그인 성공 시 토큰 저장
-            console.log("login success ", token.accessToken);
-        } catch (err) {
-            console.error("login err", err);
-        }
-    };
 
     return (
         <KeyboardAvoidingWrapper>
             <StyledContainer>
                 <StatusBar barStyle="dark-content" />
 
-                {/*회원가입 링크*/}
-                    <TextLink onPress={() => navigation.navigate("Signup")}>
-                    <TextLinkContent>회원가입</TextLinkContent>
-                    </TextLink>
-
                 {/*강사 로그인 링크*/}
-                <TextLink2 onPress={() => navigation.replace("Logininst")}>
-                    <TextLinkContent2>강사 로그인</TextLinkContent2>
-                    </TextLink2>
+                <TextLink2 onPress={() => navigation.replace("Login")}>
+                    <TextLinkContent2>회원 로그인</TextLinkContent2>
+                </TextLink2>
 
                 <InnerContainer>
                     <PageLogo resizeMode="cover" source={require("../assets/img/logo.png")} />
                     <PageTitle>파크골프ON</PageTitle>
 
-                    <SubTitle>회원 로그인</SubTitle>
-
-                    {/* 카카오 로그인 버튼 */}
-                    <Pressable style={styles.button} onPress={signInWithKakao}>
-                        <Text style={styles.text}>카카오 로그인</Text>
-                        </Pressable>
+                    <SubTitle>강사 로그인</SubTitle>
 
                     {/*이메일, 비밀번호 로그인 폼 */}
                     <Formik
-                        initialValues={{ email: "", password: "" }}
-                        onSubmit={(values) => {
-                            axios.post('http://10.0.2.2:5000/api/login', {
-                                userEmail: values.email,
-                                userPw: values.password
-                            })
-                            .then(res => {
-                                if (res.data.success) {
-                                    setLoginError(false); // 에러 메시지 숨김
-                                    console.log('로그인 성공:', res.data.user);
-                                    navigation.navigate("Welcome", {
-                                        userName: res.data.user.userName,
-                                        userEmail: res.data.user.userEmail,
-                                    });
-                                }
-                            })
-                            .catch(err => {
-                                console.error('로그인 실패:', err);
-                                setLoginError(true); // 에러 메시지 표시
+                    initialValues={{ email: "", password: "" }}
+                    onSubmit={(values) => {
+                        const { email, password } = values;
+                        
+                        // 정해진 강사 계정
+                        const masterEmail = "master@gmail.com";
+                        const masterPassword = "11111111";
+                        
+                        if (email === masterEmail && password === masterPassword) {
+                            setLoginError(false);
+                            navigation.navigate("Welcomeinst", {
+                                userName: "김강사",
+                                userEmail: "master@gmail.com"
                             });
-                        }}
+                        } else {
+                            setLoginError(true); // 경고 메시지 표시
+                        }
+                    }}
                     >
                         {({ handleChange, handleBlur, handleSubmit, values }) => (
                             <StyledFormArea>
@@ -145,18 +115,5 @@ const MyTextInput = ({ label, ...props }) => {
 };
 
 
-// 카카오 로그인 스타일 정의
-const styles = StyleSheet.create({
-    button: {
-        backgroundColor: "#FEE500", //카카오 로그인 버튼 색상
-        padding: 10,
-        borderRadius: 5,
-        alignItems: "center",
-    },
-    text: {
-        fontSize: 16,
-        fontWeight: "bold",
-    },
-});
 
-export default Login;
+export default Logininst;

@@ -25,7 +25,7 @@ const CartButton = () => {
     );
 };
 
-// 📌 클래스 관련 화면을 포함하는 Stack Navigator
+// 클래스 관련 화면을 포함하는 Stack Navigator
 const ClassStack = () => {
     return (
         <Stack.Navigator

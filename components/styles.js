@@ -6,7 +6,7 @@ export const Colors = { // 색상 객체 정의
     whiteColor: "#FFFFFF", // 하얀색
     textColor: "#434343", // 기본 텍스트
     exTextColor: "#C0C0C0", //ID/PW 입력창 예시 텍스트
-    logoColor: "#FAF287", // 대표 노란색 색상
+    logoColor: "#fff000", // 대표 노란색 색상
     loginButtonColor: "#EFEFEF", // 로그인 버튼 
 
 };
@@ -19,11 +19,11 @@ const StatusBarHeight = StatusBar.currentHeight ? StatusBar.currentHeight : 0;  
 // 전체 컨테이너 스타일
 export const StyledContainer = styled.View`
     flex: 1;
-    padding-top: ${StatusBarHeight + 120}px;
+    padding-top: ${StatusBarHeight + 170}px;
     background-color: ${accountBackGroundColor};
 
     border-color: skyblue;
-    border-width: 5px;
+    border-width: 2px;
 `;
 
 
@@ -31,12 +31,11 @@ export const StyledContainer = styled.View`
 // 내부 컨테이너 스타일
 export const InnerContainer = styled.View`
     flex: 1;
-    top: -50px;
-    justify-content: center;
+    top: -100px;
     align-items: center;
 
-    border-color: red;
-    border-width: 5px;
+    border-color: orange;
+    border-width: 2px;
 `;
 
 // 클래스 컨테이너 스타일
@@ -54,7 +53,7 @@ export const ClassScreenContainer = styled.View`
     background-color: ${whiteColor};
 
     border-color: pink;
-    border-width: 5px;
+    border-width: 2px;
 `;
 
 
@@ -65,7 +64,7 @@ export const BeginnerScreenContainer = styled.View`
     background-color: ${whiteColor};
     
     border-color: blue;
-    border-width: 5px;
+    border-width: 2px;
 `;
 
 
@@ -195,15 +194,28 @@ export const GridWrapper = {
 };
 
 
-// 링크 스타일
+// 회원가입 링크 스타일
 export const TextLink = styled.TouchableOpacity`
     position: absolute;
     right: 30px;
     top: 40px;
 `;
 
-// 링크 텍스트 스타일
+// 회원가입 링크 텍스트 스타일
 export const TextLinkContent = styled.Text`
+    color: ${textColor};
+    font-size: 15px;
+`;
+
+// 강사로그인 링크 스타일
+export const TextLink2 = styled.TouchableOpacity`
+    position: absolute;
+    right: 30px;
+    top: 70px;
+`;
+
+// 강사로그인 링크 텍스트 스타일
+export const TextLinkContent2 = styled.Text`
     color: ${textColor};
     font-size: 15px;
 `;
@@ -234,7 +246,7 @@ export const LessonDetailContainer = styled.View`
     background-color: white;
     justify-content: center;
     border-color: green;
-    border-width: 5px;
+    border-width: 2px;
 `;
 
 // LessonDetail.js 레슨 배경 이미지 + 강사 이미지 컨테이너

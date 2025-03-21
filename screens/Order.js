@@ -5,7 +5,7 @@ import { LessonDetailContainer } from './../components/styles';
 const Order = () => {
     return (
         <LessonDetailContainer>
-                <Text>주문내역</Text>
+            <Text>주문내역</Text>
         </LessonDetailContainer>
     );
 };
