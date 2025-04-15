@@ -1,6 +1,5 @@
 import React, { useLayoutEffect } from 'react';
 import { StatusBar, FlatList } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 import { StyledFormArea, ClassButton, ClassContainer, ClassButtonText, GridWrapper, ClassScreenContainer } from './../components/styles'; 
 
 const classData = [
@@ -12,12 +11,12 @@ const classData = [
 
 const Classlist = ({ navigation }) => {
 
-    // 뒤로가기 버튼 숨기기
-    useLayoutEffect(() => {
-        navigation.setOptions({
-            headerLeft: () => null, // 뒤로가기 버튼 제거
-        });
-    }, [navigation]);
+    // // 뒤로가기 버튼 숨기기
+    // useLayoutEffect(() => {
+    //     navigation.setOptions({
+    //         headerLeft: () => null, // 뒤로가기 버튼 제거
+    //     });
+    // }, [navigation]);
 
     return (
         <ClassScreenContainer>

@@ -9,18 +9,23 @@ import Welcome from './../screens/Welcome';
 import Welcomeinst from './../screens/Welcomeinst';
 
 import AddLesson from '../screens/AddLesson';
-import EditLesson from '../screens/EditLesson';
+import UpdateLesson from '../screens/EditLesson';
 import DeleteLesson from '../screens/DeleteLesson';
 
 import TabNavigator from './TabNavigator';
 import Cart from '../screens/Cart';
+
+import ReviewManage from '../screens/ReviewManage';
+import ProfileEdit from '../screens/ProfileEdit';
+import PwChange from '../screens/PwChange';
+import Quit from '../screens/Quit';
 
 const Stack = createStackNavigator();
 
 const RootStack = () => {
     return (
         <NavigationContainer>
-            <Stack.Navigator
+            <Stack.Navigator // 장바구니 화면 상단 네비게이션
                 screenOptions={{
                     headerStyle: { backgroundColor: '#FAF287' },
                     headerTintColor: 'black',
@@ -35,12 +40,17 @@ const RootStack = () => {
                 <Stack.Screen name="Welcomeinst" component={Welcomeinst} options={{ headerShown: false }} />
 
                 <Stack.Screen name="AddLesson" component={AddLesson} options={{ title: "레슨 생성" }} />
-                <Stack.Screen name="EditLesson" component={EditLesson} options={{ title: "레슨 수정" }} />
+                <Stack.Screen name="UpdateLesson" component={UpdateLesson} options={{ title: "레슨 수정" }} />
                 <Stack.Screen name="DeleteLesson" component={DeleteLesson} options={{ title: "레슨 삭제" }} />
 
-                
                 <Stack.Screen name="TabNavigator" component={TabNavigator} options={{ headerShown: false }} />
                 <Stack.Screen name="Cart" component={Cart} options={{ title: "장바구니" }} />
+
+                <Stack.Screen name="ReviewManage" component={ReviewManage} options={{ title: '리뷰관리' }} />
+                <Stack.Screen name="ProfileEdit" component={ProfileEdit} options={{ title: '프로필 수정' }} />
+                <Stack.Screen name="PwChange" component={PwChange} options={{ title: '비밀번호 변경' }} />
+                <Stack.Screen name="Quit" component={Quit} options={{ title: '회원탈퇴' }} />
+
             </Stack.Navigator>
         </NavigationContainer>
     );

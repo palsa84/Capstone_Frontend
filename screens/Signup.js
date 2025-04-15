@@ -8,7 +8,6 @@ import axios from 'axios';
 import {  
     StyledContainer,
     InnerContainer,
-    SubTitle,
     StyledFormArea,
     StyledInputLabel,
     StyledTextInput,
@@ -23,9 +22,7 @@ const Signup = ({navigation}) => {
     const [emailExists, setEmailExists] = useState(false);
     const [passwordMismatch, setPasswordMismatch] = useState(false);
 
-
-
-    // 이메일 유효성 검사 함수 정의
+    // 이메일 유효성 검사 
     const isValidEmail = (email) => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
@@ -43,11 +40,11 @@ const Signup = ({navigation}) => {
                             const validEmail = isValidEmail(values.email);
                             const pwMatch = values.password === values.confirmPassword;
 
-                            // 상태 설정
+
                             setEmailInvalid(!validEmail);
-                            setPasswordMismatch(validEmail && !pwMatch); // 이메일이 유효할 때만 비번 비교
+                            setPasswordMismatch(validEmail && !pwMatch); // 이메일이 유효하면 비밀번호 검사
                             
-                            // 둘 다 통과해야 요청
+                            // 이메일과 비밀번호가 유효해야
                             if (!validEmail || !pwMatch) return;
                             
                             axios.post('http://10.0.2.2:5000/api/signup', {
@@ -58,14 +55,17 @@ const Signup = ({navigation}) => {
                             .then(res => {
                                 if (res.data.success) {
                                     console.log('회원가입 성공:', res.data);
-                                    navigation.navigate("Welcome");
+                                    navigation.navigate("Welcome", {
+                                        userName: values.userName,
+                                        userEmail: values.email,
+                                    });
                                 }
                             })
                             .catch(err => {
                                 console.error('회원가입 실패:', err);
                                 
                                 if (err.response && err.response.status === 409) {
-                                    setEmailExists(true); // 중복 이메일 경고 활성화
+                                    setEmailExists(true); // 중복 이메일
                                 }   else {
                                     // 기타 서버 오류
                                     setEmailExists(false);
@@ -73,9 +73,9 @@ const Signup = ({navigation}) => {
                             });
                         }}
                     >
+                        {/* 에러 메시지 */}
                         {({ handleChange, handleBlur, handleSubmit, values }) => (
                             <StyledFormArea>
-                                {/* 경고 메시지 표시 */}
                                 {(emailInvalid || passwordMismatch || emailExists) && (
                                     <Text style={{ color: 'red', textAlign: 'center', marginBottom: 10 }}>
                                         {emailInvalid

@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import * as styles from './../components/styles';
 
 const LessonDetail = () => {
-    const navigation = useNavigation(); // ✅ 네비게이션 객체 추가
+    const navigation = useNavigation(); // 
 
     // 예제 데이터
     const instructor = "강사명";
@@ -19,13 +19,13 @@ const LessonDetail = () => {
             <StatusBar barStyle="dark-content" />
             <ScrollView contentContainerStyle={{ flexGrow: 1, alignItems: 'center' }}>
 
-                {/* 상단 배경 + 프로필 이미지 */}
+                {/* 레슨 배경 이미지 + 강사 프로필 이미지 */}
                 <styles.LessonHeaderContainer>
                     <styles.LessonBackgroundImage source={require('../assets/img/backgroundimage.png')} />
                     <styles.LessonProfileImage source={require('../assets/img/person1.png')} />
                 </styles.LessonHeaderContainer>
 
-                {/* 강사 정보 + 레슨명 + 가격 */}
+                {/* 강사 이름 + 레슨명 + 가격 */}
                 <styles.LessonDetailInfoContainer>
                     <styles.InstructorName>{instructor}</styles.InstructorName>
                     <styles.LessonNameContainer>
@@ -47,14 +47,14 @@ const LessonDetail = () => {
                     </styles.LessonInfoBox>
                 </styles.LessonDetailsContainer>
 
-                {/* 시간 컨테이너 */}
+                {/* 레슨 시간 컨테이너 */}
                 <styles.LessonTimeContainer>
                     <styles.LessonTimeText>시간</styles.LessonTimeText>
                 </styles.LessonTimeContainer>
 
-                {/* 평일 오전 & 오후 시간표 */}
+                {/* 시간표 */}
                 <styles.LessonDetailsContainer>
-                    <TouchableOpacity onPress={() => navigation.navigate('LessonOption')}> {/* ✅ 이동 추가 */}
+                    <TouchableOpacity onPress={() => navigation.navigate('LessonOption')}>
                         <styles.LessonInfoBox>
                             <styles.LessonInfoTitle>평일 오전</styles.LessonInfoTitle>
                             <styles.LessonInfoText>{parkgolfPlace}</styles.LessonInfoText>
@@ -62,9 +62,10 @@ const LessonDetail = () => {
                     </TouchableOpacity>
 
                     <styles.LessonInfoBox>
-                        <styles.LessonInfoTitle>평일 오후</styles.LessonInfoTitle>
-                        <styles.LessonInfoText>{parkgolfPlace}</styles.LessonInfoText>
-                    </styles.LessonInfoBox>
+                        
+                            <styles.LessonInfoTitle>평일 오후</styles.LessonInfoTitle>
+                            <styles.LessonInfoText>{parkgolfPlace}</styles.LessonInfoText>
+                        </styles.LessonInfoBox>
                 </styles.LessonDetailsContainer>
 
             </ScrollView>

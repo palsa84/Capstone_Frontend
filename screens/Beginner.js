@@ -20,7 +20,7 @@ const Beginner = () => {
     const [searchText, setSearchText] = useState('');
     const [filter, setFilter] = useState('');
     const [locationFilter, setLocationFilter] = useState([]);
-    const flatListRef = useRef(null); // FlatList 참조
+    const flatListRef = useRef(null); 
 
     const sortLessons = (lessons) => {
         if (filter === '추천순') {
@@ -43,7 +43,7 @@ const Beginner = () => {
     const handleFilterChange = (type) => {
         setFilter(type);
         if (flatListRef.current) {
-            flatListRef.current.scrollToOffset({ offset: 0, animated: true }); // 리스트 최상단으로 이동
+            flatListRef.current.scrollToOffset({ offset: 0, animated: true }); // 선택된 필터 클릭 시 리스트 최상단으로 이동
         }
     };
 
@@ -70,6 +70,7 @@ const Beginner = () => {
                     />
                 </View>
 
+                {/* 지역 필터 버튼 */}
                 <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ paddingVertical: 5, marginBottom: 5 }}>
                     {['달서구', '수성구', '북구', '중구', '남구', '서구'].map(area => (
                         <TouchableOpacity
@@ -110,13 +111,13 @@ const Beginner = () => {
             </View>
 
             <FlatList
-                ref={flatListRef} // FlatList에 ref 적용
+                ref={flatListRef} 
                 data={filteredLessons}
                 keyExtractor={item => item.id}
                 renderItem={({ item }) => (
                     <TouchableOpacity onPress={() => navigation.navigate('LessonDetail', { lesson: item })}>
                         <View style={{ flexDirection: 'row', padding: 15, borderBottomWidth: 1, alignItems: 'center' }}>
-                            {/* 이미지 */}
+                            {/* 레슨 대표 이미지 */}
                             <Image source={item.image} style={{ width: 80, height: 70, marginRight: 20, borderRadius: 10 }} />
                             
                             {/* 레슨 정보 */}

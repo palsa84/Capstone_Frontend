@@ -1,14 +1,13 @@
 import styled from 'styled-components/native';
 import { View, Text, Image, TextInput, TouchableOpacity, StatusBar } from 'react-native';
 
-export const Colors = { // 색상 객체 정의
+export const Colors = { 
     accountBackGroundColor: "#FFFCAF", // 로그인 배경
-    whiteColor: "#FFFFFF", // 하얀색
+    whiteColor: "#FFFFFF", 
     textColor: "#434343", // 기본 텍스트
     exTextColor: "#C0C0C0", //ID/PW 입력창 예시 텍스트
-    logoColor: "#fff000", // 대표 노란색 색상
-    loginButtonColor: "#EFEFEF", // 로그인 버튼 
-
+    logoColor: "#fff000", 
+    loginButtonColor: "#EFEFEF", 
 };
 const { accountBackGroundColor, whiteColor, textColor, exTextColor, logoColor, loginButtonColor } = Colors;
 
@@ -16,7 +15,7 @@ const { accountBackGroundColor, whiteColor, textColor, exTextColor, logoColor, l
 const StatusBarHeight = StatusBar.currentHeight ? StatusBar.currentHeight : 0;  // 상태표시줄 높이
 
 
-// 전체 컨테이너 스타일
+// 전체 컨테이너
 export const StyledContainer = styled.View`
     flex: 1;
     padding-top: ${StatusBarHeight + 170}px;
@@ -26,9 +25,7 @@ export const StyledContainer = styled.View`
     border-width: 2px;
 `;
 
-
-
-// 내부 컨테이너 스타일
+// 내부 컨테이너
 export const InnerContainer = styled.View`
     flex: 1;
     top: -100px;
@@ -38,7 +35,7 @@ export const InnerContainer = styled.View`
     border-width: 2px;
 `;
 
-// 클래스 컨테이너 스타일
+// 클래스 컨테이너
 export const ClassContainer = styled.View`
     width: 100%;
     top: 70px;
@@ -56,9 +53,7 @@ export const ClassScreenContainer = styled.View`
     border-width: 2px;
 `;
 
-
-
-// 초보자 화면 컨테이너 스타일
+// 초보자 화면 컨테이너 
 export const BeginnerScreenContainer = styled.View`
     flex: 1;
     background-color: ${whiteColor};
@@ -67,15 +62,12 @@ export const BeginnerScreenContainer = styled.View`
     border-width: 2px;
 `;
 
-
-
-
-// 페이지 로고 스타일
+// 로고 
 export const PageLogo = styled.Image`
     width: 250px;
     height: 215px;
 `;
-// 페이지 제목 스타일
+// 제목 
 export const PageTitle = styled.Text`
     font-size: 30px;
     text-align: center;
@@ -83,7 +75,8 @@ export const PageTitle = styled.Text`
     color: ${logoColor};
     padding: 10px;
 `;
-// 부제목 스타일
+
+// 부제목
 export const SubTitle = styled.Text`
     font-size: 20px;
     margin-bottom: 20px;
@@ -92,11 +85,11 @@ export const SubTitle = styled.Text`
     
 `;
 
-// 폼 영역 스타일
+// 폼 영역
 export const StyledFormArea = styled.View`
     width: 70%;
 `;
-// 입력 필드 스타일
+// 입력 필드 
 export const StyledTextInput = styled.TextInput`
     background-color: ${whiteColor};
     padding: 20px;
@@ -109,15 +102,14 @@ export const StyledTextInput = styled.TextInput`
     margin-bottom: 20px;
     color: ${textColor};
 `;
-// 입력 필드 라벨 스타일
+// 입력 필드 라벨
 export const StyledInputLabel = styled.Text`
     color: ${textColor};
     font-size: 15px;
     text-align: left;
 `;
 
-
-// 버튼 스타일
+// 버튼
 export const StyledButton = styled.TouchableOpacity`
     padding: 20px;
     width: 60%;
@@ -128,7 +120,7 @@ export const StyledButton = styled.TouchableOpacity`
     height: 60px;
     align-self: center;
 `;
-// 로그인 버튼 스타일
+// 로그인 버튼
 export const LoginButton = styled.TouchableOpacity`
     padding: 20px;
     width: 30%;
@@ -139,7 +131,7 @@ export const LoginButton = styled.TouchableOpacity`
     height: 60px;
     align-self: center;
 `;
-// 로그아웃 버튼 스타일
+// 로그아웃 버튼
 export const LogoutButton = styled.TouchableOpacity`
     padding: 15px;
     width: 40%; 
@@ -150,7 +142,7 @@ export const LogoutButton = styled.TouchableOpacity`
     align-self: center;
 `;
 
-// 버튼 텍스트 스타일
+// 버튼 텍스트 
 export const ButtonText = styled.Text`
     color: ${textColor};
     font-size: 15px;
@@ -160,7 +152,7 @@ export const ButtonText = styled.Text`
 `;
 
 
-// 클래스 버튼 스타일
+// 클래스 버튼 
 export const ClassButton = styled.TouchableOpacity`
     padding: 40px;
     width: 48%;
@@ -172,7 +164,7 @@ export const ClassButton = styled.TouchableOpacity`
     border-color: black;
     border-width: 3px;
 `;
-// 클래스 선택 버튼 텍스트 스타일
+// 클래스 선택 버튼 텍스트
 export const ClassButtonText = styled.Text`
     color: ${textColor};
     font-size: 15px;
@@ -180,64 +172,52 @@ export const ClassButtonText = styled.Text`
     text-align: center;
 `;
 
-
+// 하단 내비게이션 텍스트
 export const BottomNavigationText = styled.Text`
     font-size: 14px;
     font-weight: bold;
     color: ${textColor}; 
 `;
 
-
-// FlatList 스타일 (2x2 그리드 간격 조정)
+// FlatList 스타일 (2x2)
 export const GridWrapper = {
     justifyContent: 'space-between'
 };
 
-
-// 회원가입 링크 스타일
+// 회원가입 링크
 export const TextLink = styled.TouchableOpacity`
     position: absolute;
     right: 30px;
     top: 40px;
 `;
 
-// 회원가입 링크 텍스트 스타일
+// 회원가입 링크 텍스트
 export const TextLinkContent = styled.Text`
     color: ${textColor};
     font-size: 15px;
 `;
 
-// 강사로그인 링크 스타일
+// 강사로그인 링크
 export const TextLink2 = styled.TouchableOpacity`
     position: absolute;
     right: 30px;
     top: 70px;
 `;
 
-// 강사로그인 링크 텍스트 스타일
+// 강사로그인 링크 텍스트 
 export const TextLinkContent2 = styled.Text`
     color: ${textColor};
     font-size: 15px;
 `;
 
 
-// 상단 커스텀헤더 스타일
+// 상단 커스텀헤더 
 export const HeaderContainer = styled.View`
     flex-direction: row;
     justify-content: space-between;
     background-color: ${logoColor};
     padding: 10px;
 `;
-
-export const HeaderButton = styled.TouchableOpacity`
-    padding: 5px;
-`;
-
-export const HeaderText = styled.Text`
-    color: ${textColor};
-    font-size: 20px;
-`;
-
 
 
 // LessonDetail.js 레슨 상세 화면 컨테이너
@@ -287,7 +267,7 @@ export const InstructorName = styled.Text`
     margin-bottom: 10px;
 `;
 
-// LessonDetail.js 레슨명(타원형) 컨테이너 
+// LessonDetail.js 레슨명(타원) 컨테이너 
 export const LessonNameContainer = styled.View`
     padding: 10px 20px;
     border-radius: 20px;
@@ -297,7 +277,7 @@ export const LessonNameContainer = styled.View`
     justify-content: center;
 `;
 
-// LessonDetail.js  레슨명(타원형) 텍스트
+// LessonDetail.js  레슨명(타원) 텍스트
 export const LessonNameText = styled.Text`
     font-size: 18px;
     font-weight: bold;
@@ -315,7 +295,7 @@ export const LessonPrice = styled.Text`
     margin-right: 20px;
 `;
 
-// LessonDetail.js 시간(타원형) 컨테이너
+// LessonDetail.js 시간(타원) 컨테이너
 export const LessonTimeContainer = styled.View`
     padding: 10px 20px;
     border-radius: 20px;
@@ -326,7 +306,7 @@ export const LessonTimeContainer = styled.View`
     margin-top: 15px;
 `;
 
-// LessonDetail.js 시간(타원형) 텍스트
+// LessonDetail.js 시간(타원) 텍스트
 export const LessonTimeText = styled.Text`
     font-size: 16px;
     font-weight: bold;
@@ -340,7 +320,7 @@ export const LessonDetailsContainer = styled.View`
     margin-top: 20px;
 `;
 
-// LessonDetail.js 회색 박스 스타일 
+// LessonDetail.js 회색 박스 
 export const LessonInfoBox = styled.View`
     background-color: #D3D3D3;
     padding: 15px;
@@ -348,7 +328,7 @@ export const LessonInfoBox = styled.View`
     margin-bottom: 10px;
 `;
 
-// LessonDetail.js 박스 제목 스타일
+// LessonDetail.js 박스 제목
 export const LessonInfoTitle = styled.Text`
     font-size: 18px;
     font-weight: bold;
@@ -356,9 +336,105 @@ export const LessonInfoTitle = styled.Text`
     margin-bottom: 5px;
 `;
 
-// LessonDetail.js 박스 내부 내용 스타일
+// LessonDetail.js 박스 내부 내용 
 export const LessonInfoText = styled.Text`
     font-size: 16px;
+    color: black;
+`;
+
+// Mypage.js 컨테이너
+export const MypageContainer = styled.View`
+    flex: 1;
+    background-color: white;
+`;
+
+
+// Mypage.js 프로필 컨테이너
+export const ProfileWrapper = styled.View`
+    flex-direction: row;
+    align-items: center;
+    padding: 20px;
+    
+    border-color: blue;
+    border-width: 2px;
+`;
+
+// Mypage.js 프로필 이미지 
+export const ProfileImage = styled.Image`
+    width: 90px;
+    height: 90px;
+    border-radius: 50px;
+    border: 3px solid gray;
+    margin-right: 20px;
+`;
+
+// Mypage.js 프로필 컨테이너 내부의 userRole
+export const RoleBox = styled.View`
+    background-color: #fff000;
+    padding: 6px 15px;        
+    border-radius: 6px;
+    align-self: flex-start;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 6px;
+    margin-bottom: 6px;
+`;
+
+// Mypage.js 프로필 컨테이너 내부의 userRole text
+export const RoleText = styled.Text`
+    font-size: 16px;
+    font-weight: bold;
+`;
+
+// Mypage.js 프로필 컨테이너 내부의 userName
+export const NameBox = styled.View`
+    background-color: #ccc;
+    padding: 6px 12px;
+    border-radius: 6px;
+    align-self: flex-start;
+    align-items: center;
+    justify-content: center;
+`;
+
+
+// Mypage.js 프로필 컨테이너 내부의 userName text
+export const NameText = styled.Text`
+    font-size: 23px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 32px;
+`;
+
+
+export const SectionTitle = styled.Text`
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 20px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+`;
+
+// Mypage.js 회색 박스
+export const GrayBox = styled.View`
+    background-color: #eee;
+    margin: 0 20px 20px 20px;
+    padding: 15px;
+    border-radius: 10px;
+`;
+
+export const Row = styled.View`
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+`;
+
+export const TextButton = styled.TouchableOpacity``;
+
+export const TextButtonText = styled.Text`
+    font-size: 16px;
+    font-weight: bold;
     color: black;
 `;
 

@@ -21,7 +21,7 @@ import {
 const { exTextColor } = Colors;
 
 const Logininst = ({ navigation }) => {
-    const [result, setResult] = useState(""); //로그인 결과 상태 처리
+    const [result, setResult] = useState(""); 
     const [loginError, setLoginError] = useState(false);
 
     return (
@@ -29,7 +29,7 @@ const Logininst = ({ navigation }) => {
             <StyledContainer>
                 <StatusBar barStyle="dark-content" />
 
-                {/*강사 로그인 링크*/}
+                {/* 강사 로그인 링크 텍스트 */}
                 <TextLink2 onPress={() => navigation.replace("Login")}>
                     <TextLinkContent2>회원 로그인</TextLinkContent2>
                 </TextLink2>
@@ -40,13 +40,13 @@ const Logininst = ({ navigation }) => {
 
                     <SubTitle>강사 로그인</SubTitle>
 
-                    {/*이메일, 비밀번호 로그인 폼 */}
+                    {/* 이메일, 비밀번호 로그인 폼 */}
                     <Formik
                     initialValues={{ email: "", password: "" }}
                     onSubmit={(values) => {
                         const { email, password } = values;
                         
-                        // 정해진 강사 계정
+                        // 강사 계정
                         const masterEmail = "master@gmail.com";
                         const masterPassword = "11111111";
                         
@@ -57,10 +57,11 @@ const Logininst = ({ navigation }) => {
                                 userEmail: "master@gmail.com"
                             });
                         } else {
-                            setLoginError(true); // 경고 메시지 표시
+                            setLoginError(true);
                         }
                     }}
                     >
+                        {/* 에러 메시지 */}
                         {({ handleChange, handleBlur, handleSubmit, values }) => (
                             <StyledFormArea>
                                 {loginError && (

@@ -19,12 +19,10 @@ const Welcomeinst = ({ navigation, route }) => {
         <StyledContainer>
             <StatusBar barStyle="dark-content" />
             <InnerContainer>
-            {/* 로그인 성공 시 */}
             <PageTitle>환영합니다!</PageTitle>
             <SubTitle>{userName} 님</SubTitle>
             <SubTitle>{userEmail}</SubTitle>
 
-            {/* 로그아웃 + 레슨 추가하기 버튼 */}
             <StyledFormArea>
                 <LogoutButton onPress={() => navigation.replace("Logininst")}>
                     <ButtonText>{'로그아웃'}</ButtonText>

@@ -15,7 +15,7 @@ import LessonOption from '../screens/LessonOption';
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
-// 📌 "장바구니" 버튼 (Cart.js로 이동)
+// 상단 '장바구니' 버튼
 const CartButton = () => {
     const navigation = useNavigation();
     return (
@@ -42,7 +42,7 @@ const ClassStack = () => {
                 component={Classlist} 
                 options={{ 
                     title: " ", 
-                    headerLeft: () => null  // 📌 뒤로가기 버튼 제거
+                    headerLeft: () => null  // 뒤로가기 버튼 제거
                 }} 
             />
             <Stack.Screen name="Beginner" component={Beginner} options={{ title: " " }} />
@@ -52,30 +52,28 @@ const ClassStack = () => {
     );
 };
 
-// 📌 공통 Stack Navigator (헤더 포함, '장바구니' 버튼 추가)
+// // 찜, 주문내역, 마이페이지 상단 탭 네비게이션
 const ScreenWithHeader = (Component, title) => {
-    return () => (
+    return ({ route }) => (
         <Stack.Navigator
             screenOptions={{
                 headerTitleAlign: 'center',
                 headerStyle: { backgroundColor: '#FAF287' },
                 headerTintColor: 'black',
                 headerRight: () => <CartButton />,
-                headerBackTitleVisible: false, // 뒤로 가기 버튼에 텍스트 숨김
             }}
         >
-            <Stack.Screen 
-                name={title} 
-                component={Component} 
-                options={{ 
-                    headerLeft: () => null // 📌 뒤로가기 버튼 제거
-                }} 
+            <Stack.Screen
+                name={title}
+                children={(props) => <Component {...props} route={route} />}
+                options={{ headerLeft: () => null }}
             />
         </Stack.Navigator>
     );
 };
 
-// 📌 하단 탭 네비게이션 설정
+
+// 하단 탭 네비게이션
 const TabNavigator = () => {
     return (
         <Tab.Navigator

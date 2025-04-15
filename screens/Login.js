@@ -5,6 +5,7 @@ import KeyboardAvoidingWrapper from "../components/KeyboardAvoidingWrapper";
 //카카오 로그인 함수
 import { login, logout, getProfile as getKakaoProfile, shippingAddresses as getKakaoShippingAddresses, unlink } from "@react-native-seoul/kakao-login";
 import axios from 'axios'; 
+import { setUser } from '../utils/userInfo';
 
 import {  
     StyledContainer,
@@ -15,7 +16,6 @@ import {
     StyledFormArea,
     StyledInputLabel,
     StyledTextInput,
-    StyledButton,
     ButtonText,
     Colors,
     TextLink,
@@ -77,8 +77,13 @@ const Login = ({ navigation }) => {
                             })
                             .then(res => {
                                 if (res.data.success) {
-                                    setLoginError(false); // 에러 메시지 숨김
+                                    setLoginError(false); 
                                     console.log('로그인 성공:', res.data.user);
+                                    setUser({
+                                        userName: res.data.user.userName,
+                                        userRole: res.data.user.userRole,
+                                        userImg: res.data.user.userImg
+                                    });
                                     navigation.navigate("Welcome", {
                                         userName: res.data.user.userName,
                                         userEmail: res.data.user.userEmail,
@@ -87,10 +92,11 @@ const Login = ({ navigation }) => {
                             })
                             .catch(err => {
                                 console.error('로그인 실패:', err);
-                                setLoginError(true); // 에러 메시지 표시
+                                setLoginError(true); 
                             });
                         }}
                     >
+                        {/* 에러 메시지 */}
                         {({ handleChange, handleBlur, handleSubmit, values }) => (
                             <StyledFormArea>
                                 {loginError && (
@@ -132,7 +138,7 @@ const Login = ({ navigation }) => {
 };
 
 
-// 커스텀 입력 필드 컴포넌트
+// 로그인/비밀번호 입력 필드 컴포넌트
 const MyTextInput = ({ label, ...props }) => {
     return (
         <View> 
@@ -145,10 +151,10 @@ const MyTextInput = ({ label, ...props }) => {
 };
 
 
-// 카카오 로그인 스타일 정의
+// 카카오 로그인 스타일 
 const styles = StyleSheet.create({
     button: {
-        backgroundColor: "#FEE500", //카카오 로그인 버튼 색상
+        backgroundColor: "#FEE500", 
         padding: 10,
         borderRadius: 5,
         alignItems: "center",
