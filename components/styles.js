@@ -21,8 +21,8 @@ export const StyledContainer = styled.View`
     padding-top: ${StatusBarHeight + 170}px;
     background-color: ${accountBackGroundColor};
 
-    border-color: skyblue;
-    border-width: 2px;
+    border-color: skyblue; 
+    border-width: 2px; 
 `;
 
 // 내부 컨테이너
@@ -31,8 +31,8 @@ export const InnerContainer = styled.View`
     top: -100px;
     align-items: center;
 
-    border-color: orange;
-    border-width: 2px;
+    /* border-color: orange; */
+    /*  border-width: 2px; */
 `;
 
 // 클래스 컨테이너
@@ -49,8 +49,8 @@ export const ClassScreenContainer = styled.View`
     padding-top: ${StatusBarHeight + 120}px;
     background-color: ${whiteColor};
 
-    border-color: pink;
-    border-width: 2px;
+    /* border-color: pink; */
+    /* border-width: 2px; */
 `;
 
 // 초보자 화면 컨테이너 
@@ -58,8 +58,8 @@ export const BeginnerScreenContainer = styled.View`
     flex: 1;
     background-color: ${whiteColor};
     
-    border-color: blue;
-    border-width: 2px;
+    /* border-color: blue; */
+    /* border-width: 2px; */
 `;
 
 // 로고 
@@ -160,7 +160,6 @@ export const ClassButton = styled.TouchableOpacity`
     border-radius: 10px;
     margin-vertical: 10px; 
     align-items: center; 
-
     border-color: black;
     border-width: 3px;
 `;
@@ -225,6 +224,7 @@ export const LessonDetailContainer = styled.View`
     flex: 1;
     background-color: white;
     justify-content: center;
+
     border-color: green;
     border-width: 2px;
 `;
@@ -355,8 +355,8 @@ export const ProfileWrapper = styled.View`
     align-items: center;
     padding: 20px;
     
-    border-color: blue;
-    border-width: 2px;
+    /* border-color: blue; */
+    /* border-width: 2px; */
 `;
 
 // Mypage.js 프로필 이미지 
@@ -423,6 +423,8 @@ export const GrayBox = styled.View`
     border-radius: 10px;
 `;
 
+
+// Mypage.js 열 
 export const Row = styled.View`
     flex-direction: row;
     justify-content: space-between;
@@ -430,11 +432,28 @@ export const Row = styled.View`
     margin-bottom: 10px;
 `;
 
-export const TextButton = styled.TouchableOpacity``;
+// Mypage.js 텍스트버튼 리뷰관리, 프로필수정, 비밀번호 변경, 로그아웃, 회원탈퇴, 결제내역, 로그아웃
+export const TextButton = styled.TouchableOpacity`
+`;
 
+// Mypage.js 텍스트버튼 리뷰관리, 프로필수정, 비밀번호 변경, 로그아웃, 회원탈퇴, 결제내역, 로그아웃
 export const TextButtonText = styled.Text`
     font-size: 16px;
     font-weight: bold;
     color: black;
 `;
 
+
+// PwChange.js 컨테이너
+export const PwChangeContainer = styled.View`
+    flex: 1;
+    background-color: white;
+    justify-content: center;
+`;
+
+// PwChange.js 회색 박스
+export const PwCangeGrayBox = styled.View`
+    margin: 0 20px 20px 20px;
+    padding: 15px;
+    border-radius: 10px;
+`;
