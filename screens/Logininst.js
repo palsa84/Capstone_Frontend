@@ -52,7 +52,7 @@ const Logininst = ({ navigation }) => {
                         
                         if (email === masterEmail && password === masterPassword) {
                             setLoginError(false);
-                            navigation.navigate("Welcomeinst", {
+                            navigation.navigate("instMain", {
                                 userName: "김강사",
                                 userEmail: "master@gmail.com"
                             });

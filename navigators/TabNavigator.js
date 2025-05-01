@@ -24,6 +24,16 @@ const CartButton = () => {
         </TouchableOpacity>
     );
 };
+// 강사로그인 상단 '알림' 버튼
+export const AlarmButton = () => {
+    const navigation = useNavigation();
+    return (
+        <TouchableOpacity onPress={() => navigation.navigate('instAlarm')} style={{ paddingRight: 15 }}>
+            <Text style={{ fontSize: 16, color: 'black', fontWeight: 'bold' }}>알림</Text>
+        </TouchableOpacity>
+    );
+};
+
 
 // 클래스 관련 화면을 포함하는 Stack Navigator
 const ClassStack = () => {

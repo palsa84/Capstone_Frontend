@@ -23,6 +23,8 @@ import {
     TextLink2,
     TextLinkContent2,
     LoginButton,
+    TextLink3,
+    TextLinkContent3,
 } from "../components/styles";
 const { exTextColor } = Colors;
 
@@ -56,6 +58,10 @@ const Login = ({ navigation }) => {
                     <TextLinkContent2>강사 로그인</TextLinkContent2>
                     </TextLink2>
 
+                <TextLink3 onPress={() => navigation.navigate("Searchinfo")}>
+                    <TextLinkContent3>이메일/비밀번호 찾기</TextLinkContent3>
+                </TextLink3>
+
                 <InnerContainer>
                     <PageLogo resizeMode="cover" source={require("../assets/img/logo.png")} />
                     <PageTitle>파크골프ON</PageTitle>
@@ -84,9 +90,8 @@ const Login = ({ navigation }) => {
                                         userRole: res.data.user.userRole,
                                         userImg: res.data.user.userImg
                                     });
-                                    navigation.navigate("Welcome", {
-                                        userName: res.data.user.userName,
-                                        userEmail: res.data.user.userEmail,
+                                    navigation.navigate("TabNavigator", {
+                                        screen: "Class",
                                     });
                                 }
                             })

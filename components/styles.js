@@ -209,6 +209,18 @@ export const TextLinkContent2 = styled.Text`
     font-size: 15px;
 `;
 
+// 아이디/비번 찾기 링크
+export const TextLink3 = styled.TouchableOpacity`
+    position: absolute;
+    right: 30px;
+    top: 100px;
+`;
+
+// 아이디/비번 찾기 링크 텍스트
+export const TextLinkContent3 = styled.Text`
+    color: ${textColor};
+    font-size: 15px;
+`;
 
 // 상단 커스텀헤더 
 export const HeaderContainer = styled.View`
@@ -456,4 +468,170 @@ export const PwCangeGrayBox = styled.View`
     margin: 0 20px 20px 20px;
     padding: 15px;
     border-radius: 10px;
+`;
+
+export const GenderContainer = styled.View`
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 5px;
+    margin-bottom: 20px;
+`;
+
+export const GenderButton = styled.TouchableOpacity`
+    background-color: ${props => props.selected ? "#FFE600" : "#EFEFEF"};
+    padding: 10px 20px;
+    border-radius: 8px;
+    width: 48%;
+    align-items: center;
+`;
+
+export const GenderText = styled.Text`
+    color: ${textColor};
+    font-size: 15px;
+    font-weight: bold;
+`;
+
+// Signup.js 건강 정보 전체 버튼 묶음 컨테이너
+export const HealthOptionsContainer = styled.View`
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+`;
+
+// Signup.js 개별 건강 항목 버튼 (흰 배경 → 노란 배경으로 토글)
+export const HealthOptionButton = styled.TouchableOpacity`
+    background-color: ${(props) => (props.selected ? '#FFE600' : '#FFFFFF')};
+    padding: 12px 18px;
+    border-radius: 10px;
+    margin: 6px 8px 0 0;
+`;
+
+// Signup.js 버튼 내부 텍스트
+export const HealthOptionText = styled.Text`
+    font-size: 14px;
+    font-weight: bold;
+    color: black;
+`;
+
+// Signup.js  개인정보 동의 영역 컨테이너
+export const AgreementContainer = styled.View`
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+`;
+
+// Signup.js  개인정보 동의 본문 텍스트
+export const AgreementText = styled.Text`
+    font-size: 13px;
+    color: #333;
+    line-height: 20px;
+`;
+
+// Signup.js  체크박스와 텍스트를 포함하는 행
+export const CheckboxRow = styled.View`
+    flex-direction: row;
+    align-items: center;
+    margin-top: 10px;
+`;
+
+// Searchinfo.js 컨테이너
+export const SearchContainer = styled.View`
+    flex: 1;
+    background-color: #FFFCAF;
+    padding-horizontal: 20px;
+    justify-content: center;
+`;
+
+
+// instMain.js 상태 회색 박스
+export const StatusBox = styled.View`
+    background-color: #fff;
+    border: 5px solid #ccc;
+    border-radius: 10px;
+    margin: 30px;
+    padding: 10px 30px;
+`;
+
+// instMain.js 
+export const StatusRow = styled.TouchableOpacity`
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-vertical: 20px;
+`;
+
+// instMain.js 
+export const StatusLabel = styled.View`
+    flex-direction: column;
+`;
+
+// instMain.js 상태 텍스트
+export const StatusLabelText = styled.Text`
+    font-size: 20px;
+    color: black;
+    font-weight: bold;
+`;
+
+// instMain.js 상태 카운트 값
+export const StatusValue = styled.Text`
+    font-size: 30px;
+    color: blue;
+    font-weight: bold;
+`;
+
+// instProfileEdit.js
+export const CareerInputBox = styled.View`
+    margin-top: 30px;
+`;
+
+// instProfileEdit.js
+export const CareerInputLabel = styled.Text`
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 10px;
+`;
+
+// instProfileEdit.js
+export const CareerInput = styled.TextInput`
+    height: 100px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    text-align-vertical: top;
+    background-color: #fff;
+`;
+
+// instProfileEdit.js
+export const InfoBox = styled.View`
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    padding: 10px 12px;
+    margin-top: 6px;
+    align-self: flex-start;
+`;
+
+// instState.js
+export const ScrollTabContainer = styled.ScrollView`
+    flex-direction: row;
+    margin-top: 50px;
+`;
+
+// instState.js
+export const ScrollTabButton = styled.TouchableOpacity`
+    padding: 10px 20px;
+    margin-right: 10px;
+    border-radius: 20px;
+    background-color: ${(props) => (props.selected ? '#FFE600' : '#ffffff')};
+    height: 45px;
+`;
+
+// instState.js
+export const ScrollTabText = styled.Text`
+    font-size: 15px;
+    color: black;
 `;

@@ -7,6 +7,7 @@ import Signup from './../screens/Signup';
 import Logininst from './../screens/Logininst';
 import Welcome from './../screens/Welcome';
 import Welcomeinst from './../screens/Welcomeinst';
+import Searchinfo from './../screens/Searchinfo';
 
 import AddLesson from '../screens/AddLesson';
 import UpdateLesson from '../screens/EditLesson';
@@ -20,6 +21,11 @@ import ProfileEdit from '../screens/ProfileEdit';
 import PwChange from '../screens/PwChange';
 import Quit from '../screens/Quit';
 
+
+import instMain from '../screens/instMain';
+import instAlarm from '../screens/instAlarm';
+import instProfileEdit from '../screens/instProfileEdit';
+import instState from '../screens/instState';
 
 
 const Stack = createStackNavigator();
@@ -40,6 +46,7 @@ const RootStack = () => {
                 <Stack.Screen name="Logininst" component={Logininst} options={{ headerShown: false }} />
                 <Stack.Screen name="Welcome" component={Welcome} options={{ headerShown: false }} />
                 <Stack.Screen name="Welcomeinst" component={Welcomeinst} options={{ headerShown: false }} />
+                <Stack.Screen name="Searchinfo" component={Searchinfo} options={{ title: '이메일/비밀번호 찾기' }} />
 
                 <Stack.Screen name="AddLesson" component={AddLesson} options={{ title: "레슨 생성" }} />
                 <Stack.Screen name="UpdateLesson" component={UpdateLesson} options={{ title: "레슨 수정" }} />
@@ -53,6 +60,11 @@ const RootStack = () => {
                 <Stack.Screen name="PwChange" component={PwChange} options={{ title: '비밀번호 변경' }} />
                 <Stack.Screen name="Quit" component={Quit} options={{ title: '회원탈퇴' }} />
 
+
+                <Stack.Screen name="instMain" component={instMain} options={{ title: " " }} />
+                <Stack.Screen name="instAlarm" component={instAlarm} options={{ title: '알림' }} />
+                <Stack.Screen name="instProfileEdit" component={instProfileEdit} options={{ title: '프로필 편집' }} />
+                <Stack.Screen name="instState" component={instState} options={{ title: ' ' }} />
             </Stack.Navigator>
         </NavigationContainer>
     );
