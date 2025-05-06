@@ -5,7 +5,7 @@ import KeyboardAvoidingWrapper from '../components/KeyboardAvoidingWrapper';
 import axios from 'axios';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { AgreementContainer, AgreementText, CheckboxRow } from './../components/styles';
-import CheckBox from '@react-native-community/checkbox'; // ← 이게 설치되어 있어야 합니다.
+import CheckBox from '@react-native-community/checkbox'; 
 
 import {
     StyledContainer,
