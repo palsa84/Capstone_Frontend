@@ -22,7 +22,6 @@ const ProfileEdit = ({ navigation }) => {
             backgroundColor: '#888',
             textColor: '#fff',
         });
-    
         navigation.goBack(); 
     };
 

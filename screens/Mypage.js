@@ -15,7 +15,7 @@ const Mypage = ({ navigation }) => {
     return (
         <MypageContainer>
             <ProfileWrapper>
-                <ProfileImage source={{ uri: userImg }} onError={() => console.log('이미지 로드 실패:', userImg)} />
+            <ProfileImage source={{ uri: `http://10.0.2.2:5000/img/${userImg}` }} onError={() => console.log('이미지 로드 실패:', userImg)}/>
                 <View style={{ flex: 1 }}>
                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                         <RoleBox><RoleText>{userRole}</RoleText></RoleBox>

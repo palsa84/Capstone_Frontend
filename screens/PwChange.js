@@ -9,7 +9,6 @@ const PwChange = ({ navigation }) => {
     const [confirmPw, setConfirmPw] = useState('');
 
     const handleSave = () => {
-        // 하단 Toast 메시지 표시
         Toast.show('비밀번호가 변경되었습니다.', {
             duration: 3000,
             position: Toast.positions.BOTTOM,
@@ -19,8 +18,6 @@ const PwChange = ({ navigation }) => {
             backgroundColor: '#888',
             textColor: '#fff',
         });
-
-        // 화면 즉시 Mypage로 이동
         navigation.goBack();
     };
 

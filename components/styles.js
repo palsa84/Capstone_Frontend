@@ -635,3 +635,18 @@ export const ScrollTabText = styled.Text`
     font-size: 15px;
     color: black;
 `;
+
+export const CartItemContainer = styled.View`
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom-width: 1px;
+    border-color: #ccc;
+    padding: 10px 0;
+`;
+
+export const CartItemInfo = styled.View`
+    flex: 1;
+    margin-left: 10px;
+`;
+
