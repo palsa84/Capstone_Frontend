@@ -90,8 +90,8 @@ const Login = ({ navigation }) => {
                                         userRole: res.data.user.userRole,
                                         userImg: res.data.user.userImg
                                     });
-                                    navigation.navigate("TabNavigator", {
-                                        screen: "Class",
+                                    navigation.navigate("SelectAddress", {
+                                        userNum: res.data.user.userNum // userNum을 함께 전달 (선택사항)
                                     });
                                 }
                             })

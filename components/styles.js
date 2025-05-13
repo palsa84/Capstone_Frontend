@@ -14,6 +14,11 @@ const { accountBackGroundColor, whiteColor, textColor, exTextColor, logoColor, l
 // 상태 표시줄 높이 설정
 const StatusBarHeight = StatusBar.currentHeight ? StatusBar.currentHeight : 0;  // 상태표시줄 높이
 
+export const MainContainer = styled.View`
+    flex: 1;
+    flex-direction: row;
+    background-color: white;
+`;
 
 // 전체 컨테이너
 export const StyledContainer = styled.View`
@@ -169,6 +174,60 @@ export const ClassButtonText = styled.Text`
     font-size: 15px;
     font-weight: bold;
     text-align: center;
+`;
+
+// 도시 리스트 전체 (왼쪽)
+export const CityList = styled.ScrollView`
+    width: 30%;
+    background-color: #f9f9f9;
+`;
+
+// 각 도시 항목
+export const CityItem = styled.TouchableOpacity`
+    padding: 16px 10px;
+    border-bottom-width: 0.5px;
+    border-color: #ccc;
+`;
+
+// 선택된 도시 (강조 회색 배경)
+export const CityItemSelected = styled(CityItem)`
+    background-color: #e0e0e0;
+`;
+
+// 도시 이름 텍스트
+export const CityText = styled.Text`
+    font-size: 16px;
+    color: black;
+`;
+
+// 오른쪽 군구 리스트 영역
+export const DistrictContainer = styled.View`
+    width: 70%;
+    padding: 10px;
+`;
+
+// 군구 항목 하나 (가로 30%, 세로 고정 높이)
+export const DistrictBox = styled.TouchableOpacity`
+    width: 30%;
+    height: 48px;
+    justify-content: center;
+    align-items: center;
+    border-width: 0.5px;
+    border-color: #ddd;
+    border-radius: 8px;
+    margin-bottom: 12px;
+`;
+
+// 군구 텍스트
+export const DistrictText = styled.Text`
+    font-size: 14px;
+    color: black;
+`;
+
+// 군구 리스트 줄(row) 정렬용 래퍼
+export const DistrictRow = styled.View`
+    flex-direction: row;
+    justify-content: space-between;
 `;
 
 // 하단 내비게이션 텍스트
@@ -649,4 +708,3 @@ export const CartItemInfo = styled.View`
     flex: 1;
     margin-left: 10px;
 `;
-

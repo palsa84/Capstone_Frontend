@@ -26,7 +26,7 @@ import instMain from '../screens/instMain';
 import instAlarm from '../screens/instAlarm';
 import instProfileEdit from '../screens/instProfileEdit';
 import instState from '../screens/instState';
-
+import SelectAddress from '../screens/SelectAddress';
 
 const Stack = createStackNavigator();
 
@@ -64,8 +64,8 @@ const RootStack = () => {
                 <Stack.Screen name="instMain" component={instMain} options={{ title: " " }} />
                 <Stack.Screen name="instAlarm" component={instAlarm} options={{ title: '알림' }} />
                 <Stack.Screen name="instProfileEdit" component={instProfileEdit} options={{ title: '프로필 편집' }} />
-                <Stack.Screen name="instState" component={instState} options={{ title: ' ' }} />
-            </Stack.Navigator>
+                <Stack.Screen name="SelectAddress" component={SelectAddress} options={{ title: '주소 선택' }} />
+                </Stack.Navigator>
         </NavigationContainer>
     );
 };
