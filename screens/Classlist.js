@@ -27,7 +27,7 @@ const Classlist = () => {
     const [selectedCity, setSelectedCity] = useState(prevCity || null);
     const [selectedDistrict, setSelectedDistrict] = useState(prevDistrict || null);
 
-    const [locationText, setLocationText] = useState('위치가 떠야 하는데 안 뜨네요');
+    const [locationText, setLocationText] = useState('위치');
 
     const handleLocationPress = () => {
         navigation.navigate('SelectAddress', { userNum });
@@ -49,13 +49,15 @@ const Classlist = () => {
 
     useLayoutEffect(() => {
     navigation.setOptions({
-        headerTitle: () => (
+        headerTitle: '',
+        headerLeft: () => (
             <TouchableOpacity
                 onPress={() => navigation.navigate('SelectAddress', {
                     userNum,
                     prevCity: locationText.split(' ')[0],
                     prevDistrict: locationText.split(' ')[1]
                 })}
+                style={{ marginLeft: 16 }}
             >
                 <Text style={{ fontSize: 16, fontWeight: 'bold', color: 'black' }}>
                     {locationText}

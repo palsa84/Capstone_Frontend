@@ -2,17 +2,19 @@ import React, { useEffect, useState } from 'react';
 import { FlatList, View, Image, Text, TouchableOpacity } from 'react-native';
 import axios from 'axios';
 import * as styles from '../components/styles';
-import { useRoute } from '@react-navigation/native';
-
+import { getUser } from '../utils/userInfo';
+import { useNavigation } from '@react-navigation/native';
 
 const Cart = () => {
     const [cartItems, setCartItems] = useState([]);
     const [selectedItems, setSelectedItems] = useState([]);
-    const route = useRoute();
-    const userId = route.params?.userId;
-    
+    const navigation = useNavigation();
+
+    const userId = getUser()?.userNum;
+
     useEffect(() => {
         if (!userId) return;
+
         axios.get(`http://10.0.2.2:5000/api/cart/${userId}`)
             .then(res => setCartItems(res.data))
             .catch(err => console.error('장바구니 불러오기 실패:', err));
@@ -75,7 +77,6 @@ const Cart = () => {
 
     return (
         <styles.LessonDetailContainer>
-
             {/* 상단: 전체 선택 / 선택삭제 */}
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', padding: 16 }}>
                 <TouchableOpacity onPress={handleSelectAll}>
@@ -84,7 +85,9 @@ const Cart = () => {
                     </Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={() => setSelectedItems([])}>
+                <TouchableOpacity onPress={() => {
+                    selectedItems.forEach(id => removeItem(id));
+                }}>
                     <Text style={{ fontSize: 16, fontWeight: 'bold' }}>
                         선택삭제
                     </Text>
@@ -98,18 +101,28 @@ const Cart = () => {
                 renderItem={renderItem}
                 contentContainerStyle={{ paddingHorizontal: 16 }}
             />
-
+            
             {/* 결제 버튼 */}
-            <TouchableOpacity style={{
-                backgroundColor: '#FAF287',
-                paddingVertical: 15,
-                alignItems: 'center',
-                justifyContent: 'center',
-            }}>
-                <Text style={{ fontSize: 18, fontWeight: 'bold' }}>결제하기</Text>
-            </TouchableOpacity>
+            <TouchableOpacity
+                onPress={() => {
+                    if (selectedItems.length > 0) {
+                        const selectedLesson = cartItems.find(item => item.cartId === selectedItems[0]);
+                        navigation.navigate('Credit', { lesson: selectedLesson });
+                    }
+                }}
 
+                style={{
+                    backgroundColor: '#FAF287',
+                    paddingVertical: 15,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                }}
+            >
+                <Text style={{ fontSize: 18, fontWeight: 'bold' }}>결제하기</Text>
+                
+            </TouchableOpacity>
         </styles.LessonDetailContainer>
+        
     );
 };
 

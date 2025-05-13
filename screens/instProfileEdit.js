@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState } from 'react';
+import React, { useLayoutEffect, useState, useEffect  } from 'react';
 import { StatusBar, View, Text, ToastAndroid, TextInput, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import {
@@ -29,11 +29,16 @@ import { getUser } from '../utils/userInfo';
 const instProfileEdit = () => {
     const nav = useNavigation();
     const user = getUser();
-    const { userName, userRole, userImg } = user || {
-        userName: '김강사',
-        userRole: '강사',
-        userImg: 'http://10.32.10.126:3000/img/person1.png',
-    };
+
+    useEffect(() => {
+        if (!user) {
+            nav.reset({ index: 0, routes: [{ name: 'Logininst' }] });
+        }
+    }, []);
+
+    if (!user) return null;
+
+    const { userName, userRole, userImg } = user;
 
     const [name, setName] = useState(userName);
     const [gender, setGender] = useState('');

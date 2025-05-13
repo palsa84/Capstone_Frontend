@@ -38,14 +38,7 @@ export const AlarmButton = () => {
 // 클래스 관련 화면을 포함하는 Stack Navigator
 const ClassStack = () => {
     return (
-        <Stack.Navigator
-            screenOptions={{
-                headerTitleAlign: 'center',
-                headerStyle: { backgroundColor: '#FAF287' },
-                headerTintColor: 'black',
-                headerRight: () => <CartButton />,
-                headerBackTitleVisible: false, // 뒤로 가기 버튼에 텍스트 숨김
-            }}
+        <Stack.Navigator screenOptions={{ headerTitleAlign: 'center', headerStyle: { backgroundColor: '#FAF287' }, headerTintColor: 'black', headerRight: () => <CartButton />, headerBackTitleVisible: false, }}
         >
             <Stack.Screen 
                 name="Classlist" 

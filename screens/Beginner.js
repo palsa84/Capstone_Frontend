@@ -1,14 +1,13 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { FlatList, TextInput, ScrollView, TouchableOpacity, View, Text, Image } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import {
-    BeginnerScreenContainer,
-    PageTitle
-} from './../components/styles';
+import { getUser } from '../utils/userInfo';
+import { BeginnerScreenContainer, PageTitle } from './../components/styles';
 import axios from 'axios';
 
-const Beginner = () => {
-    const navigation = useNavigation();
+const Beginner = ({ navigation }) => {
+    const user = getUser();
+    const userId = user?.userNum;
+
     const [allLessons, setAllLessons] = useState([]);
     const [searchText, setSearchText] = useState('');
     const [placeFilter, setPlaceFilter] = useState([]);
@@ -25,7 +24,7 @@ const Beginner = () => {
             });
     }, []);
 
-    // 지역 필터 
+    // 지역 필터
     const togglePlaceFilter = (place) => {
         setPlaceFilter(prev =>
             prev.includes(place) ? [] : [place]
@@ -38,9 +37,6 @@ const Beginner = () => {
         lesson.instName.trim().includes(searchText.trim())) &&
         (placeFilter.length === 0 || placeFilter.includes(lesson.lesPlace.trim()))
     );
-    
-    
-    
 
     return (
         <BeginnerScreenContainer>
@@ -86,9 +82,15 @@ const Beginner = () => {
                 data={filteredLessons}
                 keyExtractor={item => item.lesNum.toString()}
                 renderItem={({ item }) => (
-                    <TouchableOpacity onPress={() => navigation.navigate('LessonDetail', { lesson: item })}>
+                    <TouchableOpacity onPress={() => navigation.navigate('LessonDetail', {
+                        lesson: item,
+                        userId: userId
+                    })}>
                         <View style={{ flexDirection: 'row', padding: 15, borderBottomWidth: 1, alignItems: 'center' }}>
-                        <Image source={{ uri: `http://10.0.2.2:5000/img/${item.lesThumbImg}` }} style={{ width: 80, height: 70, marginRight: 20, borderRadius: 10 }}/>
+                            <Image
+                                source={{ uri: `http://10.0.2.2:5000/img/${item.lesThumbImg}` }}
+                                style={{ width: 80, height: 70, marginRight: 20, borderRadius: 10 }}
+                            />
 
                             <View style={{ flex: 1 }}>
                                 <Text style={{ fontSize: 18, fontWeight: 'bold' }}>{item.lesName}</Text>

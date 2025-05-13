@@ -88,7 +88,8 @@ const Login = ({ navigation }) => {
                                     setUser({
                                         userName: res.data.user.userName,
                                         userRole: res.data.user.userRole,
-                                        userImg: res.data.user.userImg
+                                        userImg: res.data.user.userImg,
+                                        userNum: res.data.user.userNum
                                     });
                                     navigation.navigate("SelectAddress", {
                                         userNum: res.data.user.userNum // userNum을 함께 전달 (선택사항)

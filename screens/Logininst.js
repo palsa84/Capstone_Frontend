@@ -59,7 +59,7 @@ const Logininst = ({ navigation }) => {
                                         userImg: user.userImg,
                                         userRole: user.userRole,
                                     });
-                                    navigation.replace("Welcomeinst", {
+                                    navigation.replace("instMain", {
                                         userName: user.userName,
                                         userEmail: user.userEmail,
                                         userImg: user.userImg,

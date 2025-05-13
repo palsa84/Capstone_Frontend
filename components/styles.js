@@ -217,7 +217,9 @@ export const DistrictBox = styled.TouchableOpacity`
     border-radius: 8px;
     margin-bottom: 12px;
 `;
-
+export const DistrictBoxSelected = styled(DistrictBox)`
+    background-color: #ccc;
+`;
 // 군구 텍스트
 export const DistrictText = styled.Text`
     font-size: 14px;
@@ -707,4 +709,37 @@ export const CartItemContainer = styled.View`
 export const CartItemInfo = styled.View`
     flex: 1;
     margin-left: 10px;
+`;
+
+
+export const TopBarContainer = styled.View`
+    height: 60px;
+    background-color: #FFF59D;
+    justify-content: center;
+    padding: 0 16px;
+`;
+
+export const LessonBoxContainer = styled.View`
+    background-color: #F0F0F0;
+    padding: 16px;
+    border-radius: 8px;
+    margin-top: 10px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+`;
+
+export const UserInfoBox = styled.View`
+    background-color: #FFF9C4;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+`;
+
+export const HealthInput = styled.TextInput`
+    border-width: 1px;
+    border-color: black;
+    padding: 12px;
+    border-radius: 8px;
+    margin-top: 12px;
 `;

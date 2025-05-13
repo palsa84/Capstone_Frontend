@@ -17,6 +17,7 @@ import {
     DistrictContainer,
     DistrictBox,
     DistrictText,
+    DistrictBoxSelected,
 } from '../components/styles';
 
 const CITIES = [
@@ -70,45 +71,24 @@ const SelectAddress = () => {
     };
 
     // 저장 누르면 Class스택으로 이동
-    const handleSave = async () => {
+    const handleSave = () => {
         const place = `${selectedCity} ${selectedDistrict}`;
-
-        try {
-            await axios.post('http://10.0.2.2:5000/api/user/location', {
-                userNum,
-                userlocation1: selectedCity,
-                userlocation2: selectedDistrict
-            });
-
-            navigation.navigate('TabNavigator', {
-                screen: 'Class',
-                params: { place, userNum }
-            });
-        } catch (error) {
-            console.error('위치 저장 실패:', error);
-            ToastAndroid.show('위치 저장 실패', ToastAndroid.SHORT);
-        }
+        navigation.navigate('TabNavigator', {
+            screen: 'Class',
+            params: { place, userNum }
+        });
     };
 
-    useLayoutEffect(() => {
-        if (selectedCity && selectedDistrict) {
-            navigation.setOptions({
-                headerRight: () => (
-                    <TouchableOpacity onPress={handleSave} style={{ paddingRight: 16 }}>
-                        <Text style={{ color: 'black', fontSize: 16, fontWeight: 'bold' }}>저장</Text>
-                    </TouchableOpacity>
-                ),
-            });
-        } else {
-            navigation.setOptions({ headerRight: () => null });
-        }
-    }, [navigation, selectedCity, selectedDistrict]);
+    const renderDistrictItem = ({ item }) => {
+    const isSelected = selectedDistrict === item;
+    const DistrictComponent = isSelected ? DistrictBoxSelected : DistrictBox;
 
-    const renderDistrictItem = ({ item }) => (
-        <DistrictBox onPress={() => handleDistrictPress(item)}>
+    return (
+        <DistrictComponent onPress={() => handleDistrictPress(item)}>
             <DistrictText>{item}</DistrictText>
-        </DistrictBox>
+        </DistrictComponent>
     );
+};
 
     return (
         <MainContainer>
