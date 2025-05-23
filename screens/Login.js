@@ -72,7 +72,7 @@ const Login = ({ navigation }) => {
                     <Pressable style={styles.button} onPress={signInWithKakao}>
                         <Text style={styles.text}>카카오 로그인</Text>
                         </Pressable>
-
+                    <View style={{ height: 30 }} />
                     {/*이메일, 비밀번호 로그인 폼 */}
                     <Formik
                         initialValues={{ email: "", password: "" }}

@@ -41,7 +41,7 @@ const Logininst = ({ navigation }) => {
                     <PageLogo resizeMode="cover" source={require("../assets/img/logo.png")} />
                     <PageTitle>파크골프ON</PageTitle>
                     <SubTitle>강사 로그인</SubTitle>
-
+                    <View style={{ height: 50 }} />
                     <Formik
                         initialValues={{ email: "", password: "" }}
                         onSubmit={(values) => {

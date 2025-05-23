@@ -23,21 +23,18 @@ export const MainContainer = styled.View`
 // 전체 컨테이너
 export const StyledContainer = styled.View`
     flex: 1;
-    padding-top: ${StatusBarHeight + 170}px;
+    padding-top: ${StatusBarHeight + 235}px;
     background-color: ${accountBackGroundColor};
-
-    border-color: skyblue; 
-    border-width: 2px; 
 `;
 
 // 내부 컨테이너
 export const InnerContainer = styled.View`
     flex: 1;
-    top: -100px;
+    top: -130px;
     align-items: center;
 
     /* border-color: orange; */
-    /*  border-width: 2px; */
+    /* border-width: 2px; */
 `;
 
 // 클래스 컨테이너

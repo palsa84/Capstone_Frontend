@@ -24,25 +24,40 @@ const LessonDetail = () => {
         userinfo
     } = lesson;
 
-    const handleAddToCart = () => {
-        axios.post('http://192.168.0.22:5000/api/cart', {
-            userId: userId,               
-            lessonId: lesNum,
-        })
-        .then(() => {
+    const handleAddToCart = async () => {
+        try {
+            // 장바구니 목록 불러오기
+            const res = await axios.get(`http://192.168.0.22:5000/api/cart/${userId}`);
+            const cartItems = res.data;
+
+            const alreadyInCart = cartItems.some(item => item.lesName === lesName);
+
+            if (alreadyInCart) {
+                Toast.show('이미 장바구니에 담겨있습니다.', {
+                    duration: 3000,
+                    position: Toast.positions.BOTTOM,
+                    backgroundColor: '#333',
+                    textColor: '#fff',
+                });
+                return; 
+            }
+
+            // 장바구니에 추가
+            await axios.post('http://192.168.0.22:5000/api/cart', {
+                userId: userId,
+                lessonId: lesNum,
+            });
+
             Toast.show('장바구니에 추가되었습니다.', {
                 duration: 3000,
                 position: Toast.positions.BOTTOM,
-                shadow: true,
-                animation: true,
-                hideOnPress: true,
                 backgroundColor: '#333',
                 textColor: '#fff',
             });
-        })
-        .catch(err => {
+
+        } catch (err) {
             console.error('장바구니 추가 실패:', err);
-        });
+        }
     };
 
     return (
@@ -50,8 +65,8 @@ const LessonDetail = () => {
             <StatusBar barStyle="dark-content" />
             <ScrollView contentContainerStyle={{ flexGrow: 1, alignItems: 'center' }}>
                 <styles.LessonHeaderContainer>
-                    <styles.LessonBackgroundImage source={{ uri: `http://192.168.0.100.2:5000/img/${lesBackgroundImg}` }} />
-                    <styles.LessonProfileImage source={{ uri: `http://192.168.0.100.2:5000/img/${userImg}` }} />
+                    <styles.LessonBackgroundImage source={{ uri: `http://192.168.0.22:5000/img/${lesBackgroundImg}` }} />
+                    <styles.LessonProfileImage source={{ uri: `http://192.168.0.22:5000/img/${userImg}` }} />
                 </styles.LessonHeaderContainer>
 
                 <styles.LessonDetailInfoContainer>
@@ -86,7 +101,6 @@ const LessonDetail = () => {
                         </styles.LessonInfoBox>
                     </TouchableOpacity>
                 </styles.LessonDetailsContainer>
-
             </ScrollView>
         </styles.LessonDetailContainer>
     );

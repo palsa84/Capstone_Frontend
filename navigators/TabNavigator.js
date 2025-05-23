@@ -3,6 +3,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { TouchableOpacity, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 import Classlist from '../screens/Classlist';
 import Beginner from '../screens/Beginner';
@@ -79,13 +80,21 @@ const ScreenWithHeader = (Component, title) => {
 // 하단 탭 네비게이션
 const TabNavigator = () => {
     return (
-        <Tab.Navigator
-            screenOptions={{
-                tabBarStyle: { backgroundColor: '#FAF287' }, // 하단 탭 배경색
-                tabBarActiveTintColor: 'black', // 활성 탭 색상
-                tabBarInactiveTintColor: 'black', // 비활성 탭 색상
-                
-            }}
+        <Tab.Navigator screenOptions={({ route }) => ({
+                tabBarIcon: ({ color, size }) => {
+                let iconName;
+
+                if (route.name === 'Class') iconName = 'golf-outline';
+                else if (route.name === 'Favorite') iconName = 'heart';
+                else if (route.name === 'Order') iconName = 'receipt-outline';
+                else if (route.name === 'Mypage') iconName = 'person-circle';
+
+                return <Icon name={iconName} size={20} color={color} />;
+                },
+                tabBarStyle: { backgroundColor: '#FAF287' },
+                tabBarActiveTintColor: 'black',
+                tabBarInactiveTintColor: 'black',
+            })}
         >
             <Tab.Screen name="Class" component={ClassStack} options={{ title: "클래스",  headerShown: false }} />
             <Tab.Screen name="Favorite" component={ScreenWithHeader(Favorite, '찜')} options={{ title: "찜", headerShown: false }} />

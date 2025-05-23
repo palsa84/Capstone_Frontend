@@ -3,16 +3,25 @@ import { View, Text, TextInput } from 'react-native';
 import Toast from 'react-native-root-toast';
 import { MypageContainer, ProfileWrapper, ProfileImage, RoleBox, RoleText, NameBox, NameText, TextButton, TextButtonText, Row, PwCangeGrayBox } from '../components/styles';
 import { getUser } from '../utils/userInfo';
-
+import { setUser } from '../utils/userInfo';
 
 const ProfileEdit = ({ navigation }) => {
     const user = getUser();
     const { userName, userRole, userImg, userEmail } = user;
 
-    const [editedName, setEditedName] = useState('');
+    const [editedName, setEditedName] = useState(userName);  
     const [editedEmail, setEditedEmail] = useState(userEmail);
 
     const handleSave = () => {
+        console.log('✅ 저장된 userImg:', userImg);
+
+            setUser({
+            userName: editedName,
+            userEmail: editedEmail,
+            userRole,
+            userImg,    
+            userNum: user.userNum
+        });
         Toast.show('프로필이 수정되었습니다.', {
             duration: 3000,
             position: Toast.positions.BOTTOM,
@@ -28,7 +37,11 @@ const ProfileEdit = ({ navigation }) => {
     return (
         <MypageContainer>
             <ProfileWrapper>
-                <ProfileImage source={{ uri: userImg }} onError={() => console.log('이미지 로드 실패:', userImg)} />
+                <ProfileImage
+                    source={{ uri: userImg?.startsWith('http') ? userImg : 'http://192.168.0.22:5000/img/default_userImg.png' }}
+                    onError={() => console.log('이미지 로드 실패:', userImg)}
+                    />
+
                 <View style={{ flex: 1 }}>
                     <RoleBox><RoleText>{userRole}</RoleText></RoleBox>
                     <NameBox><NameText>{userName}</NameText></NameBox>
