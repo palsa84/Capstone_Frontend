@@ -29,7 +29,7 @@ const Credit = () => {
                 </CartItemInfo>
 
                 <Image
-                    source={{ uri: `http://10.0.2.2:5000/img/${lesson.lesThumbImg}` }}
+                    source={{ uri: `http://192.168.0.22:5000/img/${lesson.lesThumbImg}` }}
                     style={{ width: 80, height: 70, borderRadius: 10 }}
                 />
             </CartItemContainer>

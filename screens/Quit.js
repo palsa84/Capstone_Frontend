@@ -1,12 +1,94 @@
-import React from 'react';
-import { Text } from 'react-native';
-import { LessonDetailContainer } from './../components/styles';
+import React, { useState } from 'react';
+import { View, TouchableOpacity, Text } from 'react-native';
+import CheckBox from '@react-native-community/checkbox';
+import Toast from 'react-native-root-toast';
+import axios from 'axios';
+import { getUser, setUser } from '../utils/userInfo';
+import {
+    QuitContainer,
+    QuitTitle,
+    QuitInfoText,
+    QuitWarningText,
+    QuitDangerText,
+    QuitCheckboxRow,
+    QuitCheckboxText
+} from '../components/styles';
 
-const Quit = () => {
+const Quit = ({ navigation }) => {
+    const [agree, setAgree] = useState(false);
+    const user = getUser();
+
+    const handleDelete = async () => {
+        if (!agree || !user) return;
+
+        try {
+            const res = await axios.delete(`http://192.168.0.22:5000/api/user/delete/${user.userNum}`);
+            if (res.data.success) {
+                setUser(null);
+
+                // 1. 로그인 페이지로 즉시 이동
+                navigation.reset({
+                    index: 0,
+                    routes: [{ name: 'Login' }]
+                });
+
+                // 2. 로그인 화면 위에서 토스트 띄우기
+                Toast.show('탈퇴되었습니다.', {
+                    duration: 3000,
+                    position: Toast.positions.BOTTOM,
+                    shadow: true,
+                    animation: true,
+                    hideOnPress: true,
+                    backgroundColor: '#333',
+                    textColor: '#fff',
+                });
+            } else {
+                Toast.show('탈퇴 실패: 서버 응답 오류', { duration: 3000 });
+            }
+        } catch (err) {
+            console.error('🔥 axios 오류:', err?.response?.data || err.message || err);
+            Toast.show('탈퇴 실패: 네트워크 오류', { duration: 3000 });
+        }
+    };
+
     return (
-        <LessonDetailContainer>
-            <Text>회원 탈퇴</Text>
-        </LessonDetailContainer>
+        <QuitContainer>
+            <QuitTitle>회원탈퇴 유의사항</QuitTitle>
+            <QuitInfoText>회원 탈퇴 전에 꼭 확인하세요.</QuitInfoText>
+            <QuitWarningText>회원탈퇴 후 재가입 하더라도 정보 복구가 불가능합니다.</QuitWarningText>
+            <QuitDangerText>정말 탈퇴하시겠습니까?</QuitDangerText>
+
+            <QuitCheckboxRow>
+                <CheckBox
+                    value={agree}
+                    onValueChange={setAgree}
+                    tintColors={{ true: '#FFE600', false: '#999' }}
+                />
+                <QuitCheckboxText>유의사항을 모두 확인하였습니다.</QuitCheckboxText>
+            </QuitCheckboxRow>
+
+            <View style={{ marginTop: 20 }}>
+                <TouchableOpacity
+                    onPress={handleDelete}
+                    disabled={!agree}
+                    style={{
+                        backgroundColor: agree ? '#FAF287' : '#ccc',
+                        paddingVertical: 15,
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        borderRadius: 10,
+                    }}
+                >
+                    <Text style={{
+                        fontSize: 18,
+                        fontWeight: 'bold',
+                        color: agree ? 'black' : '#666'
+                    }}>
+                        탈퇴하기
+                    </Text>
+                </TouchableOpacity>
+            </View>
+        </QuitContainer>
     );
 };
 

@@ -15,7 +15,7 @@ const Beginner = ({ navigation }) => {
 
     // 레슨 불러오기
     useEffect(() => {
-        axios.get('http://10.0.2.2:5000/api/lessons')
+        axios.get('http://192.168.0.22:5000/api/lessons')
             .then(res => {
                 setAllLessons(res.data);
             })
@@ -88,7 +88,7 @@ const Beginner = ({ navigation }) => {
                     })}>
                         <View style={{ flexDirection: 'row', padding: 15, borderBottomWidth: 1, alignItems: 'center' }}>
                             <Image
-                                source={{ uri: `http://10.0.2.2:5000/img/${item.lesThumbImg}` }}
+                                source={{ uri: `http://192.168.0.22:5000/img/${item.lesThumbImg}` }}
                                 style={{ width: 80, height: 70, marginRight: 20, borderRadius: 10 }}
                             />
 

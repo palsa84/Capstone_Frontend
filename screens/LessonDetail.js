@@ -4,6 +4,7 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 import * as styles from './../components/styles';
 import Toast from 'react-native-root-toast';
 import axios from 'axios';
+import { getUser } from '../utils/userInfo';
 
 const LessonDetail = () => {
     const navigation = useNavigation();
@@ -24,7 +25,7 @@ const LessonDetail = () => {
     } = lesson;
 
     const handleAddToCart = () => {
-        axios.post('http://10.0.2.2:5000/api/cart', {
+        axios.post('http://192.168.0.22:5000/api/cart', {
             userId: userId,               
             lessonId: lesNum,
         })
@@ -49,8 +50,8 @@ const LessonDetail = () => {
             <StatusBar barStyle="dark-content" />
             <ScrollView contentContainerStyle={{ flexGrow: 1, alignItems: 'center' }}>
                 <styles.LessonHeaderContainer>
-                    <styles.LessonBackgroundImage source={{ uri: `http://10.0.2.2:5000/img/${lesBackgroundImg}` }} />
-                    <styles.LessonProfileImage source={{ uri: `http://10.0.2.2:5000/img/${userImg}` }} />
+                    <styles.LessonBackgroundImage source={{ uri: `http://192.168.0.100.2:5000/img/${lesBackgroundImg}` }} />
+                    <styles.LessonProfileImage source={{ uri: `http://192.168.0.100.2:5000/img/${userImg}` }} />
                 </styles.LessonHeaderContainer>
 
                 <styles.LessonDetailInfoContainer>

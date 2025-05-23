@@ -6,7 +6,7 @@ import axios from 'axios';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { AgreementContainer, AgreementText, CheckboxRow } from './../components/styles';
 import CheckBox from '@react-native-community/checkbox'; 
-
+import { setUser } from '../utils/userInfo'; 
 import {
     StyledContainer,
     InnerContainer,
@@ -75,29 +75,34 @@ const Signup = ({ navigation }) => {
                                 Alert.alert('알림', '개인정보 수집 및 활용에 동의해주세요.');
                                 return;
                             }
-                            axios
-                                .post('http://10.0.2.2:5000/api/signup', {
-                                    userName: values.userName,
-                                    userEmail: values.email,
-                                    userPw: values.password,
-                                    gender,
-                                    birthDate: birthDate.toISOString().split('T')[0], // YYYY-MM-DD
-                                    healthInfo: healthOptions.filter(opt => opt.selected).map(opt => opt.label) //
-                                })
-                                .then((res) => {
-                                    if (res.data.success) {
-                                        navigation.navigate("TabNavigator", {
-                                            screen: "Class",
-                                        });
-                                    }
-                                })
-                                .catch((err) => {
-                                    if (err.response && err.response.status === 409) {
-                                        setEmailExists(true);
-                                    } else {
-                                        setEmailExists(false);
-                                    }
-                                });
+                            axios.post('http://192.168.0.22:5000/api/signup', {
+                                userName: values.userName,
+                                userEmail: values.email,
+                                userPw: values.password,
+                                userGender: gender,
+                                userBirth: birthDate.toISOString().split('T')[0],
+                                userHealthInfo: healthOptions.filter(opt => opt.selected).map(opt => opt.label)
+                            })
+                            .then((res) => {
+                                if (res.data.success && res.data.user) {
+                                    setUser(res.data.user); 
+                                    setTimeout(() => {
+                                        navigation.reset({
+                                            index: 0,
+                                            routes: [{
+                                                    name: 'TabNavigator',
+                                                    state: { index: 0,routes: [{
+                                                                name: 'Class',
+                                                                state: { index: 0, routes: [{ name: 'Classlist' }]
+                                                                }}]}}]});}, 300);}
+                            })
+                            .catch((err) => {
+                                if (err.response && err.response.status === 409) {
+                                    setEmailExists(true);
+                                } else {
+                                    setEmailExists(false);
+                                }
+                            });
                         }}
                     >
                         {({ handleChange, handleBlur, handleSubmit, values }) => (

@@ -507,6 +507,7 @@ export const Row = styled.View`
 
 // Mypage.js 텍스트버튼 리뷰관리, 프로필수정, 비밀번호 변경, 로그아웃, 회원탈퇴, 결제내역, 로그아웃
 export const TextButton = styled.TouchableOpacity`
+
 `;
 
 // Mypage.js 텍스트버튼 리뷰관리, 프로필수정, 비밀번호 변경, 로그아웃, 회원탈퇴, 결제내역, 로그아웃
@@ -743,3 +744,56 @@ export const HealthInput = styled.TextInput`
     border-radius: 8px;
     margin-top: 12px;
 `;
+
+// Quit.js
+export const QuitContainer = styled.View`
+    flex: 1;
+    padding: 30px 20px;
+    background-color: white;
+`;
+
+// Quit.js
+export const QuitTitle = styled.Text`
+    font-size: 22px;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 20px;
+`;
+
+// Quit.js
+export const QuitInfoText = styled.Text`
+    font-size: 16px;
+    color: black;
+    margin-bottom: 12px;
+`;
+
+// Quit.js
+export const QuitWarningText = styled.Text`
+    font-size: 16px;
+    color: gray;
+    margin-bottom: 20px;
+`;
+
+// Quit.js
+export const QuitDangerText = styled.Text`
+    font-size: 16px;
+    font-weight: bold;
+    color: red;
+    margin-top: 10px;
+`;
+
+// Quit.js
+export const QuitCheckboxRow = styled.View`
+    flex-direction: row;
+    align-items: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+`;
+
+// Quit.js
+export const QuitCheckboxText = styled.Text`
+    font-size: 16px;
+    margin-left: 10px;
+    color: black;
+`;
+

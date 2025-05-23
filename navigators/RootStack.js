@@ -33,6 +33,7 @@ import Credit from '../screens/Credit';
 import CreditLoading from '../screens/CreditLoading';
 import CreditCompleted from '../screens/CreditCompleted';
 
+import Classlist from '../screens/Classlist';
 
 const Stack = createStackNavigator();
 
@@ -76,6 +77,7 @@ const RootStack = () => {
                 <Stack.Screen name="CreditLoading" component={CreditLoading} options={{ headerShown: false }} />
                 <Stack.Screen name="CreditCompleted" component={CreditCompleted} options={{ headerShown: false }} />
                 
+                <Stack.Screen name="Classlist" component={Classlist} options={{ headerShown: false }} />
                 
                 </Stack.Navigator>
         </NavigationContainer>

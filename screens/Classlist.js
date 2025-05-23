@@ -36,7 +36,7 @@ const Classlist = () => {
     useEffect(() => {
         const fetchLocation = async () => {
             try {
-                const res = await axios.get(`http://10.0.2.2:5000/api/user/location/${userNum}`);
+                const res = await axios.get(`http://192.168.0.22:5000/api/user/location/${userNum}`);
                 const { userlocation1, userlocation2 } = res.data;
                 setLocationText(`${userlocation1} ${userlocation2}`);
             } catch (err) {

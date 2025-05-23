@@ -1,11 +1,12 @@
 import React from 'react';
-import { View, Text, Image, Alert } from 'react-native';
+import { View, Text, Image, ToastAndroid, TouchableOpacity } from 'react-native';
 import { MypageContainer, ProfileWrapper, ProfileImage, InfoBox, RoleBox, RoleText, NameBox, NameText, SectionTitle, GrayBox, Row, TextButton, TextButtonText } from '../components/styles';
 import PwChange from '../screens/PwChange';
 import Quit from '../screens/Quit';
 import ReviewManage from '../screens/ReviewManage';
 import ProfileEdit from '../screens/ProfileEdit';
 import { getUser, setUser } from '../utils/userInfo';
+import Toast from 'react-native-root-toast'; 
 
 const Mypage = ({ navigation }) => {
     const user = getUser();
@@ -15,7 +16,7 @@ const Mypage = ({ navigation }) => {
     return (
         <MypageContainer>
             <ProfileWrapper>
-            <ProfileImage source={{ uri: `http://10.0.2.2:5000/img/${userImg}` }} onError={() => console.log('이미지 로드 실패:', userImg)}/>
+            <ProfileImage source={{ uri: `http://192.168.0.22:5000/img/${userImg}` }} onError={() => console.log('이미지 로드 실패:', userImg)}/>
                 <View style={{ flex: 1 }}>
                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                         <RoleBox><RoleText>{userRole}</RoleText></RoleBox>
@@ -35,9 +36,29 @@ const Mypage = ({ navigation }) => {
             <GrayBox>
                 <Row>
                     <TextButton onPress={() => navigation.navigate('PwChange')}><TextButtonText>비밀번호 변경</TextButtonText></TextButton>
-                    <TextButton onPress={() => { Alert.alert('로그아웃 하시겠습니까?', '', [ { text: '아니오', style: 'cancel' }, { text: '예', onPress: () => { setUser(null); navigation.reset({ index: 0, routes: [{ name: 'Login' }] }); } } ], { cancelable: true }); }}>
-                        <TextButtonText style={{ marginLeft: -150 }}>로그아웃</TextButtonText>
-                    </TextButton>
+                    <TouchableOpacity onPress={() => {
+                        setUser(null);
+                        navigation.reset({
+                            index: 0,
+                            routes: [{ name: 'Login' }],
+                        });
+                        setTimeout(() => {
+                            Toast.show('로그아웃되었습니다.', {
+                                duration: 3000,
+                                position: Toast.positions.BOTTOM,
+                                shadow: true,
+                                animation: true,
+                                hideOnPress: true,
+                                backgroundColor: '#333',
+                                textColor: '#fff',
+                            });}, 300);
+                    }}
+                    style={{ paddingRight: 100 }}
+                    >
+                    <Text style={{ color: 'black', fontWeight: 'bold', fontSize: 16 }}>
+                        로그아웃
+                    </Text>
+                    </TouchableOpacity>
                 </Row>
                 <Row>
                     <TextButton onPress={() => navigation.navigate('Quit')}><TextButtonText>회원탈퇴</TextButtonText></TextButton>
