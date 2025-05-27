@@ -75,6 +75,7 @@ const Signup = ({ navigation }) => {
                                 Alert.alert('알림', '개인정보 수집 및 활용에 동의해주세요.');
                                 return;
                             }
+
                             axios.post('http://192.168.0.22:5000/api/signup', {
                                 userName: values.userName,
                                 userEmail: values.email,
@@ -85,16 +86,14 @@ const Signup = ({ navigation }) => {
                             })
                             .then((res) => {
                                 if (res.data.success && res.data.user) {
-                                    setUser(res.data.user); 
-                                    setTimeout(() => {
-                                        navigation.reset({
-                                            index: 0,
-                                            routes: [{
-                                                    name: 'TabNavigator',
-                                                    state: { index: 0,routes: [{
-                                                                name: 'Class',
-                                                                state: { index: 0, routes: [{ name: 'Classlist' }]
-                                                                }}]}}]});}, 300);}
+                                    const user = res.data.user;
+                                    setUser(user);
+
+                                    // 👉 SelectAddress.js로 이동하며 userNum 전달
+                                    navigation.navigate("SelectAddress", {
+                                        userNum: user.userNum
+                                    });
+                                }
                             })
                             .catch((err) => {
                                 if (err.response && err.response.status === 409) {
@@ -103,7 +102,7 @@ const Signup = ({ navigation }) => {
                                     setEmailExists(false);
                                 }
                             });
-                        }}
+                            }}
                     >
                         {({ handleChange, handleBlur, handleSubmit, values }) => (
                             <StyledFormArea>

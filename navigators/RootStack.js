@@ -34,13 +34,14 @@ import CreditLoading from '../screens/CreditLoading';
 import CreditCompleted from '../screens/CreditCompleted';
 
 import Classlist from '../screens/Classlist';
+import LessonDetail from '../screens/LessonDetail';
 
 const Stack = createStackNavigator();
 
 const RootStack = () => {
     return (
         <NavigationContainer>
-            <Stack.Navigator // 장바구니 화면 상단 네비게이션
+            <Stack.Navigator 
                 screenOptions={{
                     headerStyle: { backgroundColor: '#FAF287' },
                     headerTintColor: 'black',
@@ -78,7 +79,7 @@ const RootStack = () => {
                 <Stack.Screen name="CreditCompleted" component={CreditCompleted} options={{ headerShown: false }} />
                 
                 <Stack.Screen name="Classlist" component={Classlist} options={{ headerShown: false }} />
-                
+                <Stack.Screen name="LessonDetail" component={LessonDetail} />
                 </Stack.Navigator>
         </NavigationContainer>
     );

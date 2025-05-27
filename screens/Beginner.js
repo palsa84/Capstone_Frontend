@@ -1,40 +1,48 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { FlatList, TextInput, ScrollView, TouchableOpacity, View, Text, Image } from 'react-native';
+import { useRoute } from '@react-navigation/native';
 import { getUser } from '../utils/userInfo';
-import { BeginnerScreenContainer, PageTitle } from './../components/styles';
+import { BeginnerScreenContainer, PageTitle } from '../components/styles';
 import axios from 'axios';
 
+const REGION_LIST = ['달서구', '달성군', '수성구', '중구', '남구', '북구', '동구', '서구', '군위군'];
+
 const Beginner = ({ navigation }) => {
+    const route = useRoute();
     const user = getUser();
     const userId = user?.userNum;
+    const selectedRegion = route.params?.selectedRegion;
 
     const [allLessons, setAllLessons] = useState([]);
     const [searchText, setSearchText] = useState('');
-    const [placeFilter, setPlaceFilter] = useState([]);
+    const [placeFilter, setPlaceFilter] = useState(selectedRegion ? [selectedRegion] : []);
     const flatListRef = useRef(null);
+    const regionScrollRef = useRef(null);
 
-    // 레슨 불러오기
     useEffect(() => {
         axios.get('http://192.168.0.22:5000/api/lessons')
-            .then(res => {
-                setAllLessons(res.data);
-            })
-            .catch(err => {
-                console.error('레슨 조회 실패:', err);
-            });
+            .then(res => setAllLessons(res.data))
+            .catch(err => console.error('레슨 조회 실패:', err));
     }, []);
 
-    // 지역 필터
+    useEffect(() => {
+        if (selectedRegion && regionScrollRef.current) {
+            const index = REGION_LIST.findIndex(r => r === selectedRegion);
+            if (index !== -1) {
+                regionScrollRef.current.scrollTo({
+                    x: index * 130,
+                    animated: true
+                });
+            }
+        }
+    }, [selectedRegion]);
+
     const togglePlaceFilter = (place) => {
-        setPlaceFilter(prev =>
-            prev.includes(place) ? [] : [place]
-        );
+        setPlaceFilter(prev => (prev.includes(place) ? [] : [place]));
     };
 
-    // 필터링된 레슨
     const filteredLessons = allLessons.filter(lesson =>
-        (lesson.lesName.trim().includes(searchText.trim()) ||
-        lesson.instName.trim().includes(searchText.trim())) &&
+        (lesson.lesName.trim().includes(searchText.trim()) || lesson.instName.trim().includes(searchText.trim())) &&
         (placeFilter.length === 0 || placeFilter.includes(lesson.lesPlace.trim()))
     );
 
@@ -54,9 +62,13 @@ const Beginner = ({ navigation }) => {
                     />
                 </View>
 
-                {/* 지역 필터 */}
-                <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ paddingVertical: 5, marginBottom: 5 }}>
-                    {['달서구', '달성군', '수성구', '중구', '남구', '북구', '동구', '서구', '군위군'].map(area => (
+                <ScrollView
+                    ref={regionScrollRef}
+                    horizontal
+                    showsHorizontalScrollIndicator={false}
+                    style={{ paddingVertical: 5, marginBottom: 5 }}
+                >
+                    {REGION_LIST.map(area => (
                         <TouchableOpacity
                             key={area}
                             onPress={() => togglePlaceFilter(area)}
@@ -76,7 +88,6 @@ const Beginner = ({ navigation }) => {
                 </ScrollView>
             </View>
 
-            {/* 레슨 목록 */}
             <FlatList
                 ref={flatListRef}
                 data={filteredLessons}
@@ -91,7 +102,6 @@ const Beginner = ({ navigation }) => {
                                 source={{ uri: `http://192.168.0.22:5000/img/${item.lesThumbImg}` }}
                                 style={{ width: 80, height: 70, marginRight: 20, borderRadius: 10 }}
                             />
-
                             <View style={{ flex: 1 }}>
                                 <Text style={{ fontSize: 18, fontWeight: 'bold' }}>{item.lesName}</Text>
                                 <Text>⭐ {item.rating}</Text>

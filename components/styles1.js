@@ -42,6 +42,7 @@ export const ClassContainer = styled.View`
     width: 100%;
     top: 100px;
     align-items: center;
+
     justify-content: center; 
     
     border-color: blue; 
@@ -797,10 +798,3 @@ export const QuitCheckboxText = styled.Text`
     color: black;
 `;
 
-// LessonDetail.js 찜 버튼
-export const HeartButton = styled.TouchableOpacity`
-    position: absolute;
-    top: 200px;
-    right: 20px;
-    z-index: 10;
-`;

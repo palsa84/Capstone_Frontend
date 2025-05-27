@@ -26,13 +26,11 @@ const Quit = ({ navigation }) => {
             if (res.data.success) {
                 setUser(null);
 
-                // 1. 로그인 페이지로 즉시 이동
                 navigation.reset({
                     index: 0,
                     routes: [{ name: 'Login' }]
                 });
 
-                // 2. 로그인 화면 위에서 토스트 띄우기
                 Toast.show('탈퇴되었습니다.', {
                     duration: 3000,
                     position: Toast.positions.BOTTOM,
@@ -46,7 +44,6 @@ const Quit = ({ navigation }) => {
                 Toast.show('탈퇴 실패: 서버 응답 오류', { duration: 3000 });
             }
         } catch (err) {
-            console.error('🔥 axios 오류:', err?.response?.data || err.message || err);
             Toast.show('탈퇴 실패: 네트워크 오류', { duration: 3000 });
         }
     };

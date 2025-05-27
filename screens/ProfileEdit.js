@@ -2,36 +2,45 @@ import React, { useState } from 'react';
 import { View, Text, TextInput } from 'react-native';
 import Toast from 'react-native-root-toast';
 import { MypageContainer, ProfileWrapper, ProfileImage, RoleBox, RoleText, NameBox, NameText, TextButton, TextButtonText, Row, PwCangeGrayBox } from '../components/styles';
-import { getUser } from '../utils/userInfo';
-import { setUser } from '../utils/userInfo';
+import { getUser, setUser } from '../utils/userInfo';
+import axios from 'axios';
 
 const ProfileEdit = ({ navigation }) => {
     const user = getUser();
-    const { userName, userRole, userImg, userEmail } = user;
+    const { userName, userRole, userImg } = user;
+    const [editedName, setEditedName] = useState(userName);
 
-    const [editedName, setEditedName] = useState(userName);  
-    const [editedEmail, setEditedEmail] = useState(userEmail);
-
-    const handleSave = () => {
-        console.log('✅ 저장된 userImg:', userImg);
+    const handleSave = async () => {
+        try {
+            await axios.post('http://192.168.0.22:5000/api/users/update-name', {
+                userNum: user.userNum,
+                userName: editedName,
+            });
 
             setUser({
-            userName: editedName,
-            userEmail: editedEmail,
-            userRole,
-            userImg,    
-            userNum: user.userNum
-        });
-        Toast.show('프로필이 수정되었습니다.', {
-            duration: 3000,
-            position: Toast.positions.BOTTOM,
-            shadow: true,
-            animation: true,
-            hideOnPress: true,
-            backgroundColor: '#888',
-            textColor: '#fff',
-        });
-        navigation.goBack(); 
+                ...user,
+                userName: editedName
+            });
+
+            Toast.show('프로필이 수정되었습니다.', {
+                duration: 3000,
+                position: Toast.positions.BOTTOM,
+                shadow: true,
+                animation: true,
+                hideOnPress: true,
+                backgroundColor: '#888',
+                textColor: '#fff',
+            });
+            navigation.goBack();
+        } catch (error) {
+            console.error('이름 저장 실패:', error);
+            Toast.show('저장 실패: 서버 오류', {
+                duration: 3000,
+                position: Toast.positions.BOTTOM,
+                backgroundColor: 'red',
+                textColor: '#fff',
+            });
+        }
     };
 
     return (
@@ -55,16 +64,6 @@ const ProfileEdit = ({ navigation }) => {
                     <TextInput
                         value={editedName}
                         onChangeText={setEditedName}
-                        style={{ flex: 1, borderWidth: 1, borderRadius: 10, paddingHorizontal: 10 }}
-                    />
-                </Row>
-
-                {/* 이메일 입력 필드 */}
-                <Row style={{ marginBottom: 20 }}>
-                    <Text style={{ fontWeight: 'bold', width: 70 }}>이메일:</Text>
-                    <TextInput
-                        value={editedEmail}
-                        onChangeText={setEditedEmail}
                         style={{ flex: 1, borderWidth: 1, borderRadius: 10, paddingHorizontal: 10 }}
                     />
                 </Row>

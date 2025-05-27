@@ -1,18 +1,20 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { ScrollView, StatusBar, TouchableOpacity } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import * as styles from './../components/styles';
 import Toast from 'react-native-root-toast';
 import axios from 'axios';
 import { getUser } from '../utils/userInfo';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const LessonDetail = () => {
     const navigation = useNavigation();
     const route = useRoute();
-    const { lesson, userId } = route.params;
+    const { lesson, userId, isFavorited } = route.params;
+    const [isFavorite, setIsFavorite] = useState(isFavorited ?? false);
 
     const {
-        lesNum,
+        lesNum,           // ✅ lesNum 기준으로 통일
         lesName,
         lesPrice,
         lesinfo,
@@ -24,9 +26,25 @@ const LessonDetail = () => {
         userinfo
     } = lesson;
 
+    useEffect(() => {
+        const unsubscribe = navigation.addListener('focus', () => {
+            if (!userId || !lesNum) return;
+
+            axios.get(`http://192.168.0.22:5000/api/favorite/${userId}`)
+                .then(res => {
+                    const found = res.data.some(item => item.lessonId === lesNum);
+                    setIsFavorite(found);
+                })
+                .catch(err => console.error('찜 상태 확인 실패:', err));
+        });
+
+        return unsubscribe;
+    }, [navigation, userId, lesNum]);
+
     const handleAddToCart = async () => {
+        console.log('보내는 값:', { userId, lessonId: lesNum });
+        console.log('lesson 객체:', lesson);
         try {
-            // 장바구니 목록 불러오기
             const res = await axios.get(`http://192.168.0.22:5000/api/cart/${userId}`);
             const cartItems = res.data;
 
@@ -39,13 +57,12 @@ const LessonDetail = () => {
                     backgroundColor: '#333',
                     textColor: '#fff',
                 });
-                return; 
+                return;
             }
 
-            // 장바구니에 추가
             await axios.post('http://192.168.0.22:5000/api/cart', {
                 userId: userId,
-                lessonId: lesNum,
+                lessonId: lesNum,  // ✅ lessonId 자리에 lesNum 사용
             });
 
             Toast.show('장바구니에 추가되었습니다.', {
@@ -60,6 +77,21 @@ const LessonDetail = () => {
         }
     };
 
+    const handleFavorite = async () => {
+        try {
+            const res = await axios.post('http://192.168.0.22:5000/api/favorite', { userId, lessonId: lesNum });
+            if (res.data.removed) {
+                Toast.show('찜 취소 완료', { duration: 3000, position: Toast.positions.BOTTOM });
+                setIsFavorite(false);
+            } else {
+                Toast.show('찜 추가 완료', { duration: 3000, position: Toast.positions.BOTTOM });
+                setIsFavorite(true);
+            }
+        } catch (err) {
+            console.error('찜 토글 실패:', err);
+        }
+    };
+
     return (
         <styles.LessonDetailContainer>
             <StatusBar barStyle="dark-content" />
@@ -68,6 +100,13 @@ const LessonDetail = () => {
                     <styles.LessonBackgroundImage source={{ uri: `http://192.168.0.22:5000/img/${lesBackgroundImg}` }} />
                     <styles.LessonProfileImage source={{ uri: `http://192.168.0.22:5000/img/${userImg}` }} />
                 </styles.LessonHeaderContainer>
+
+                {/* 찜 버튼 - Favorite.js에서 진입한 경우는 숨김 */}
+                {isFavorited !== false && (
+                    <styles.HeartButton onPress={handleFavorite}>
+                        <Icon name="heart" size={30} color={isFavorite ? 'red' : 'gray'} />
+                    </styles.HeartButton>
+                )}
 
                 <styles.LessonDetailInfoContainer>
                     <styles.InstructorName>{instName}</styles.InstructorName>

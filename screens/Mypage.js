@@ -1,17 +1,29 @@
 import React from 'react';
-import { View, Text, Image, ToastAndroid, TouchableOpacity } from 'react-native';
-import { MypageContainer, ProfileWrapper, ProfileImage, InfoBox, RoleBox, RoleText, NameBox, NameText, SectionTitle, GrayBox, Row, TextButton, TextButtonText } from '../components/styles';
+import { View, Text, Image, TouchableOpacity  } from 'react-native';
+import { MypageContainer, ProfileWrapper, ProfileImage, RoleBox, RoleText, NameBox, NameText, SectionTitle, GrayBox, Row, TextButton, TextButtonText } from '../components/styles';
 import PwChange from '../screens/PwChange';
 import Quit from '../screens/Quit';
 import ReviewManage from '../screens/ReviewManage';
 import ProfileEdit from '../screens/ProfileEdit';
 import { getUser, setUser } from '../utils/userInfo';
 import Toast from 'react-native-root-toast'; 
+import { useState, useCallback } from 'react';
+import { useFocusEffect } from '@react-navigation/native';
 
 const Mypage = ({ navigation }) => {
     const user = getUser();
     if (!user) return (<MypageContainer><Text>로그인 정보를 불러오지 못했습니다.</Text></MypageContainer>);
-    const { userName, userRole, userImg } = user;
+    const { userRole, userImg } = user;
+    const [userName, setUserName] = useState(user.userName);
+    
+    useFocusEffect(
+        useCallback(() => {
+            const latestUser = getUser();
+            if (latestUser?.userName) {
+                setUserName(latestUser.userName);
+            }
+        }, [])
+    );
 
     return (
         <MypageContainer>
