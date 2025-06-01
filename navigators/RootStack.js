@@ -35,6 +35,8 @@ import CreditCompleted from '../screens/CreditCompleted';
 
 import Classlist from '../screens/Classlist';
 import LessonDetail from '../screens/LessonDetail';
+import instDetailProfile from '../screens/instDetailProfile';
+
 
 const Stack = createStackNavigator();
 
@@ -79,6 +81,8 @@ const RootStack = () => {
                 <Stack.Screen name="Order" component={Order} options={{ title: '주문내역', headerLeft: () => null }} />
                 <Stack.Screen name="Classlist" component={Classlist} options={{ headerShown: false }} />
                 <Stack.Screen name="LessonDetail" component={LessonDetail} options={{ title: ' ' }} />
+                <Stack.Screen name="instDetailProfile" component={instDetailProfile} options={{ title: ' ' }} />
+                
                 </Stack.Navigator>
         </NavigationContainer>
     );

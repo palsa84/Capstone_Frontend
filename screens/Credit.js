@@ -9,6 +9,7 @@ import {
     LessonInfoContainer,
     GrayBox,
     LessonInfoTitle,
+    LessonInfoText
 } from '../components/styles';
 import { getUser } from '../utils/userInfo';
 
@@ -85,8 +86,9 @@ const Credit = () => {
                 <View style={{ height: 20 }} />
                 <GrayBox>
                     <LessonInfoTitle>강사 경력 및 자격증</LessonInfoTitle>
-                    <Text>{lesson.userinfo}</Text>
+                    <LessonInfoText>{lesson.userinfo}</LessonInfoText>
                 </GrayBox>
+
 
                 <View style={{ borderBottomWidth: 1, borderColor: '#ccc', marginVertical: 25 }} />
 

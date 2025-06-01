@@ -175,9 +175,13 @@ const Classlist = () => {
             {renderFilters()}
 
             {filteredLessons.map(item => (
-                <TouchableOpacity key={item.lesNum} onPress={() =>
-                    navigation.navigate('LessonDetail', { lesson: item, userId: user.userNum }) }
-                >
+                <TouchableOpacity onPress={() => navigation.navigate('LessonDetail', {
+                lesson: {
+                    ...item,
+                    instNum: item.userNum  
+                },
+                userId: user.userNum     
+                })}>
                 <View style={{
                     flexDirection: 'row',
                     padding: 12,
