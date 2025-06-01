@@ -40,7 +40,7 @@ const Mypage = ({ navigation }) => {
             </ProfileWrapper>
 
             <Row style={{ justifyContent: 'space-around', marginTop: 10 }}>
-                <TextButton onPress={() => navigation.navigate('ReviewManage')}><TextButtonText>리뷰관리</TextButtonText></TextButton>
+                <TextButton onPress={() => navigation.navigate('ReviewManage')}><TextButtonText></TextButtonText></TextButton>
                 <TextButton onPress={() => navigation.navigate('ProfileEdit')}><TextButtonText>프로필 수정</TextButtonText></TextButton>
             </Row>
 
@@ -79,7 +79,7 @@ const Mypage = ({ navigation }) => {
 
             <SectionTitle>결제수단</SectionTitle>
             <GrayBox>
-                <TextButton onPress={() => navigation.navigate('Order')}><TextButtonText>결제내역</TextButtonText></TextButton>
+                <TextButton><TextButtonText>결제수단</TextButtonText></TextButton>
             </GrayBox>
         </MypageContainer>
     );

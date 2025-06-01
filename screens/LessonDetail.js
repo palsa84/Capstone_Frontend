@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ScrollView, StatusBar, TouchableOpacity } from 'react-native';
+import { ScrollView, StatusBar, TouchableOpacity, Text } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import * as styles from './../components/styles';
 import Toast from 'react-native-root-toast';
@@ -10,11 +10,11 @@ import Icon from 'react-native-vector-icons/Ionicons';
 const LessonDetail = () => {
     const navigation = useNavigation();
     const route = useRoute();
-    const { lesson, userId, isFavorited } = route.params;
+    const { lesson, userId, isFavorited, fromOrder } = route.params;
     const [isFavorite, setIsFavorite] = useState(isFavorited ?? false);
 
     const {
-        lesNum,           // ✅ lesNum 기준으로 통일
+        lesNum,           
         lesName,
         lesPrice,
         lesinfo,
@@ -62,7 +62,7 @@ const LessonDetail = () => {
 
             await axios.post('http://192.168.0.22:5000/api/cart', {
                 userId: userId,
-                lessonId: lesNum,  // ✅ lessonId 자리에 lesNum 사용
+                lessonId: lesNum, 
             });
 
             Toast.show('장바구니에 추가되었습니다.', {
@@ -101,8 +101,7 @@ const LessonDetail = () => {
                     <styles.LessonProfileImage source={{ uri: `http://192.168.0.22:5000/img/${userImg}` }} />
                 </styles.LessonHeaderContainer>
 
-                {/* 찜 버튼 - Favorite.js에서 진입한 경우는 숨김 */}
-                {isFavorited !== false && (
+                {isFavorited !== false && !fromOrder && (
                     <styles.HeartButton onPress={handleFavorite}>
                         <Icon name="heart" size={30} color={isFavorite ? 'red' : 'gray'} />
                     </styles.HeartButton>
@@ -133,12 +132,19 @@ const LessonDetail = () => {
                 </styles.LessonTimeContainer>
 
                 <styles.LessonDetailsContainer>
-                    <TouchableOpacity onPress={handleAddToCart}>
+                    {fromOrder ? (
                         <styles.LessonInfoBox>
                             <styles.LessonInfoTitle>{lesTime}</styles.LessonInfoTitle>
                             <styles.LessonInfoText>{lesDetailPlace}</styles.LessonInfoText>
                         </styles.LessonInfoBox>
-                    </TouchableOpacity>
+                    ) : (
+                        <TouchableOpacity onPress={handleAddToCart}>
+                            <styles.LessonInfoBox>
+                                <styles.LessonInfoTitle>{lesTime}</styles.LessonInfoTitle>
+                                <styles.LessonInfoText>{lesDetailPlace}</styles.LessonInfoText>
+                            </styles.LessonInfoBox>
+                        </TouchableOpacity>
+                    )}
                 </styles.LessonDetailsContainer>
             </ScrollView>
         </styles.LessonDetailContainer>

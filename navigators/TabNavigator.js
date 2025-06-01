@@ -21,12 +21,12 @@ const CartButton = () => {
     const navigation = useNavigation();
     return (
         <TouchableOpacity onPress={() => navigation.navigate('Cart')} style={{ paddingRight: 15 }}>
-            <Text style={{ fontSize: 16, color: 'black', fontWeight: 'bold' }}>장바구니</Text>
+            <Icon name="cart-outline" size={24} color="black" />
         </TouchableOpacity>
     );
 };
 // 강사로그인 상단 '알림' 버튼
-export const AlarmButton = () => {
+const AlarmButton = () => {
     const navigation = useNavigation();
     return (
         <TouchableOpacity onPress={() => navigation.navigate('instAlarm')} style={{ paddingRight: 15 }}>

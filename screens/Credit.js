@@ -1,57 +1,152 @@
-import React from 'react';
-import { View, Image, Text, TouchableOpacity} from 'react-native';
-import { LessonDetailContainer, CartItemContainer, CartItemInfo } from '../components/styles';
-import { useNavigation, useRoute } from '@react-navigation/native';
+import React, { useState } from 'react';
+import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
+import { useRoute, useNavigation } from '@react-navigation/native';
+import axios from 'axios';
+import {
+    LessonProfileImage,
+    LessonDetailTextContainer,
+    LessonThumbnail,
+    LessonInfoContainer,
+    GrayBox,
+    LessonInfoTitle,
+} from '../components/styles';
+import { getUser } from '../utils/userInfo';
 
 const Credit = () => {
-    const navigation = useNavigation();
     const route = useRoute();
     const { lesson } = route.params || {};
+    const [selectedPayment, setSelectedPayment] = useState('신용카드');
+    const navigation = useNavigation(); 
+
+    const userId = getUser()?.userNum;
 
     if (!lesson) {
         return (
-            <LessonDetailContainer>
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                 <Text>레슨 정보를 불러올 수 없습니다.</Text>
-            </LessonDetailContainer>
+            </View>
         );
     }
 
+    const handlePayment = async () => {
+        try {
+            console.log('보내는 값:', { userId, lessonId: lesson.lesNum });
+
+            // 주문 등록
+            await axios.post('http://192.168.0.22:5000/api/order', {
+                userId,
+                lessonId: lesson.lesNum
+            });
+
+            // 장바구니 삭제 요청
+            await axios.delete(`http://192.168.0.22:5000/api/cart/user/${userId}/lesson/${lesson.lesNum}`);
+
+            // 결제 완료 화면 이동
+            navigation.navigate('CreditCompleted', {
+                lesson: {
+                    lesThumbImg: lesson.lesThumbImg,
+                    lesName: lesson.lesName,
+                    lesTime: lesson.lesTime,
+                    lesDetailPlace: lesson.lesDetailPlace,
+                    instName: lesson.instName,
+                    lesPrice: lesson.lesPrice,
+                }
+            });
+        } catch (err) {
+            console.error('결제 실패:', err);
+        }
+    };
+
+
     return (
-    <View style={{ flex: 1, backgroundColor: 'white' }}>
-        <LessonDetailContainer style={{ flex: 1 }}>
-            <Text style={{ fontSize: 20, fontWeight: 'bold', marginBottom: 20 }}>결제할 레슨 정보</Text>
+        <View style={{ flex: 1, backgroundColor: '#fff' }}>
+            <ScrollView contentContainerStyle={{ paddingBottom: 100 }}>
+                <Text style={{ fontSize: 25, fontWeight: 'bold', margin: 20 }}>결제할 레슨 정보</Text>
+                <LessonInfoContainer>
+                    <LessonThumbnail source={{ uri: `http://192.168.0.22:5000/img/${lesson.lesThumbImg}` }} />
+                    <LessonDetailTextContainer>
+                        <Text style={{ fontSize: 20, fontWeight: 'bold' }}>{lesson.lesName}</Text>
+                        <Text>{lesson.lesTime} {lesson.lesDetailPlace}</Text>
+                        <Text>{parseInt(lesson.lesPrice).toLocaleString()} 원</Text>
+                    </LessonDetailTextContainer>
+                </LessonInfoContainer>
 
-            <CartItemContainer>
-                <CartItemInfo style={{ flex: 1 }}>
-                    <Text style={{ fontSize: 16, fontWeight: 'bold' }}>{lesson.lesName}</Text>
-                    <Text>{lesson.lesTime} {lesson.lesDetailPlace}</Text>
-                    <Text>{parseInt(lesson.lesPrice).toLocaleString()} 원</Text>
-                </CartItemInfo>
+                <View style={{ borderBottomWidth: 1, borderColor: '#ccc', marginVertical: 25 }} />
+                <View style={{ height: 50 }} />
+                
+                <View style={{ alignItems: 'center' }}>
+                    <LessonProfileImage
+                        source={{ uri: `http://192.168.0.22:5000/img/${lesson.userImg}` }}
+                        style={{ width: 80, height: 80, borderRadius: 40, backgroundColor: '#ddd' }}
+                    />
+                    <Text style={{ marginTop: 8, fontSize: 24, fontWeight: 'bold' }}>{lesson.instName}</Text>
+                </View>
 
-                <Image
-                    source={{ uri: `http://192.168.0.22:5000/img/${lesson.lesThumbImg}` }}
-                    style={{ width: 80, height: 70, borderRadius: 10 }}
-                />
-            </CartItemContainer>
+                <View style={{ height: 20 }} />
+                <GrayBox>
+                    <LessonInfoTitle>강사 경력 및 자격증</LessonInfoTitle>
+                    <Text>{lesson.userinfo}</Text>
+                </GrayBox>
 
-            {/* 다른 사용자 정보 등 내용 추가 가능 */}
-        </LessonDetailContainer>
+                <View style={{ borderBottomWidth: 1, borderColor: '#ccc', marginVertical: 25 }} />
 
-        <TouchableOpacity
-            onPress={() => navigation.navigate('CreditLoading')}
-            style={{
-                backgroundColor: '#FAF287',
-                paddingVertical: 15,
-                alignItems: 'center',
-                justifyContent: 'center',
-            }}
-        >
-            <Text style={{ fontSize: 18, fontWeight: 'bold' }}>결제하기</Text>
-        </TouchableOpacity>
+                <View style={{
+                    paddingHorizontal: 20,
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                }}>
+                    <Text style={{ fontWeight: 'bold', fontSize: 25 }}>결제 금액</Text>
+                    <Text style={{ fontSize: 25, fontWeight: 'bold' }}>
+                        {parseInt(lesson.lesPrice).toLocaleString()} 원
+                    </Text>
+                </View>
 
-    </View>
-);
+                <View style={{ paddingHorizontal: 20, marginTop: 30 }}>
+                    <Text style={{ fontWeight: 'bold', fontSize: 25 }}>결제 수단</Text>
+                    <View style={{ flexDirection: 'row', marginTop: 12 }}>
+                        <TouchableOpacity
+                            onPress={() => setSelectedPayment('신용카드')}
+                            style={{
+                                padding: 10,
+                                backgroundColor: selectedPayment === '신용카드' ? '#fff000' : '#eee',
+                                borderRadius: 8,
+                                marginRight: 10,
+                            }}
+                        >
+                            <Text style={{ fontSize: 16, fontWeight: 'bold' }}>신용카드</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            onPress={() => setSelectedPayment('체크카드')}
+                            style={{
+                                padding: 10,
+                                backgroundColor: selectedPayment === '체크카드' ? '#fff000' : '#eee',
+                                borderRadius: 8,
+                            }}
+                        >
+                            <Text style={{ fontSize: 16, fontWeight: 'bold' }}>체크카드</Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+            </ScrollView>
 
+            <TouchableOpacity
+                style={{
+                    backgroundColor: '#FAF287',
+                    paddingVertical: 15,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    position: 'absolute',
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                }}
+                onPress={handlePayment}
+            >
+                <Text style={{ fontSize: 18, fontWeight: 'bold' }}>결제하기</Text>
+            </TouchableOpacity>
+        </View>
+    );
 };
 
 export default Credit;

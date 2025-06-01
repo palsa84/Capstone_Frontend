@@ -15,6 +15,7 @@ import DeleteLesson from '../screens/DeleteLesson';
 
 import TabNavigator from './TabNavigator';
 import Cart from '../screens/Cart';
+import Order from '../screens/Order';
 
 import ReviewManage from '../screens/ReviewManage';
 import ProfileEdit from '../screens/ProfileEdit';
@@ -30,7 +31,6 @@ import SelectAddress from '../screens/SelectAddress';
 
 import Credit from '../screens/Credit';
 
-import CreditLoading from '../screens/CreditLoading';
 import CreditCompleted from '../screens/CreditCompleted';
 
 import Classlist from '../screens/Classlist';
@@ -72,14 +72,13 @@ const RootStack = () => {
                 <Stack.Screen name="instMain" component={instMain} options={{ title: " " }} />
                 <Stack.Screen name="instState" component={instState} options={{ title: '' }} />
                 <Stack.Screen name="instAlarm" component={instAlarm} options={{ title: '알림' }} />
-                <Stack.Screen name="instProfileEdit" component={instProfileEdit} options={{ title: '프로필 편집' }} />
+                <Stack.Screen name="instProfileEdit" component={instProfileEdit}  options={{ headerShown: false }} />
                 <Stack.Screen name="SelectAddress" component={SelectAddress} options={{ title: '주소 선택' }} />
                 <Stack.Screen name="Credit" component={Credit} options={{ title: '결제하기' }} />
-                <Stack.Screen name="CreditLoading" component={CreditLoading} options={{ headerShown: false }} />
                 <Stack.Screen name="CreditCompleted" component={CreditCompleted} options={{ headerShown: false }} />
-                
+                <Stack.Screen name="Order" component={Order} options={{ title: '주문내역', headerLeft: () => null }} />
                 <Stack.Screen name="Classlist" component={Classlist} options={{ headerShown: false }} />
-                <Stack.Screen name="LessonDetail" component={LessonDetail} />
+                <Stack.Screen name="LessonDetail" component={LessonDetail} options={{ title: ' ' }} />
                 </Stack.Navigator>
         </NavigationContainer>
     );

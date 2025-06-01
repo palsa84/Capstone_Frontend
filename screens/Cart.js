@@ -99,6 +99,7 @@ const Cart = () => {
                     if (selectedItems.length > 0) {
                         const selectedLesson = cartItems.find(item => item.cartId === selectedItems[0]);
                         navigation.navigate('Credit', { lesson: selectedLesson });
+
                     }
                 }}
                 style={{

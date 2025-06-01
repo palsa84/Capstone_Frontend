@@ -395,7 +395,7 @@ export const LessonDetailsContainer = styled.View`
 
 // LessonDetail.js 회색 박스 
 export const LessonInfoBox = styled.View`
-    background-color: #D3D3D3;
+    background-color: #eae9eb;
     padding: 15px;
     border-radius: 10px;
     margin-bottom: 10px;
@@ -403,16 +403,20 @@ export const LessonInfoBox = styled.View`
 
 // LessonDetail.js 박스 제목
 export const LessonInfoTitle = styled.Text`
-    font-size: 18px;
+    font-size: 25px;
     font-weight: bold;
     color: black;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
+    letter-spacing: 1px;      
+    line-height: 34px;   
 `;
 
 // LessonDetail.js 박스 내부 내용 
 export const LessonInfoText = styled.Text`
-    font-size: 16px;
+    font-size: 20px;
     color: black;
+    letter-spacing: 1px;      
+    line-height: 34px;   
 `;
 
 // Mypage.js 컨테이너
@@ -574,6 +578,15 @@ export const HealthOptionText = styled.Text`
     font-size: 14px;
     font-weight: bold;
     color: black;
+`;
+
+// Signup.js
+export const HealthSelectContainer = styled.View`
+    border: 2px solid #ccc;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    padding: 12px;
+    margin-bottom: 20px;
 `;
 
 // Signup.js  개인정보 동의 영역 컨테이너
@@ -804,3 +817,129 @@ export const HeartButton = styled.TouchableOpacity`
     right: 20px;
     z-index: 10;
 `;
+
+// Credit.js 
+export const CreditScreenContainer = styled.ScrollView`
+    flex: 1;
+    background-color: ${whiteColor};
+`;
+
+// Credit.js 
+export const CreditHeader = styled.View`
+    background-color: ${logoColor};
+    padding: 16px;
+    flex-direction: row;
+    align-items: center;
+`;
+
+// Credit.js 
+export const SectionLabel = styled.Text`
+    font-size: 16px;
+    font-weight: bold;
+    margin: 20px;
+`;
+
+// Credit.js 
+export const LessonInfoContainer = styled.View`
+    flex-direction: row;
+    padding: 0 20px;
+`;
+
+// Credit.js 
+export const LessonThumbnail = styled.Image`
+    width: 80px;
+    height: 70px;
+    background-color: #ccc;
+    border-radius: 8px;
+`;
+
+// Credit.js 
+export const LessonDetailTextContainer = styled.View`
+    margin-left: 16px;
+    flex: 1;
+`;
+
+// Credit.js 
+export const InstructorPhoto = styled.Image`
+    width: 80px;
+    height: 80px;
+    border-radius: 40px;
+    background-color: #ddd;
+`;
+
+// Credit.js 
+export const InstructorContainer = styled.View`
+    align-items: center;
+    margin-top: 30px;
+`;
+
+// Credit.js 
+export const InstructorNameText = styled.Text`
+    margin-top: 8px;
+    font-size: 16px;
+    font-weight: bold;
+`;
+
+// Credit.js 
+export const InstructorInfoBox = styled.View`
+    background-color: #eee;
+    margin: 20px;
+    padding: 10px;
+    border-radius: 8px;
+`;
+
+// Credit.js 
+export const InfoTitle = styled.Text`
+    font-weight: bold;
+    margin-bottom: 4px;
+`;
+
+// Credit.js 
+export const PaymentAmountContainer = styled.View`
+    padding: 0 20px;
+`;
+
+// Credit.js 
+export const PaymentAmountText = styled.Text`
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 6px;
+`;
+
+// Credit.js 
+export const PaymentMethodContainer = styled.View`
+    padding: 0 20px;
+    margin-top: 30px;
+`;
+
+// Credit.js 
+export const PaymentButtonRow = styled.View`
+    flex-direction: row;
+    margin-top: 12px;
+`;
+
+// Credit.js 
+export const PaymentMethodButton = styled.TouchableOpacity`
+    padding: 10px;
+    background-color: ${(props) => (props.selected ? logoColor : '#eee')};
+    border-radius: 8px;
+    margin-right: 10px;
+`;
+
+// Credit.js 
+export const PaymentSubmitButton = styled.TouchableOpacity`
+    background-color: ${logoColor};
+    padding: 16px;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+    border-radius: 8px;
+`;
+
+// Credit.js 
+export const PaymentSubmitText = styled.Text`
+    font-size: 16px;
+    font-weight: bold;
+    color: black;
+`;
+

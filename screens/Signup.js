@@ -47,6 +47,7 @@ const Signup = ({ navigation }) => {
         newOptions[index].selected = !newOptions[index].selected;
         setHealthOptions(newOptions);
     };
+    const [dropdownOpen, setDropdownOpen] = useState(false);
     const [agreePersonalInfo, setAgreePersonalInfo] = useState(false);
 
 
@@ -89,7 +90,6 @@ const Signup = ({ navigation }) => {
                                     const user = res.data.user;
                                     setUser(user);
 
-                                    // 👉 SelectAddress.js로 이동하며 userNum 전달
                                     navigation.navigate("SelectAddress", {
                                         userNum: user.userNum
                                     });
@@ -197,22 +197,43 @@ const Signup = ({ navigation }) => {
                                     value={values.confirmPassword}
                                     secureTextEntry={true}
                                 />
-
                                 <StyledInputLabel>
                                     <Text>건강 정보</Text>
                                 </StyledInputLabel>
 
-                                <HealthOptionsContainer>
-                                    {healthOptions.map((option, index) => (
-                                        <HealthOptionButton
+                                <AgreementContainer>
+                                    <TouchableOpacity onPress={() => setDropdownOpen(!dropdownOpen)}>
+                                        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+                                            <Text>
+                                                {healthOptions.filter(opt => opt.selected).map(opt => opt.label).join(', ') || '건강 정보 선택'}
+                                            </Text>
+                                            <Text>{dropdownOpen ? '▲' : '▼'}</Text>
+                                        </View>
+                                    </TouchableOpacity>
+
+                                {dropdownOpen && (
+                                    <View style={{ marginTop: 12 }}>
+                                        {healthOptions.map((option, index) => (
+                                            <TouchableOpacity
                                             key={index}
                                             onPress={() => toggleHealthOption(index)}
-                                            selected={option.selected}
+                                            style={{
+                                                paddingVertical: 8,
+                                                paddingHorizontal: 10,
+                                                borderRadius: 6,
+                                                marginTop: 4,
+                                                backgroundColor: option.selected ? '#FFE600' : '#f5f5f5',
+                                            }}
                                         >
-                                            <HealthOptionText>{option.label}</HealthOptionText>
-                                        </HealthOptionButton>
-                                    ))}
-                                </HealthOptionsContainer>
+                                            <Text style={{ fontWeight: option.selected ? 'bold' : 'normal' }}>
+                                                {option.label}
+                                            </Text>
+                                        </TouchableOpacity>
+                                        ))}
+                                        </View>
+                                    )}
+                                </AgreementContainer>
+
                                 <StyledInputLabel>
                                     <Text>개인정보 수집 및 활용 동의</Text>
                                 </StyledInputLabel>
