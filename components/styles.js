@@ -254,7 +254,7 @@ export const TextLink = styled.TouchableOpacity`
 // 회원가입 링크 텍스트
 export const TextLinkContent = styled.Text`
     color: ${textColor};
-    font-size: 15px;
+    font-size: 18px;
 `;
 
 // 강사로그인 링크
@@ -267,7 +267,7 @@ export const TextLink2 = styled.TouchableOpacity`
 // 강사로그인 링크 텍스트 
 export const TextLinkContent2 = styled.Text`
     color: ${textColor};
-    font-size: 15px;
+    font-size: 18px;
 `;
 
 // 아이디/비번 찾기 링크
@@ -298,8 +298,8 @@ export const LessonDetailContainer = styled.View`
     background-color: white;
     justify-content: center;
 
-    border-color: green;
-    border-width: 2px;
+    /* border-color: green; */
+    /* border-width: 2px; */
 `;
 
 // LessonDetail.js 레슨 배경 이미지 + 강사 이미지 컨테이너
@@ -334,10 +334,10 @@ export const LessonDetailInfoContainer = styled.View`
 
 // LessonDetail.js 강사명 스타일
 export const InstructorName = styled.Text`
-    font-size: 20px;
+    font-size: 30px;
     font-weight: bold;
     color: black;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 `;
 
 // LessonDetail.js 레슨명(타원) 컨테이너 

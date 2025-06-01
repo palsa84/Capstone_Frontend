@@ -58,10 +58,6 @@ const Login = ({ navigation }) => {
                     <TextLinkContent2>강사 로그인</TextLinkContent2>
                     </TextLink2>
 
-                <TextLink3 onPress={() => navigation.navigate("Searchinfo")}>
-                    <TextLinkContent3>이메일/비밀번호 찾기</TextLinkContent3>
-                </TextLink3>
-
                 <InnerContainer>
                     <PageLogo resizeMode="cover" source={require("../assets/img/logo.png")} />
                     <PageTitle>파크골프ON</PageTitle>
@@ -92,7 +88,7 @@ const Login = ({ navigation }) => {
                                         userNum: res.data.user.userNum
                                     });
                                     navigation.navigate("SelectAddress", {
-                                        userNum: res.data.user.userNum // userNum을 함께 전달 (선택사항)
+                                        userNum: res.data.user.userNum 
                                     });
                                 }
                             })
@@ -102,7 +98,6 @@ const Login = ({ navigation }) => {
                             });
                         }}
                     >
-                        {/* 에러 메시지 */}
                         {({ handleChange, handleBlur, handleSubmit, values }) => (
                             <StyledFormArea>
                                 {loginError && (

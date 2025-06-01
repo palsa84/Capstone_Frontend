@@ -108,7 +108,14 @@ const LessonDetail = () => {
                 )}
 
                 <styles.LessonDetailInfoContainer>
-                    <styles.InstructorName>{instName}</styles.InstructorName>
+                    <TouchableOpacity
+                        onPress={() =>
+                            navigation.navigate('instDetailProfile', { instName: lesson.instName.replace(' 강사', '') })
+                        }
+                    >
+                        <styles.InstructorName>{lesson.instName}</styles.InstructorName>
+                    </TouchableOpacity>
+
                     <styles.LessonNameContainer>
                         <styles.LessonNameText>{lesName}</styles.LessonNameText>
                     </styles.LessonNameContainer>
