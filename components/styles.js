@@ -943,3 +943,38 @@ export const PaymentSubmitText = styled.Text`
     color: black;
 `;
 
+//승인대기화면
+export const Container = styled.View`
+    flex: 1;
+    padding: 20px;
+    background-color: #fff;
+`;
+
+export const Title = styled.Text`
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+`;
+
+export const InfoText = styled.Text`
+    font-size: 16px;
+    margin-bottom: 10px;
+`;
+
+export const ButtonRow = styled.View`
+    flex-direction: row;
+    justify-content: space-between;
+`;
+
+export const RejectButton = styled.TouchableOpacity`
+    background-color: #ddd;
+    padding: 15px 25px;
+    border-radius: 10px;
+`;
+
+export const ApproveButton = styled.TouchableOpacity`
+    background-color: #fff000;
+    padding: 15px 25px;
+    border-radius: 10px;
+`;

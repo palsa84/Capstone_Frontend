@@ -42,11 +42,13 @@ const Cart = () => {
             .then(() => {
                 setCartItems(prev => prev.filter(item => item.cartId !== cartId));
                 setSelectedItems(prev => prev.filter(id => id !== cartId));
-            }) .catch(err => console.error('삭제 실패:', err));
+            })
+            .catch(err => console.error('삭제 실패:', err));
     };
 
     const renderItem = ({ item }) => (
         <styles.CartItemContainer>
+            {/* 체크박스 */}
             <TouchableOpacity onPress={() => toggleSelect(item.cartId)}>
                 <View style={{
                     width: 20,
@@ -65,7 +67,7 @@ const Cart = () => {
                 <Text>{parseInt(item.lesPrice).toLocaleString()} 원</Text>
             </styles.CartItemInfo>
 
-            {/* 레슨 대표 이미지 */}
+            {/* 썸네일 이미지 */}
             <Image
                 source={{ uri: `http://192.168.0.22:5000/img/${item.lesThumbImg}` }}
                 style={{ width: 80, height: 70, borderRadius: 10 }}
@@ -75,13 +77,20 @@ const Cart = () => {
 
     return (
         <styles.LessonDetailContainer>
+            {/* 상단: 전체 선택 / 선택삭제 */}
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', padding: 16 }}>
                 <TouchableOpacity onPress={handleSelectAll}>
-                    <Text style={{ fontSize: 16, fontWeight: 'bold' }}> 전체 선택 ({selectedItems.length}/{cartItems.length}) </Text>
+                    <Text style={{ fontSize: 16, fontWeight: 'bold' }}>
+                        전체 선택 ({selectedItems.length}/{cartItems.length})
+                    </Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={() => { selectedItems.forEach(id => removeItem(id)); }}>
-                    <Text style={{ fontSize: 16, fontWeight: 'bold' }}> 선택삭제 </Text>
+                <TouchableOpacity onPress={() => {
+                    selectedItems.forEach(id => removeItem(id));
+                }}>
+                    <Text style={{ fontSize: 16, fontWeight: 'bold' }}>
+                        선택삭제
+                    </Text>
                 </TouchableOpacity>
             </View>
 
@@ -99,7 +108,6 @@ const Cart = () => {
                     if (selectedItems.length > 0) {
                         const selectedLesson = cartItems.find(item => item.cartId === selectedItems[0]);
                         navigation.navigate('Credit', { lesson: selectedLesson });
-
                     }
                 }}
                 style={{
@@ -112,7 +120,6 @@ const Cart = () => {
                 <Text style={{ fontSize: 18, fontWeight: 'bold' }}>결제하기</Text>
             </TouchableOpacity>
         </styles.LessonDetailContainer>
-        
     );
 };
 

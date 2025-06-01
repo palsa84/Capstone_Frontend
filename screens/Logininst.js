@@ -54,6 +54,7 @@ const Logininst = ({ navigation }) => {
 
                                 if (user.userRole === "강사") {
                                     setUser({
+                                        userNum: user.userNum, 
                                         userName: user.userName,
                                         userEmail: user.userEmail,
                                         userImg: user.userImg,

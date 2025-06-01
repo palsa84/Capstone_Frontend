@@ -26,7 +26,7 @@ const CartButton = () => {
     );
 };
 // 강사로그인 상단 '알림' 버튼
-const AlarmButton = () => {
+export const AlarmButton = () => {
     const navigation = useNavigation();
     return (
         <TouchableOpacity onPress={() => navigation.navigate('instAlarm')} style={{ paddingRight: 15 }}>
