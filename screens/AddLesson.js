@@ -63,13 +63,14 @@ const AddLesson = ({ navigation }) => {
         }
 
         const lesTime = `${weekday} ${startTime}-${endTime}`;
+        console.log('레슨 등록 시도 중'); 
         const formData = new FormData();
 
         formData.append('instNum', instNum);
         formData.append('lesName', lesName);
         formData.append('lesinfo', lesinfo);
         formData.append('lesLevel', lesLevel);
-        formData.append('lesPlace', mainRegion);
+        formData.append('lesPlace', subRegion);
         formData.append('lesDetailPlace', lesDetailPlace);
         formData.append('lesPrice', lesPrice);
         formData.append('lesTime', lesTime);
@@ -96,10 +97,12 @@ const AddLesson = ({ navigation }) => {
         }
 
         try {
-            await axios.post('http://192.168.0.22:5000/api/lesson', formData, {
+            await axios.post('http://192.168.0.22:5000/api/lesson-api', formData, {
                 headers: { 'Content-Type': 'multipart/form-data' },
             });
-            Alert.alert('레슨 등록 완료');
+            Alert.alert('레슨 등록 완료', '', [
+                { text: '확인', onPress: () => navigation.goBack() }
+            ]);
         } catch (err) {
             console.error('레슨 등록 실패:', err);
             Alert.alert('레슨 등록 실패');

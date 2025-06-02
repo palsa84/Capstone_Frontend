@@ -90,7 +90,13 @@ const EditLesson = () => {
                 <TextInput value={lesDetailPlace} onChangeText={setLesDetailPlace} style={{ borderWidth: 1, marginBottom: 10 }} />
 
                 <Text>가격:</Text>
-                <TextInput value={lesPrice} onChangeText={setLesPrice} keyboardType="numeric" style={{ borderWidth: 1, marginBottom: 10 }} />
+                    <TextInput
+                        value={lesPrice}
+                        onChangeText={setLesPrice}
+                        keyboardType="numeric"
+                        placeholder={lesPrice ? lesPrice.toString() : '가격을 입력하세요'}
+                        style={{ borderWidth: 1, marginBottom: 10 }}
+                    />
 
                 <Text>요일:</Text>
                 <Picker selectedValue={weekday} onValueChange={setWeekday} style={{ marginBottom: 10 }}>
