@@ -45,7 +45,6 @@ const InstAlarm = () => {
                             <TouchableOpacity
                                 key={noti.notiId}
                                 onPress={() => {
-                                    // 프론트 상태에서만 읽음 처리
                                     setNotifications(prev =>
                                         prev.map(n =>
                                             n.notiId === noti.notiId ? { ...n, isRead: true } : n
@@ -55,7 +54,7 @@ const InstAlarm = () => {
                             >
                                 <View
                                     style={{
-                                        backgroundColor: noti.isRead ? '#eee' : '#fff',
+                                        backgroundColor: noti.isRead ? '#fff' : '#9dc65a',
                                         padding: 12,
                                         borderRadius: 8,
                                         marginBottom: 8,

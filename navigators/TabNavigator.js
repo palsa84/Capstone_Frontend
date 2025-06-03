@@ -23,7 +23,7 @@ const CartButton = () => {
     const navigation = useNavigation();
     return (
         <TouchableOpacity onPress={() => navigation.navigate('Cart')} style={{ paddingRight: 15 }}>
-            <Icon name="cart-outline" size={24} color="black" />
+            <Icon name="cart-outline" size={24} color="#006633" />
         </TouchableOpacity>
     );
 };
@@ -34,7 +34,7 @@ export const AlarmButton = ({ hasUnread }) => {
     return (
         <TouchableOpacity onPress={() => navigation.navigate('instAlarm')} style={{ paddingRight: 15 }}>
             <View>
-                <Icon name="notifications-outline" size={24} color="black" />
+                <Icon name="notifications-outline" size={24} color="#006633" />
                 {hasUnread && (
                     <View style={{
                         position: 'absolute',
@@ -77,15 +77,17 @@ export const LogoutButton = () => {
 
     return (
         <TouchableOpacity onPress={handleLogout} style={{ paddingLeft: 15 }}>
-            <Icon name="power-outline" size={24} color="black" />
+            <Icon name="power-outline" size={24} color="#006633" />
         </TouchableOpacity>
     );
 };
 
+
+
 // 클래스 관련 화면을 포함하는 Stack Navigator
 const ClassStack = () => {
     return (
-        <Stack.Navigator screenOptions={{ headerTitleAlign: 'center', headerStyle: { backgroundColor: '#FAF287' }, headerTintColor: 'black', headerRight: () => <CartButton />, headerBackTitleVisible: false }}>
+        <Stack.Navigator screenOptions={{ headerTitleAlign: 'center', headerStyle: { backgroundColor: '#e9ffc7' }, headerTintColor: 'black', headerRight: () => <CartButton />, headerBackTitleVisible: false }}>
             <Stack.Screen 
                 name="Classlist" 
                 component={Classlist} 
@@ -107,7 +109,7 @@ const ScreenWithHeader = (Component, title) => {
         <Stack.Navigator
             screenOptions={{
                 headerTitleAlign: 'center',
-                headerStyle: { backgroundColor: '#FAF287' },
+                headerStyle: { backgroundColor: '#e9ffc7' },
                 headerTintColor: 'black',
                 headerRight: () => <CartButton />,
             }}
@@ -133,11 +135,11 @@ const TabNavigator = () => {
                 else if (route.name === 'Order') iconName = 'receipt-outline';
                 else if (route.name === 'Mypage') iconName = 'person-circle';
 
-                return <Icon name={iconName} size={20} color={color} />;
+                return <Icon name={iconName} size={25} color={color} />;
             },
-            tabBarStyle: { backgroundColor: '#FAF287' },
-            tabBarActiveTintColor: 'black',
-            tabBarInactiveTintColor: 'black',
+            tabBarStyle: { backgroundColor: '#e9ffc7' },
+            tabBarActiveTintColor: '#c4e499',
+            tabBarInactiveTintColor: '#006633',
         })}>
             <Tab.Screen name="Class" component={ClassStack} options={{ title: "클래스",  headerShown: false }} />
             <Tab.Screen name="Favorite" component={ScreenWithHeader(Favorite, '찜')} options={{ title: "찜", headerShown: false }} />

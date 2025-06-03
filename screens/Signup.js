@@ -49,14 +49,11 @@ const Signup = ({ navigation }) => {
     };
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const [agreePersonalInfo, setAgreePersonalInfo] = useState(false);
-
-
-
     return (
         <KeyboardAvoidingWrapper>
             <StyledContainer>
                 <StatusBar barStyle="dark-content" />
-                <InnerContainer>
+                <InnerContainer style={{ top: -200 }}>
                     <Formik
                         initialValues={{
                             userName: '',
@@ -222,7 +219,7 @@ const Signup = ({ navigation }) => {
                                                 paddingHorizontal: 10,
                                                 borderRadius: 6,
                                                 marginTop: 4,
-                                                backgroundColor: option.selected ? '#FFE600' : '#f5f5f5',
+                                                backgroundColor: option.selected ? '#ddff94' : '#f5f5f5',
                                             }}
                                         >
                                             <Text style={{ fontWeight: option.selected ? 'bold' : 'normal' }}>
@@ -248,7 +245,7 @@ const Signup = ({ navigation }) => {
                                         <CheckBox
                                             value={!!agreePersonalInfo} 
                                             onValueChange={(newValue) => setAgreePersonalInfo(newValue)}
-                                            tintColors={{ true: '#FFE600', false: '#999' }}
+                                            tintColors={{ true: '#75ag34', false: '#999' }}
                                         />
                                         <Text style={{ marginLeft: 10, fontWeight: 'bold' }}>동의합니다.</Text>
                                         </CheckboxRow>

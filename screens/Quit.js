@@ -59,7 +59,7 @@ const Quit = ({ navigation }) => {
                 <CheckBox
                     value={agree}
                     onValueChange={setAgree}
-                    tintColors={{ true: '#FFE600', false: '#999' }}
+                    tintColors={{ true: '#75ag34', false: '#999' }}
                 />
                 <QuitCheckboxText>유의사항을 모두 확인하였습니다.</QuitCheckboxText>
             </QuitCheckboxRow>
@@ -69,7 +69,7 @@ const Quit = ({ navigation }) => {
                     onPress={handleDelete}
                     disabled={!agree}
                     style={{
-                        backgroundColor: agree ? '#FAF287' : '#ccc',
+                        backgroundColor: agree ? '#7aae3e' : '#ccc',
                         paddingVertical: 15,
                         alignItems: 'center',
                         justifyContent: 'center',
@@ -79,7 +79,7 @@ const Quit = ({ navigation }) => {
                     <Text style={{
                         fontSize: 18,
                         fontWeight: 'bold',
-                        color: agree ? 'black' : '#666'
+                        color: agree ? 'white' : '#666'
                     }}>
                         탈퇴하기
                     </Text>

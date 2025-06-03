@@ -205,8 +205,8 @@ const EditLesson = () => {
                     ) : originThumb ? (
                         <Image source={{ uri: originThumb }} style={{ width: 120, height: 120, borderRadius: 8 }} />
                     ) : (
-                        <View style={{ width: 120, height: 120, backgroundColor: '#eee', justifyContent: 'center', alignItems: 'center', borderRadius: 8 }}>
-                            <Text style={{ color: '#999' }}>썸네일 선택</Text>
+                        <View style={{ width: 120, height: 120, backgroundColor: '#efefef', justifyContent: 'center', alignItems: 'center', borderRadius: 8 }}>
+                            <Text style={{ color: '#999' }}>대표 선택</Text>
                         </View>
                     )}
                 </TouchableOpacity>
@@ -218,19 +218,17 @@ const EditLesson = () => {
                     ) : originBg ? (
                         <Image source={{ uri: originBg }} style={{ width: 120, height: 120, borderRadius: 8 }} />
                     ) : (
-                        <View style={{ width: 120, height: 120, backgroundColor: '#eee', justifyContent: 'center', alignItems: 'center', borderRadius: 8 }}>
+                        <View style={{ width: 120, height: 120, backgroundColor: '#efefef', justifyContent: 'center', alignItems: 'center', borderRadius: 8 }}>
                             <Text style={{ color: '#999' }}>배경 선택</Text>
                         </View>
                     )}
                 </TouchableOpacity>
-
-
                 <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: 20, gap: 10 }}>
-                    <TouchableOpacity onPress={handleUpdate} style={{ backgroundColor: '#fff000', paddingHorizontal: 20, paddingVertical: 10, borderRadius: 10 }}>
-                        <Text style={{ fontWeight: 'bold', color: 'black' }}>레슨 수정</Text>
+                    <TouchableOpacity onPress={handleUpdate} style={{ width: 150, backgroundColor: '#7aae3e', padding: 10, borderRadius: 10, alignItems: 'center' }}>
+                        <Text style={{ fontWeight: 'bold', color: 'white' }}>레슨 수정</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity onPress={handleCancel} style={{ backgroundColor: '#ccc', paddingHorizontal: 20, paddingVertical: 10, borderRadius: 10 }}>
+                    <TouchableOpacity onPress={handleCancel} style={{ width: 150, backgroundColor: '#ccc', padding: 10, borderRadius: 10, alignItems: 'center' }}>
                         <Text style={{ fontWeight: 'bold', color: 'black' }}>취소</Text>
                     </TouchableOpacity>
                 </View>

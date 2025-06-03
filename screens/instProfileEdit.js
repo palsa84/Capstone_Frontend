@@ -51,7 +51,7 @@ useEffect(() => {
     useLayoutEffect(() => {
         nav.setOptions({
             headerTitleAlign: 'center',
-            headerStyle: { backgroundColor: '#FAF287' },
+            headerStyle: { backgroundColor: '#e9ffc7' },
             headerTintColor: 'black',
             headerTitle: '프로필 편집',
         });
@@ -155,22 +155,58 @@ useEffect(() => {
                     </View>
                 </PwCangeGrayBox>
 
-                <Row style={{ justifyContent: 'center', gap: 15, marginVertical: 20 }}>
-                    <TouchableOpacity onPress={handleSave} style={{
-                        backgroundColor: '#fff000',
-                        paddingHorizontal: 40,
-                        paddingVertical: 10,
-                        borderRadius: 10
-                    }}>
-                        <Text style={{ fontWeight: 'bold' }}>저장</Text>
+                <Row
+                    style={{
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        marginVertical: 20,
+                        gap: 20,
+                    }}
+                >
+                    <TouchableOpacity
+                        onPress={handleSave}
+                        style={{
+                            width: 150,
+                            backgroundColor: '#7aae3e',
+                            paddingVertical: 15,
+                            borderRadius: 10,
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                        }}
+                    >
+                        <Text
+                            style={{
+                                fontSize: 18,
+                                fontWeight: 'bold',
+                                color: 'white',
+                                textAlign: 'center',
+                            }}
+                        >
+                            저장
+                        </Text>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={handleCancel} style={{
-                        backgroundColor: '#ccc',
-                        paddingHorizontal: 40,
-                        paddingVertical: 10,
-                        borderRadius: 10
-                    }}>
-                        <Text style={{ fontWeight: 'bold' }}>취소</Text>
+
+                    <TouchableOpacity
+                        onPress={handleCancel}
+                        style={{
+                            width: 150,
+                            backgroundColor: '#efefef',
+                            paddingVertical: 15,
+                            borderRadius: 10,
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                        }}
+                    >
+                        <Text
+                            style={{
+                                fontSize: 18,
+                                fontWeight: 'bold',
+                                color: 'black',
+                                textAlign: 'center',
+                            }}
+                        >
+                            취소
+                        </Text>
                     </TouchableOpacity>
                 </Row>
             </MypageContainer>

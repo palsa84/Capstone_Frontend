@@ -89,13 +89,24 @@ const PwChange = ({ navigation }) => {
                     />
                 </Row>
 
-                <Row style={{ justifyContent: 'center', marginTop: 10 }}>
-                    <TextButton onPress={handleSave}>
-                        <TextButtonText style={{ backgroundColor: '#fff000', paddingHorizontal: 40, paddingVertical: 10, borderRadius: 10 }}>
+                <Row style={{ justifyContent: 'center', marginTop: 30 }}>
+                    <TextButton onPress={handleSave} style={{ width: '100%' }}>
+                        <TextButtonText style={{
+                            backgroundColor: '#7aae3e',
+                            paddingHorizontal: 40,
+                            paddingVertical: 15,
+                            borderRadius: 10,
+                            textAlign: 'center',
+                            width: '100%',
+                            fontSize: 18,
+                            fontWeight: 'bold',
+                            color: 'white'
+                        }}>
                             저장
                         </TextButtonText>
                     </TextButton>
                 </Row>
+
             </PwCangeGrayBox>
         </PwChangeContainer>
     );

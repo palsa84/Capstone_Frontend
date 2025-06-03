@@ -6,25 +6,23 @@ import KeyboardAvoidingWrapper from "../components/KeyboardAvoidingWrapper";
 import { login, logout, getProfile as getKakaoProfile, shippingAddresses as getKakaoShippingAddresses, unlink } from "@react-native-seoul/kakao-login";
 import axios from 'axios'; 
 import { setUser } from '../utils/userInfo';
+import styled from 'styled-components/native';
 
 import {  
     StyledContainer,
     InnerContainer,
     PageLogo,
-    PageTitle,
     SubTitle,
     StyledFormArea,
     StyledInputLabel,
-    StyledTextInput,
     ButtonText,
     Colors,
     TextLink,
     TextLinkContent,
     TextLink2,
     TextLinkContent2,
-    LoginButton,
-    TextLink3,
-    TextLinkContent3,
+    RedBorderTextInput,
+    WideLoginButton
 } from "../components/styles";
 const { exTextColor } = Colors;
 
@@ -60,7 +58,6 @@ const Login = ({ navigation }) => {
 
                 <InnerContainer>
                     <PageLogo resizeMode="cover" source={require("../assets/img/logo.png")} />
-                    <PageTitle>파크골프ON</PageTitle>
 
                     <SubTitle>회원 로그인</SubTitle>
 
@@ -126,9 +123,9 @@ const Login = ({ navigation }) => {
                                     secureTextEntry={true}
                                 />
 
-                                <LoginButton onPress={handleSubmit}>
+                                <WideLoginButton onPress={handleSubmit}>
                                     <ButtonText>로그인</ButtonText>
-                                </LoginButton>
+                                </WideLoginButton>
                             </StyledFormArea>
                         )}
                     </Formik>
@@ -146,16 +143,15 @@ const MyTextInput = ({ label, ...props }) => {
             <StyledInputLabel>
                 <Text>{label}</Text>
             </StyledInputLabel>
-            <StyledTextInput {...props} />
+            <RedBorderTextInput {...props} />
         </View>
-        );
+    );
 };
-
 
 // 카카오 로그인 스타일 
 const styles = StyleSheet.create({
     button: {
-        backgroundColor: "#FEE500", 
+        backgroundColor: "#fff200", 
         padding: 10,
         borderRadius: 5,
         alignItems: "center",

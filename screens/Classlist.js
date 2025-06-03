@@ -170,7 +170,7 @@ const Classlist = () => {
     );
 
     return (
-        <SafeAreaView style={{ flex: 1, backgroundColor: 'white' }}>
+        <SafeAreaView style={{ flex: 1, backgroundColor: '#fbfff4' }}>
             <ScrollView contentContainerStyle={{ padding: 16 }}>
             {renderFilters()}
 

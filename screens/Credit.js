@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
 import { useRoute, useNavigation } from '@react-navigation/native';
+
 import axios from 'axios';
 import {
     LessonProfileImage,
@@ -45,6 +46,7 @@ const Credit = () => {
             // 결제 완료 화면 이동
             navigation.navigate('CreditCompleted', {
                 lesson: {
+                    lesNum: lesson.lesNum,
                     lesThumbImg: lesson.lesThumbImg,
                     lesName: lesson.lesName,
                     lesTime: lesson.lesTime,
@@ -53,6 +55,7 @@ const Credit = () => {
                     lesPrice: lesson.lesPrice,
                 }
             });
+
         } catch (err) {
             console.error('결제 실패:', err);
         }
@@ -60,7 +63,7 @@ const Credit = () => {
 
 
     return (
-        <View style={{ flex: 1, backgroundColor: '#fff' }}>
+        <View style={{ flex: 1, backgroundColor: '#fbfff4' }}>
             <ScrollView contentContainerStyle={{ paddingBottom: 100 }}>
                 <Text style={{ fontSize: 25, fontWeight: 'bold', margin: 20 }}>결제할 레슨 정보</Text>
                 <LessonInfoContainer>
@@ -111,7 +114,7 @@ const Credit = () => {
                             onPress={() => setSelectedPayment('신용카드')}
                             style={{
                                 padding: 10,
-                                backgroundColor: selectedPayment === '신용카드' ? '#fff000' : '#eee',
+                                backgroundColor: selectedPayment === '신용카드' ? '#fff53c' : '#efefef',
                                 borderRadius: 8,
                                 marginRight: 10,
                             }}
@@ -122,7 +125,7 @@ const Credit = () => {
                             onPress={() => setSelectedPayment('체크카드')}
                             style={{
                                 padding: 10,
-                                backgroundColor: selectedPayment === '체크카드' ? '#fff000' : '#eee',
+                                backgroundColor: selectedPayment === '체크카드' ? '#fff000' : '#efefef',
                                 borderRadius: 8,
                             }}
                         >
@@ -134,7 +137,7 @@ const Credit = () => {
 
             <TouchableOpacity
                 style={{
-                    backgroundColor: '#FAF287',
+                    backgroundColor: '#7aae3e',
                     paddingVertical: 15,
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -145,7 +148,7 @@ const Credit = () => {
                 }}
                 onPress={handlePayment}
             >
-                <Text style={{ fontSize: 18, fontWeight: 'bold' }}>결제하기</Text>
+            <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#fff' }}>결제하기</Text>
             </TouchableOpacity>
         </View>
     );

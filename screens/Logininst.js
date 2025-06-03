@@ -10,16 +10,16 @@ import {
     StyledContainer,
     InnerContainer,
     PageLogo,
-    PageTitle,
     StyledFormArea,
     StyledInputLabel,
     StyledTextInput,
     ButtonText,
     SubTitle,
     Colors,
-    LoginButton,    
     TextLink2,
     TextLinkContent2,
+    RedBorderTextInput,
+    WideLoginButton
 } from "../components/styles";
 
 const { exTextColor } = Colors;
@@ -39,7 +39,6 @@ const Logininst = ({ navigation }) => {
 
                 <InnerContainer>
                     <PageLogo resizeMode="cover" source={require("../assets/img/logo.png")} />
-                    <PageTitle>파크골프ON</PageTitle>
                     <SubTitle>강사 로그인</SubTitle>
                     <View style={{ height: 50 }} />
                     <Formik
@@ -102,9 +101,9 @@ const Logininst = ({ navigation }) => {
                                     value={values.password}
                                     secureTextEntry={true}
                                 />
-                                <LoginButton onPress={handleSubmit}>
+                                <WideLoginButton onPress={handleSubmit}>
                                     <ButtonText>로그인</ButtonText>
-                                </LoginButton>
+                                </WideLoginButton>
                             </StyledFormArea>
                         )}
                     </Formik>

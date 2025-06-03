@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 import { View, Text, Image, TextInput, TouchableOpacity, StatusBar } from 'react-native';
 
 export const Colors = { 
-    accountBackGroundColor: "#FFFCAF", // 로그인 배경
+    accountBackGroundColor: "#fbfff4", // 로그인 배경
     whiteColor: "#FFFFFF", 
     textColor: "#434343", // 기본 텍스트
     exTextColor: "#C0C0C0", //ID/PW 입력창 예시 텍스트
@@ -69,8 +69,8 @@ export const BeginnerScreenContainer = styled.View`
 
 // 로고 
 export const PageLogo = styled.Image`
-    width: 250px;
-    height: 215px;
+    width: 300px;
+    height: 260px;
 `;
 // 제목 
 export const PageTitle = styled.Text`
@@ -93,6 +93,7 @@ export const SubTitle = styled.Text`
 // 폼 영역
 export const StyledFormArea = styled.View`
     width: 70%;
+    
 `;
 // 입력 필드 
 export const StyledTextInput = styled.TextInput`
@@ -106,6 +107,9 @@ export const StyledTextInput = styled.TextInput`
     margin-vertical: 10px;
     margin-bottom: 20px;
     color: ${textColor};
+
+    border-width: 2px;
+    border-color: #b8d88a;
 `;
 // 입력 필드 라벨
 export const StyledInputLabel = styled.Text`
@@ -117,11 +121,11 @@ export const StyledInputLabel = styled.Text`
 // 버튼
 export const StyledButton = styled.TouchableOpacity`
     padding: 20px;
-    width: 60%;
-    background-color: ${loginButtonColor};
+    width: 100%;
+    background-color: #b8d88a;
     justify-content: center;
     border-radius: 10px;
-    margin-vertical: 0px;
+    margin-vertical: 5px;
     height: 60px;
     align-self: center;
 `;
@@ -149,8 +153,9 @@ export const LogoutButton = styled.TouchableOpacity`
 
 // 버튼 텍스트 
 export const ButtonText = styled.Text`
-    color: ${textColor};
-    font-size: 15px;
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
     text-align: center; 
     width: 100%;
     line-height: 18px;
@@ -295,7 +300,7 @@ export const HeaderContainer = styled.View`
 // LessonDetail.js 레슨 상세 화면 컨테이너
 export const LessonDetailContainer = styled.View`
     flex: 1;
-    background-color: white;
+    background-color: #fbfff4;
     justify-content: center;
 
     /* border-color: green; */
@@ -422,7 +427,7 @@ export const LessonInfoText = styled.Text`
 // Mypage.js 컨테이너
 export const MypageContainer = styled.View`
     flex: 1;
-    background-color: white;
+    background-color: #fbfff4;
 `;
 
 
@@ -447,7 +452,7 @@ export const ProfileImage = styled.Image`
 
 // Mypage.js 프로필 컨테이너 내부의 userRole
 export const RoleBox = styled.View`
-    background-color: #fff000;
+    background-color: #fff53c;
     padding: 6px 15px;        
     border-radius: 6px;
     align-self: flex-start;
@@ -494,7 +499,7 @@ export const SectionTitle = styled.Text`
 
 // Mypage.js 회색 박스
 export const GrayBox = styled.View`
-    background-color: #eee;
+    background-color: #efefef;
     margin: 0 20px 20px 20px;
     padding: 15px;
     border-radius: 10px;
@@ -525,7 +530,7 @@ export const TextButtonText = styled.Text`
 // PwChange.js 컨테이너
 export const PwChangeContainer = styled.View`
     flex: 1;
-    background-color: white;
+    background-color: #fbfff4;
     justify-content: center;
 `;
 
@@ -544,7 +549,7 @@ export const GenderContainer = styled.View`
 `;
 
 export const GenderButton = styled.TouchableOpacity`
-    background-color: ${props => props.selected ? "#FFE600" : "#EFEFEF"};
+    background-color: ${props => props.selected ? "#ddff94" : "#EFEFEF"};
     padding: 10px 20px;
     border-radius: 8px;
     width: 48%;
@@ -654,7 +659,7 @@ export const StatusLabelText = styled.Text`
 // instMain.js 상태 카운트 값
 export const StatusValue = styled.Text`
     font-size: 30px;
-    color: blue;
+    color: green;
     font-weight: bold;
 `;
 
@@ -761,7 +766,7 @@ export const HealthInput = styled.TextInput`
 export const QuitContainer = styled.View`
     flex: 1;
     padding: 30px 20px;
-    background-color: white;
+    background-color: #fbfff4;
 `;
 
 // Quit.js
@@ -881,7 +886,7 @@ export const InstructorNameText = styled.Text`
 
 // Credit.js 
 export const InstructorInfoBox = styled.View`
-    background-color: #eee;
+    background-color: #efefef;
     margin: 20px;
     padding: 10px;
     border-radius: 8px;
@@ -920,7 +925,7 @@ export const PaymentButtonRow = styled.View`
 // Credit.js 
 export const PaymentMethodButton = styled.TouchableOpacity`
     padding: 10px;
-    background-color: ${(props) => (props.selected ? logoColor : '#eee')};
+    background-color: ${(props) => (props.selected ? logoColor : '#efefef')};
     border-radius: 8px;
     margin-right: 10px;
 `;
@@ -939,7 +944,7 @@ export const PaymentSubmitButton = styled.TouchableOpacity`
 export const PaymentSubmitText = styled.Text`
     font-size: 16px;
     font-weight: bold;
-    color: black;
+    color: white;
 `;
 
 //승인대기화면
@@ -1076,4 +1081,23 @@ export const AlarmInner = styled.View`
     flex: 1;
     top: 0px;
     align-items: center;
+`;
+
+
+export const RedBorderTextInput = styled(StyledTextInput)`
+    border-width: 2px;
+    border-color: #b8d88a;
+`;
+
+
+// 로그인 버튼
+export const WideLoginButton = styled.TouchableOpacity`
+    padding: 20px;
+    width: 100%;
+    background-color: #7aae3e;
+    justify-content: center;
+    border-radius: 10px;
+    margin-vertical: 0px;
+    height: 60px;
+    align-self: center;
 `;

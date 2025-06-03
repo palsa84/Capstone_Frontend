@@ -65,18 +65,23 @@ const ProfileEdit = ({ navigation }) => {
                 </Row>
             </PwCangeGrayBox>
 
-            <View style={{ alignItems: 'center', marginTop: 20 }}>
-                <TextButton onPress={handleSave}>
+            <View style={{ alignItems: 'center', marginTop: 20, width: '100%' }}>
+                <TextButton onPress={handleSave} style={{ width: '80%' }}>
                     <TextButtonText style={{
-                        backgroundColor: '#fff000',
-                        paddingHorizontal: 40,
-                        paddingVertical: 10,
-                        borderRadius: 10
+                        backgroundColor: '#7aae3e',
+                        paddingVertical: 15,
+                        borderRadius: 10,
+                        fontSize: 18,
+                        fontWeight: 'bold',
+                        color: 'white',
+                        textAlign: 'center',
+                        width: '100%',
                     }}>
                         저장
                     </TextButtonText>
                 </TextButton>
             </View>
+
         </MypageContainer>
     );
 };

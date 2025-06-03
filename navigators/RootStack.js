@@ -48,7 +48,7 @@ const RootStack = () => {
         <NavigationContainer>
             <Stack.Navigator 
                 screenOptions={{
-                    headerStyle: { backgroundColor: '#FAF287' },
+                    headerStyle: { backgroundColor: '#e9ffc7' },
                     headerTintColor: 'black',
                     headerTitleAlign: 'center',
                 }}
@@ -79,7 +79,7 @@ const RootStack = () => {
                 <Stack.Screen name="instState" component={instState} options={{ title: '' }} />
                 <Stack.Screen name="instAlarm" component={instAlarm} options={{ title: '알림' }} />
                 <Stack.Screen name="instProfileEdit" component={instProfileEdit}  options={{ headerShown: true }} />
-                <Stack.Screen name="SelectAddress" component={SelectAddress} options={{ title: '주소 선택' }} />
+                <Stack.Screen name="SelectAddress" component={SelectAddress} options={{ title: '주소 선택', headerLeft: () => null }} />
                 <Stack.Screen name="Credit" component={Credit} options={{ title: '결제하기' }} />
                 <Stack.Screen name="CreditCompleted" component={CreditCompleted} options={{ headerShown: false }} />
 

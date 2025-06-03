@@ -57,7 +57,7 @@ const Favorite = () => {
                         height: 20,
                         borderWidth: 1,
                         borderColor: 'black',
-                        backgroundColor: selectedItems.includes(item.favoriteId) ? 'red' : 'white',
+                        backgroundColor: selectedItems.includes(item.favoriteId) ? '#ef9a9a' : 'white',
                         marginRight: 10,
                     }} />
                 </TouchableOpacity>

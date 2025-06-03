@@ -83,13 +83,13 @@ const instMain = ({ navigation }) => {
             headerLeft: () => <LogoutButton />,
             headerRight: () => <AlarmButton hasUnread={hasUnread} />,
             headerTitleAlign: 'center',
-            headerStyle: { backgroundColor: '#FAF287' },
+            headerStyle: { backgroundColor: '#e9ffc7' },
             headerTintColor: 'black',
         });
     }, [nav, hasUnread]);
 
     return (
-        <ScrollView style={{ flex: 1, backgroundColor: '#fff' }}>
+        <ScrollView style={{ flex: 1, backgroundColor: '#fbfff4' }}>
             <MypageContainer style={{ paddingBottom: 30 }}>
                 <StatusBar barStyle="dark-content" />
 

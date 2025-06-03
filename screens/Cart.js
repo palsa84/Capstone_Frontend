@@ -55,7 +55,7 @@ const Cart = () => {
                     height: 20,
                     borderWidth: 1,
                     borderColor: 'black',
-                    backgroundColor: selectedItems.includes(item.cartId) ? 'blue' : 'white',
+                    backgroundColor: selectedItems.includes(item.cartId) ? '#7aae3e' : 'white',
                     marginRight: 10,
                 }} />
             </TouchableOpacity>
@@ -67,7 +67,7 @@ const Cart = () => {
                 <Text>{parseInt(item.lesPrice).toLocaleString()} 원</Text>
             </styles.CartItemInfo>
 
-            {/* 썸네일 이미지 */}
+            {/* 대표 이미지 */}
             <Image
                 source={{ uri: `http://192.168.0.22:5000/img/${item.lesThumbImg}` }}
                 style={{ width: 80, height: 70, borderRadius: 10 }}
@@ -111,13 +111,13 @@ const Cart = () => {
                     }
                 }}
                 style={{
-                    backgroundColor: '#FAF287',
+                    backgroundColor: '#7aae3e',
                     paddingVertical: 15,
                     alignItems: 'center',
                     justifyContent: 'center',
                 }}
             >
-                <Text style={{ fontSize: 18, fontWeight: 'bold' }}>결제하기</Text>
+                <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#fff' }}>결제하기</Text>
             </TouchableOpacity>
         </styles.LessonDetailContainer>
     );

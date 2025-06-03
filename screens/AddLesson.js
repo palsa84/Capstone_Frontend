@@ -58,7 +58,7 @@ const AddLesson = ({ navigation }) => {
         if (!lesName || !lesinfo || !lesLevel || !mainRegion ||
             (mainRegion === '대구' && !subRegion) || !lesDetailPlace ||
             !lesPrice || !weekday || !startTime || !endTime || !bgUri) {
-            Alert.alert('모든 필드를 입력해주세요 (썸네일 제외).');
+            Alert.alert('모든 필드를 입력해주세요 (대표 제외).');
             return;
         }
 
@@ -188,16 +188,16 @@ const AddLesson = ({ navigation }) => {
                     </Picker>
                 </View>
 
-                <Text>썸네일 이미지:</Text>
+                <Text>대표 이미지:</Text>
                 <TouchableOpacity onPress={() => selectImage('thumb')} style={{ marginBottom: 10 }}>
                     {thumbUri ? (
                         <Image source={{ uri: thumbUri }} style={{ width: 120, height: 120, borderRadius: 8 }} />
                     ) : (
                         <View style={{
-                            width: 120, height: 120, backgroundColor: '#eee',
+                            width: 120, height: 120, backgroundColor: '#efefef',
                             justifyContent: 'center', alignItems: 'center', borderRadius: 8
                         }}>
-                            <Text style={{ color: '#999' }}>썸네일 선택</Text>
+                            <Text style={{ color: '#999' }}>대표 선택</Text>
                         </View>
                     )}
                 </TouchableOpacity>
@@ -208,7 +208,7 @@ const AddLesson = ({ navigation }) => {
                         <Image source={{ uri: bgUri }} style={{ width: 120, height: 120, borderRadius: 8 }} />
                     ) : (
                         <View style={{
-                            width: 120, height: 120, backgroundColor: '#eee',
+                            width: 120, height: 120, backgroundColor: '#efefef',
                             justifyContent: 'center', alignItems: 'center', borderRadius: 8
                         }}>
                             <Text style={{ color: '#999' }}>배경 선택</Text>
@@ -220,28 +220,31 @@ const AddLesson = ({ navigation }) => {
                     <TouchableOpacity
                         onPress={handleSubmit}
                         style={{
-                            backgroundColor: '#fff000',
-                            paddingHorizontal: 20,
+                            width: 150,
+                            backgroundColor: '#7aae3e',
                             paddingVertical: 10,
                             borderRadius: 10,
-                            marginRight: 10
+                            marginRight: 10,
+                            alignItems: 'center',
                         }}
                     >
-                        <Text style={{ color: '#000', fontWeight: 'bold', fontSize: 16 }}>레슨 등록</Text>
+                        <Text style={{ color: '#fff', fontWeight: 'bold', fontSize: 16 }}>레슨 등록</Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity
                         onPress={handleCancel}
                         style={{
+                            width: 150,
                             backgroundColor: '#ccc',
-                            paddingHorizontal: 20,
                             paddingVertical: 10,
-                            borderRadius: 10
+                            borderRadius: 10,
+                            alignItems: 'center',
                         }}
                     >
                         <Text style={{ color: '#000', fontWeight: 'bold', fontSize: 16 }}>취소</Text>
                     </TouchableOpacity>
                 </View>
+
             </ScrollView>
         </KeyboardAvoidingView>
     );

@@ -47,10 +47,10 @@ const LessonManage = ({ navigation }) => {
 export default LessonManage;
 
 const Button = styled.TouchableOpacity`
-    background-color: #ddd;
+    background-color: #9dc658;
     padding: 22px;
     border-radius: 10px;
-    margin-vertical: 15px;
+    margin-vertical: 30px;
     width: 60%;
     align-self: center;
     align-items: center;
@@ -59,5 +59,5 @@ const Button = styled.TouchableOpacity`
 const ButtonText = styled.Text`
     font-size: 18px;
     font-weight: bold;
-    color: black;
+    color: white;
 `; 
