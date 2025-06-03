@@ -725,7 +725,6 @@ export const CartItemInfo = styled.View`
     margin-left: 10px;
 `;
 
-
 export const TopBarContainer = styled.View`
     height: 60px;
     background-color: #FFF59D;
@@ -977,4 +976,104 @@ export const ApproveButton = styled.TouchableOpacity`
     background-color: #fff000;
     padding: 15px 25px;
     border-radius: 10px;
+`;
+
+// InstApplicationList.js 신청 리스트 화면
+export const AppListContainer = styled.View`
+    flex: 1;
+    background-color: white;
+`;
+
+export const AppCard = styled.TouchableOpacity`
+    border-width: 1px;
+    border-color: #ddd;
+    border-radius: 8px;
+    padding: 12px;
+    margin: 12px 16px;
+    background-color: #f9f9f9;
+`;
+
+export const AppCardRow = styled.View`
+    flex-direction: row;
+    align-items: center;
+`;
+
+export const AppProfileImg = styled.Image`
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+    margin-right: 12px;
+`;
+
+export const AppInfoBox = styled.View`
+    flex: 1;
+`;
+
+export const AppName = styled.Text`
+    font-size: 16px;
+    font-weight: bold;
+    color: black;
+`;
+
+export const AppLocation = styled.Text`
+    font-size: 14px;
+    color: #555;
+    margin-top: 2px;
+`;
+
+export const AppLesson = styled.Text`
+    font-size: 14px;
+    margin-top: 4px;
+`;
+
+export const AppStatus = styled.Text`
+    font-size: 14px;
+    margin-top: 2px;
+    color: blue;
+`;
+
+// instState.js 신청 카드 스타일
+export const StyledAppCard = styled.TouchableOpacity`
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    margin-bottom: 12px;
+`;
+
+export const StyledAppCardLeft = styled.View`
+    flex: 1;
+`;
+
+export const StyledAppCardRight = styled.View`
+    justify-content: flex-end;
+    align-items: flex-end;
+`;
+
+export const StyledAppCardTitle = styled.Text`
+    font-size: 16px;
+    font-weight: bold;
+    color: black;
+`;
+
+export const StyledAppCardPlace = styled.Text`
+    font-size: 14px;
+    color: #555;
+    margin-top: 4px;
+`;
+
+// 알림 전용 전체 컨테이너
+export const AlarmContainer = styled.View`
+    flex: 1;
+    padding-top: 20px;
+    background-color: ${accountBackGroundColor};
+`;
+
+// 알림 전용 내부 컨테이너
+export const AlarmInner = styled.View`
+    flex: 1;
+    top: 0px;
+    align-items: center;
 `;

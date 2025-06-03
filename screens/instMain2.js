@@ -1,8 +1,7 @@
 import React, { useLayoutEffect, useState, useEffect } from 'react';
 import { ScrollView, StatusBar, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { AlarmButton, LogoutButton } from '../navigators/TabNavigator';
-import { useFocusEffect } from '@react-navigation/native';
+import { AlarmButton } from '../navigators/TabNavigator';
 import {
     MypageContainer,
     ProfileWrapper,
@@ -27,22 +26,10 @@ const instMain = ({ navigation }) => {
     const nav = useNavigation();
     const user = getUser();
 
-    const [counts, setCounts] = useState({
-        ready: 0,
-        waiting: 0,
-        cancel: 0,
-        deposit: 0,
-        done: 0,
-        reject: 0,
-    });
-
-    const [hasUnread, setHasUnread] = useState(false);
-
     useEffect(() => {
         if (!user) {
             nav.reset({ index: 0, routes: [{ name: 'Logininst' }] });
         } else {
-            // 신청 상태별 수 가져오기
             axios.get(`http://192.168.0.22:5000/api/application/count/byStatus/${user.userNum}`)
                 .then(res => {
                     setCounts({
@@ -55,38 +42,33 @@ const instMain = ({ navigation }) => {
                     });
                 })
                 .catch(err => console.error('신청 상태별 수 가져오기 실패:', err));
-
-            // 알림 여부 확인
-            axios.get(`http://192.168.0.22:5000/api/notifications/unread/${user.userNum}`)
-                .then(res => setHasUnread(res.data.hasUnread))
-                .catch(err => console.error('알림 상태 확인 실패:', err));
         }
     }, []);
 
-    useFocusEffect(
-        React.useCallback(() => {
-            if (user?.userNum) {
-                axios.get(`http://192.168.0.22:5000/api/notifications/unread/${user.userNum}`)
-                    .then(res => setHasUnread(res.data.hasUnread))
-                    .catch(err => console.error('알림 상태 확인 실패:', err));
-            }
-        }, [user?.userNum])
-    );
     if (!user) return null;
 
     const { userName, userRole, userImg } = user;
     const BASE_URL = 'http://192.168.0.22:5000';
     const fullImageUrl = userImg?.startsWith('http') ? userImg : `${BASE_URL}/img/${userImg}`;
 
+    const [counts, setCounts] = useState({
+        ready: 0,
+        waiting: 0,
+        cancel: 0,
+        deposit: 0,
+        done: 0,
+        reject: 0,
+    });
+
     useLayoutEffect(() => {
         nav.setOptions({
-            headerLeft: () => <LogoutButton />,
-            headerRight: () => <AlarmButton hasUnread={hasUnread} />,
+            headerRight: () => <AlarmButton />,
+            headerLeft: () => null,
             headerTitleAlign: 'center',
             headerStyle: { backgroundColor: '#FAF287' },
             headerTintColor: 'black',
         });
-    }, [nav, hasUnread]);
+    }, [nav]);
 
     return (
         <ScrollView style={{ flex: 1, backgroundColor: '#fff' }}>

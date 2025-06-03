@@ -46,7 +46,7 @@ const CreditCompleted = () => {
             <PaymentButtonRow style={{ justifyContent: 'space-around', marginTop: 40, width: '85%' }}>
                 <PaymentSubmitButton
                     style={{ width: 130, backgroundColor: '#fff000' }}
-                    onPress={() => navigation.navigate('Order', { lesson })} 
+                    onPress={() => navigation.navigate('TabNavigator', { screen: 'Order' })}
                 >
                     <PaymentSubmitText>상세 정보</PaymentSubmitText>
                 </PaymentSubmitButton>

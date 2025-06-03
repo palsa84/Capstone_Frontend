@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { ScrollView, StatusBar, TouchableOpacity, Text } from 'react-native';
+import { ScrollView, StatusBar, TouchableOpacity, Text, View, Image } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import * as styles from './../components/styles';
 import Toast from 'react-native-root-toast';
 import axios from 'axios';
-import { getUser } from '../utils/userInfo';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 const LessonDetail = () => {
@@ -14,7 +13,7 @@ const LessonDetail = () => {
     const [isFavorite, setIsFavorite] = useState(isFavorited ?? false);
 
     const {
-        lesNum,           
+        lesNum,
         lesName,
         lesPrice,
         lesinfo,
@@ -23,7 +22,9 @@ const LessonDetail = () => {
         lesBackgroundImg,
         instName,
         userImg,
-        userinfo
+        userinfo,
+        instImg,
+        instInfo
     } = lesson;
 
     useEffect(() => {
@@ -42,12 +43,9 @@ const LessonDetail = () => {
     }, [navigation, userId, lesNum]);
 
     const handleAddToCart = async () => {
-        console.log('보내는 값:', { userId, lessonId: lesNum });
-        console.log('lesson 객체:', lesson);
         try {
             const res = await axios.get(`http://192.168.0.22:5000/api/cart/${userId}`);
             const cartItems = res.data;
-
             const alreadyInCart = cartItems.some(item => item.lesName === lesName);
 
             if (alreadyInCart) {
@@ -62,7 +60,7 @@ const LessonDetail = () => {
 
             await axios.post('http://192.168.0.22:5000/api/cart', {
                 userId: userId,
-                lessonId: lesNum, 
+                lessonId: lesNum,
             });
 
             Toast.show('장바구니에 추가되었습니다.', {
@@ -79,12 +77,22 @@ const LessonDetail = () => {
 
     const handleFavorite = async () => {
         try {
-            const res = await axios.post('http://192.168.0.22:5000/api/favorite', { userId, lessonId: lesNum });
+            const res = await axios.post('http://192.168.0.22:5000/api/favorite', {
+                userId,
+                lessonId: lesNum
+            });
+
             if (res.data.removed) {
-                Toast.show('찜 취소 완료', { duration: 3000, position: Toast.positions.BOTTOM });
+                Toast.show('찜 취소 완료', {
+                    duration: 3000,
+                    position: Toast.positions.BOTTOM
+                });
                 setIsFavorite(false);
             } else {
-                Toast.show('찜 추가 완료', { duration: 3000, position: Toast.positions.BOTTOM });
+                Toast.show('찜 추가 완료', {
+                    duration: 3000,
+                    position: Toast.positions.BOTTOM
+                });
                 setIsFavorite(true);
             }
         } catch (err) {
@@ -110,7 +118,9 @@ const LessonDetail = () => {
                 <styles.LessonDetailInfoContainer>
                     <TouchableOpacity
                         onPress={() =>
-                            navigation.navigate('instDetailProfile', { instName: lesson.instName.replace(' 강사', '') })
+                            navigation.navigate('instDetailProfile', {
+                                instName: lesson.instName.replace(' 강사', '')
+                            })
                         }
                     >
                         <styles.InstructorName>{lesson.instName}</styles.InstructorName>

@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { FlatList, View, Text, TouchableOpacity, Image, Alert, ActivityIndicator } from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
 import axios from 'axios';
 
 const LessonList = ({ navigation, route }) => {
@@ -7,21 +8,29 @@ const LessonList = ({ navigation, route }) => {
     const [loading, setLoading] = useState(true);
     const { mode, instNum } = route.params || {};
 
-    useEffect(() => {
+    const fetchLessons = async () => {
         if (!instNum) {
             Alert.alert('오류', '강사 정보를 불러올 수 없습니다.');
             return;
         }
 
-        axios
-            .get(`http://192.168.0.22:5000/api/lesson-api/instructor/${instNum}`)
-            .then(res => setLessons(res.data))
-            .catch(err => {
-                console.error('레슨 조회 실패:', err);
-                Alert.alert('레슨 목록을 불러올 수 없습니다.');
-            })
-            .finally(() => setLoading(false));
-    }, [instNum]);
+        setLoading(true);
+        try {
+            const res = await axios.get(`http://192.168.0.22:5000/api/lesson-api/instructor/${instNum}`);
+            setLessons(res.data);
+        } catch (err) {
+            console.error('레슨 조회 실패:', err);
+            Alert.alert('레슨 목록을 불러올 수 없습니다.');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useFocusEffect(
+        useCallback(() => {
+            fetchLessons();
+        }, [instNum])
+    );
 
     const deleteLesson = async (lesNum) => {
         try {
@@ -58,12 +67,24 @@ const LessonList = ({ navigation, route }) => {
     };
 
     const handlePress = (item) => {
+        
         if (mode === 'edit') {
             navigation.navigate('EditLesson', { lesNum: item.lesNum });
         } else if (mode === 'delete') {
             confirmDelete(item.lesNum);
+        } else {
+            navigation.navigate('LessonDetail', {
+                lesson: {
+                    ...item,
+                    instImg: item.userImg,     
+                    instInfo: item.userinfo   
+                },
+                fromOrder: true,
+                userId: instNum             
+            });
         }
     };
+
 
     if (loading) {
         return (

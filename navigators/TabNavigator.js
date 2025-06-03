@@ -1,9 +1,11 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
-import { TouchableOpacity, Text } from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { setUser } from '../utils/userInfo';
 import Icon from 'react-native-vector-icons/Ionicons';
+import Toast from 'react-native-root-toast';
 
 import Classlist from '../screens/Classlist';
 import Beginner from '../screens/Beginner';
@@ -25,28 +27,71 @@ const CartButton = () => {
         </TouchableOpacity>
     );
 };
-// 강사로그인 상단 '알림' 버튼
-export const AlarmButton = () => {
+
+// 강사로그인 우측 상단 '알림' 버튼
+export const AlarmButton = ({ hasUnread }) => {
     const navigation = useNavigation();
     return (
         <TouchableOpacity onPress={() => navigation.navigate('instAlarm')} style={{ paddingRight: 15 }}>
-            <Text style={{ fontSize: 16, color: 'black', fontWeight: 'bold' }}>알림</Text>
+            <View>
+                <Icon name="notifications-outline" size={24} color="black" />
+                {hasUnread && (
+                    <View style={{
+                        position: 'absolute',
+                        top: -2,
+                        right: -2,
+                        width: 8,
+                        height: 8,
+                        borderRadius: 4,
+                        backgroundColor: 'red'
+                    }} />
+                )}
+            </View>
         </TouchableOpacity>
     );
 };
 
+// 강사로그인 좌측 상단 '로그아웃' 버튼
+export const LogoutButton = () => {
+    const navigation = useNavigation();
+
+    const handleLogout = () => {
+        setUser(null);
+        navigation.reset({
+            index: 0,
+            routes: [{ name: 'Logininst' }],
+        });
+
+        setTimeout(() => {
+            Toast.show('로그아웃되었습니다.', {
+                duration: 3000,
+                position: Toast.positions.BOTTOM,
+                shadow: true,
+                animation: true,
+                hideOnPress: true,
+                backgroundColor: '#333',
+                textColor: '#fff',
+            });
+        }, 300);
+    };
+
+    return (
+        <TouchableOpacity onPress={handleLogout} style={{ paddingLeft: 15 }}>
+            <Icon name="power-outline" size={24} color="black" />
+        </TouchableOpacity>
+    );
+};
 
 // 클래스 관련 화면을 포함하는 Stack Navigator
 const ClassStack = () => {
     return (
-        <Stack.Navigator screenOptions={{ headerTitleAlign: 'center', headerStyle: { backgroundColor: '#FAF287' }, headerTintColor: 'black', headerRight: () => <CartButton />, headerBackTitleVisible: false, }}
-        >
+        <Stack.Navigator screenOptions={{ headerTitleAlign: 'center', headerStyle: { backgroundColor: '#FAF287' }, headerTintColor: 'black', headerRight: () => <CartButton />, headerBackTitleVisible: false }}>
             <Stack.Screen 
                 name="Classlist" 
                 component={Classlist} 
                 options={{ 
                     title: " ", 
-                    headerLeft: () => null  // 뒤로가기 버튼 제거
+                    headerLeft: () => null
                 }} 
             />
             <Stack.Screen name="Beginner" component={Beginner} options={{ title: " " }} />
@@ -56,7 +101,7 @@ const ClassStack = () => {
     );
 };
 
-// // 찜, 주문내역, 마이페이지 상단 탭 네비게이션
+// 찜, 주문내역, 마이페이지 상단 탭 네비게이션
 const ScreenWithHeader = (Component, title) => {
     return ({ route }) => (
         <Stack.Navigator
@@ -76,12 +121,11 @@ const ScreenWithHeader = (Component, title) => {
     );
 };
 
-
 // 하단 탭 네비게이션
 const TabNavigator = () => {
     return (
         <Tab.Navigator screenOptions={({ route }) => ({
-                tabBarIcon: ({ color, size }) => {
+            tabBarIcon: ({ color, size }) => {
                 let iconName;
 
                 if (route.name === 'Class') iconName = 'golf-outline';
@@ -90,12 +134,11 @@ const TabNavigator = () => {
                 else if (route.name === 'Mypage') iconName = 'person-circle';
 
                 return <Icon name={iconName} size={20} color={color} />;
-                },
-                tabBarStyle: { backgroundColor: '#FAF287' },
-                tabBarActiveTintColor: 'black',
-                tabBarInactiveTintColor: 'black',
-            })}
-        >
+            },
+            tabBarStyle: { backgroundColor: '#FAF287' },
+            tabBarActiveTintColor: 'black',
+            tabBarInactiveTintColor: 'black',
+        })}>
             <Tab.Screen name="Class" component={ClassStack} options={{ title: "클래스",  headerShown: false }} />
             <Tab.Screen name="Favorite" component={ScreenWithHeader(Favorite, '찜')} options={{ title: "찜", headerShown: false }} />
             <Tab.Screen name="Order" component={ScreenWithHeader(Order, '주문내역')} options={{ title: "주문내역", headerShown: false }}/>

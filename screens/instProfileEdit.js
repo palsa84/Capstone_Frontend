@@ -1,7 +1,5 @@
 import React, { useLayoutEffect, useState, useEffect } from 'react';
-import {
-    StatusBar, View, Text, ToastAndroid, TextInput,
-    TouchableOpacity, ScrollView, Alert
+import { StatusBar, View, Text, ToastAndroid, TextInput, TouchableOpacity, ScrollView, Alert
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import DateTimePicker from '@react-native-community/datetimepicker';
@@ -35,7 +33,7 @@ const instProfileEdit = () => {
 useEffect(() => {
     const fetchUser = async () => {
         const u = await getUser();
-        console.log('불러온 유저:', u); // ← 여기서 userNum 확인
+        console.log('불러온 유저:', u);
         if (!u) {
             nav.reset({ index: 0, routes: [{ name: 'Logininst' }] });
         } else {
@@ -112,7 +110,6 @@ useEffect(() => {
             <MypageContainer style={{ backgroundColor: 'white' }}>
                 <StatusBar barStyle="dark-content" />
 
-                {/* 프로필 사진 + 이름 */}
                 <View style={{
                     flexDirection: 'row',
                     alignItems: 'center',
@@ -137,10 +134,8 @@ useEffect(() => {
                     </View>
                 </View>
 
-                {/* 입력 영역 */}
                 <PwCangeGrayBox style={{ paddingHorizontal: 20, backgroundColor: 'white' }}>
 
-                    {/* 레슨 경력 및 자격증 */}
                     <View style={{ marginBottom: 0 }}>
                         <Text style={{ fontWeight: 'bold', marginBottom: 5 }}>레슨 경력 및 자격증</Text>
                         <TextInput
@@ -160,7 +155,6 @@ useEffect(() => {
                     </View>
                 </PwCangeGrayBox>
 
-                {/* 저장/취소 버튼 */}
                 <Row style={{ justifyContent: 'center', gap: 15, marginVertical: 20 }}>
                     <TouchableOpacity onPress={handleSave} style={{
                         backgroundColor: '#fff000',
